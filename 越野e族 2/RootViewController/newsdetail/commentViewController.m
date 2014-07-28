@@ -1355,7 +1355,7 @@
         _people.uid=[NSString stringWithFormat:@"%@",[array_peopleid objectAtIndex:imv__.tag-100-2]];
         [self.navigationController pushViewController:_people animated:YES];
     }else{
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
         
     }
@@ -1497,7 +1497,7 @@
     if ([[personal getMyAuthkey ] isEqualToString:@"(null)"]||[personal getMyAuthkey ].length==0) {
         
         
-        LogInViewController *loginV=[[LogInViewController alloc]init];
+        LogInViewController *loginV=[LogInViewController sharedManager];
         
         
         [self presentViewController:loginV animated:YES completion:^{
@@ -1554,7 +1554,7 @@
     else{
         //没有激活fb，弹出激活提示
         [text_write resignFirstResponder];
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentModalViewController:login animated:YES];
     }
 }
@@ -1570,7 +1570,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {
         NSLog(@"激活");
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentModalViewController:login animated:YES];
     }else{
         NSLog(@"取消");
@@ -1712,7 +1712,7 @@
         [self facescrowhiden];
         //没有激活fb，弹出激活提示
         [text_write resignFirstResponder];
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
     }
 }

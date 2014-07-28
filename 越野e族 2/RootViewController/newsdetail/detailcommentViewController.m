@@ -617,7 +617,7 @@
     else{
         //没有激活fb，弹出激活提示
         [text_write resignFirstResponder];
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentModalViewController:login animated:YES];    }
     
 }
@@ -633,7 +633,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==0) {
         NSLog(@"激活");
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
 [self presentModalViewController:login animated:YES];         
     }else{
         NSLog(@"取消");
@@ -729,7 +729,7 @@
         [self facescrowhiden];
         //没有激活fb，弹出激活提示
         [text_write resignFirstResponder];
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
     }
 }

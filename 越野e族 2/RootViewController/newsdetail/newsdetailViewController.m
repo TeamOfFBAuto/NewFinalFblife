@@ -254,9 +254,9 @@
     
     //动态获取键盘高度
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    //点击隐藏键盘按钮所触发的事件
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    //点击隐藏键盘按钮所触发的事件
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     //faceview隐藏的刚开始是
     faceScrollView = [[FaceScrollView alloc] initWithFrame:CGRectMake(0, 900, self.view.frame.size.width, 160) target:self];
@@ -653,7 +653,7 @@
 
     if ([personal getMyAuthkey].length==0||[[personal getMyAuthkey] isEqualToString:@"(null)"]) {
         
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:^{
             
         }];
@@ -1195,7 +1195,7 @@
         }
         else{
             //没有激活fb，弹出激活提示
-            LogInViewController *login=[[LogInViewController alloc]init];
+            LogInViewController *login=[LogInViewController sharedManager];
             [self presentViewController:login animated:YES completion:nil];
         }
         return NO;
@@ -1841,7 +1841,7 @@
         }
         else{
             //没有激活fb，弹出激活提示
-            LogInViewController *login=[[LogInViewController alloc]init];
+            LogInViewController *login=[LogInViewController sharedManager];
             [self presentViewController:login animated:YES completion:nil];
         }
         
@@ -2116,7 +2116,7 @@
     if ([[personal getMyAuthkey ] isEqualToString:@"(null)"]||[personal getMyAuthkey ].length==0) {
 
         
-        LogInViewController *loginV=[[LogInViewController alloc]init];
+        LogInViewController *loginV=[LogInViewController sharedManager];
         
         
         [self presentViewController:loginV animated:YES completion:^{
@@ -2196,7 +2196,7 @@
     else{
         //没有激活fb，弹出激活提示
         [text_write resignFirstResponder];
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
     }
 }
@@ -2299,7 +2299,7 @@
         [self facescrowhiden];
         //没有激活fb，弹出激活提示
         [text_write resignFirstResponder];
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
     }
 }

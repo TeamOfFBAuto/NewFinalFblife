@@ -673,7 +673,7 @@
             {
                 if (!logIn)
                 {
-                    logIn = [[LogInViewController alloc] init];
+                    logIn = [LogInViewController sharedManager];
                 }
                 [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 
@@ -709,7 +709,7 @@
             {
                 if (!logIn)
                 {
-                    logIn = [[LogInViewController alloc] init];
+                    logIn = [LogInViewController sharedManager];
                 }
                 [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 
@@ -732,7 +732,7 @@
             {
                 if (!logIn)
                 {
-                    logIn = [[LogInViewController alloc] init];
+                    logIn = [LogInViewController sharedManager];
                 }
                 [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 [self presentModalViewController:logIn animated:YES];
@@ -752,7 +752,7 @@
             {
                 if (!logIn)
                 {
-                    logIn = [[LogInViewController alloc] init];
+                    logIn = [LogInViewController sharedManager];
                 }
                 [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 [self presentModalViewController:logIn animated:YES];
@@ -784,7 +784,7 @@
             {
                 if (!logIn)
                 {
-                    logIn = [[LogInViewController alloc] init];
+                    logIn = [LogInViewController sharedManager];
                 }
                 [self.leveyTabBarController hidesTabBar:YES animated:YES];
                 [self presentModalViewController:logIn animated:YES];
@@ -995,7 +995,7 @@
     {
         if (!logIn)
         {
-            logIn = [[LogInViewController alloc] init];
+            logIn = [LogInViewController sharedManager];
         }
         [self.leveyTabBarController hidesTabBar:YES animated:YES];
         [self presentModalViewController:logIn animated:YES];

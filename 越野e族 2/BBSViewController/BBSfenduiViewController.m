@@ -545,7 +545,7 @@
     else{
         //没有激活fb，弹出激活提示
         
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
     }
     
@@ -569,7 +569,7 @@
     else{
         //没有激活fb，弹出激活提示
         
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentViewController:login animated:YES completion:nil];
     }
     
@@ -1238,7 +1238,7 @@
     }
     else{
         //没有激活fb，弹出激活提示
-        LogInViewController *login=[[LogInViewController alloc]init];
+        LogInViewController *login=[LogInViewController sharedManager];
         [self presentModalViewController:login animated:YES];
     }
     

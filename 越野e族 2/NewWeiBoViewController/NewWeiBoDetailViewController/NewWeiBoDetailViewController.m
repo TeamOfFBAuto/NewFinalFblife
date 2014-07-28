@@ -763,7 +763,7 @@
         BOOL isLogIn = [[NSUserDefaults standardUserDefaults] boolForKey:USER_IN];
         if (!isLogIn)
         {
-            LogInViewController * logIn = [[LogInViewController alloc] init];
+            LogInViewController * logIn = [LogInViewController sharedManager];
             [self presentModalViewController:logIn animated:YES];
             return;
         }
@@ -833,7 +833,7 @@
             [self setHidesBottomBarWhenPushed:NO];
         }else{
             
-            LogInViewController * logIn = [[LogInViewController alloc] init];
+            LogInViewController * logIn = [LogInViewController sharedManager];
             
             [self presentModalViewController:logIn animated:YES];
         }

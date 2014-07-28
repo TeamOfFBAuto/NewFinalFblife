@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FriendListViewController.h"
 
-@interface RightViewController : UIViewController<FriendListViewControllerDelegate>
+@interface RightViewController : UIViewController<FriendListViewControllerDelegate,AsyncImageDelegate>
 {
     AsyncImageView * headerImageView;//头像
     

@@ -1762,7 +1762,7 @@
                     {
                         if (!logIn)
                         {
-                            logIn = [[LogInViewController alloc] init];
+                            logIn = [LogInViewController sharedManager];
                         }
                         [self.leveyTabBarController hidesTabBar:YES animated:YES];
                         [self presentModalViewController:logIn animated:YES];
@@ -1786,7 +1786,7 @@
                         
                         
                     }else{
-                        LogInViewController *login=[[LogInViewController alloc]init];
+                        LogInViewController *login=[LogInViewController sharedManager];
                         [self presentModalViewController:login animated:YES];
                     }
                     
@@ -1822,7 +1822,7 @@
     {
         if (!logIn)
         {
-            logIn = [[LogInViewController alloc] init];
+            logIn = [LogInViewController sharedManager];
         }
         
         [self presentModalViewController:logIn animated:YES];
@@ -1842,7 +1842,7 @@
         {
             if (!logIn)
             {
-                logIn = [[LogInViewController alloc] init];
+                logIn = [LogInViewController sharedManager];
             }
             [self presentModalViewController:logIn animated:YES];
             return;
@@ -1895,7 +1895,7 @@
     {
         if (!logIn)
         {
-            logIn = [[LogInViewController alloc] init];
+            logIn = [LogInViewController sharedManager];
         }
         [self presentModalViewController:logIn animated:YES];
     }
@@ -1945,7 +1945,7 @@
         }else{
             if (!logIn)
             {
-                logIn = [[LogInViewController alloc] init];
+                logIn = [LogInViewController sharedManager];
             }
             [self presentModalViewController:logIn animated:YES];
         }
@@ -3033,7 +3033,7 @@
 
 -(void)LogIn
 {
-    logIn = [[LogInViewController alloc] init];
+    logIn = [LogInViewController sharedManager];
     
     [self.leveyTabBarController hidesTabBar:YES animated:YES];
     

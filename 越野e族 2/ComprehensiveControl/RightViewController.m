@@ -30,6 +30,7 @@
     AppDelegate * myDelegate;
     
     UIScrollView * _rootScrollView;
+    
 }
 
 @end
@@ -154,13 +155,9 @@
     
     headerImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(103,46,82,82)];
     
-    
     if (islogin)
     {
-//        [headerImageView loadImageFromUrl:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
-        
         [headerImageView loadImageFromURL:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
-        
     }else
     {
         headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];

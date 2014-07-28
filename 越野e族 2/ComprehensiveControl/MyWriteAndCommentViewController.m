@@ -109,7 +109,7 @@
 
 -(void)sWeiBoViewLogIn{
     
-    LogInViewController *   logIn = [[LogInViewController alloc] init];
+    LogInViewController *   logIn = [LogInViewController sharedManager];
     
     
     [self presentViewController:logIn animated:YES completion:NULL];

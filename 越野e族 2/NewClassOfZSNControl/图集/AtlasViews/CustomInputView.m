@@ -235,6 +235,8 @@
     [UIView animateWithDuration:0.275f animations:^{
         _theTouchView.hidden = YES;
         bself.text_background_view.frame = CGRectMake(0,(iPhone5?568:480),320,250);
+        
+        _theTouchView.frame = CGRectMake(0,0,320,bself.text_background_view.frame.origin.y);
     } completion:^(BOOL finished) {
         
     }];
@@ -290,13 +292,6 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
 {
-    return YES;
-}
-
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    [textView becomeFirstResponder];
     
     if (!_theTouchView)
     {
@@ -315,6 +310,17 @@
     {
         _theTouchView.hidden = NO;
     }
+    
+    
+    return YES;
+}
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+//    [textView becomeFirstResponder];
+    
+    
 }
 
 
