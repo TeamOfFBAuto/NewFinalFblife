@@ -117,6 +117,25 @@
 @synthesize seg_view = _seg_view;
 @synthesize seg_current_page = _seg_current_page;
 
+
++(SliderBBSViewController *)shareManager
+{
+    static SliderBBSViewController * sliderBBSVC;
+    
+    static dispatch_once_t once_t;
+
+    dispatch_once(&once_t, ^{
+       
+        sliderBBSVC = [[SliderBBSViewController alloc] init];
+        
+    });
+    
+    return sliderBBSVC;
+}
+
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -141,6 +160,11 @@
     {
         [self loadRecentlyLookData];
     }
+    
+    
+    [_seg_view MyButtonStateWithIndex:_seg_current_page];
+    
+    [self.myScrollView setContentOffset:CGPointMake(340*_seg_current_page,0) animated:YES];
     
     [self.myTableView2 reloadData];
 }
@@ -947,6 +971,8 @@
             
             if (second_model.forum_isOpen)
             {
+                single_line_view.hidden = YES;
+                
                 UIView * third_view = [self loadthirdViewWithIndexPath:indexPath];
                 
                 [cell.contentView addSubview:third_view];

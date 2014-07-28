@@ -946,7 +946,7 @@
                 break;
             case 3:
             {
-                SliderBBSViewController *_bbsVC=[[SliderBBSViewController alloc]init];
+                SliderBBSViewController *_bbsVC=[SliderBBSViewController shareManager];
                 
                 _bbsVC.seg_current_page = 1;
                 

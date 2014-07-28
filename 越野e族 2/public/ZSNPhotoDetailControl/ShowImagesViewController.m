@@ -238,13 +238,7 @@
             break;
         case 2://转发
         {
-            BOOL islogin = [self isLogIn];
-            
-            if (islogin)
-            {
-                [self ShareMore];
-            }
-            
+            [self ShareMore];
         }
             break;
             
@@ -1036,10 +1030,16 @@
 -(void)ShareMore{
     
     my_array =[[NSMutableArray alloc]init];
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"图文分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"  " delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
     
-    [editActionSheet addButtonWithTitle:@"分享到自留地"];
+    
+    
+    [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
+    
+    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
+    
+    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
     
     for (NSString *snsName in [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray) {
         /*2013-07-22 17:09:59.546 UMSocial[4631:907] name==qzone
@@ -1087,21 +1087,53 @@
         
         
     }
-    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
-    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
-    [editActionSheet addButtonWithTitle:@"分享到邮箱"];
+    
+    [editActionSheet addButtonWithTitle:@"分享到朋友邮箱"];
     
     [editActionSheet addButtonWithTitle:@"取消"];
     editActionSheet.cancelButtonIndex = editActionSheet.numberOfButtons - 1;
     // [editActionSheet showFromTabBar:self.tabBarController.tabBar];
     [editActionSheet showFromRect:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height) inView:self.view animated:YES];
     editActionSheet.delegate = self;
+    
+    
+    CGRect oldFrame;
+    
+    for (id label in editActionSheet.subviews)
+    {
+        if ([label isKindOfClass:[UILabel class]])
+        {
+            [[(UILabel *)label text] isEqualToString:@"  "];
+            
+            oldFrame = [(UILabel *)label frame];
+        }
+    }
+    
+    
+    UILabel *newTitle = [[UILabel alloc] initWithFrame:oldFrame];
+    newTitle.font = [UIFont boldSystemFontOfSize:18];
+    newTitle.textAlignment = NSTextAlignmentCenter;
+    newTitle.backgroundColor = [UIColor clearColor];
+    newTitle.textColor = RGBCOLOR(139,139,139);
+    newTitle.text = @"图文分享";
+    [editActionSheet addSubview:newTitle];
+    
+    
+    
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString * string_url = [NSString stringWithFormat:@"http://special.fblife.com/listphoto/%@.html",self.id_atlas];
     
     if(buttonIndex==0){
+        
+        
+        BOOL islogin = [self isLogIn];
+        
+        if (!islogin)
+        {
+            return;
+        }
         
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
@@ -1119,7 +1151,7 @@
         }
         
         
-    }else if(buttonIndex==1){
+    }else if(buttonIndex==3){
         NSLog(@"到新浪微博界面的");
         WBWebpageObject *pageObject = [ WBWebpageObject object ];
         pageObject.objectID =@"nimeideid";
@@ -1180,7 +1212,7 @@
         }
         
     }
-    else if(buttonIndex==3){
+    else if(buttonIndex==1){
         if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
             WXMediaMessage *message = [WXMediaMessage message];
             message.title = string_title;

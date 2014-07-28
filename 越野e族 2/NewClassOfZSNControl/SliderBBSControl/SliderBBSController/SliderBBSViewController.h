@@ -112,4 +112,7 @@ typedef enum{
 @property(nonatomic,strong)SliderBBSJingXuanModel * myModel;
 
 
++(SliderBBSViewController *)shareManager;
+
+
 @end

@@ -157,7 +157,10 @@
     
     if (islogin)
     {
-        [headerImageView loadUserHeaderImageFromUrl:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+//        [headerImageView loadImageFromUrl:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+        
+        [headerImageView loadImageFromURL:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+        
     }else
     {
         headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];
