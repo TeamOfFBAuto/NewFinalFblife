@@ -793,8 +793,9 @@
 -(void)ShareMore{
     
     my_array =[[NSMutableArray alloc]init];
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
+    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"  " delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    
+      editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
     
     [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
     
@@ -856,6 +857,30 @@
     // [editActionSheet showFromTabBar:self.tabBarController.tabBar];
     [editActionSheet showFromRect:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height) inView:self.view animated:YES];
     editActionSheet.delegate = self;
+    
+    
+    CGRect oldFrame;
+    
+    for (id label in editActionSheet.subviews)
+    {
+        if ([label isKindOfClass:[UILabel class]])
+        {
+            [[(UILabel *)label text] isEqualToString:@"  "];
+            
+            oldFrame = [(UILabel *)label frame];
+        }
+    }
+    
+    
+    UILabel *newTitle = [[UILabel alloc] initWithFrame:oldFrame];
+    newTitle.font = [UIFont systemFontOfSize:18];
+    newTitle.textAlignment = NSTextAlignmentCenter;
+    newTitle.backgroundColor = [UIColor clearColor];
+    newTitle.textColor = RGBCOLOR(160,160,160);
+    newTitle.text = @"分享";
+    [editActionSheet addSubview:newTitle];
+    
+
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {

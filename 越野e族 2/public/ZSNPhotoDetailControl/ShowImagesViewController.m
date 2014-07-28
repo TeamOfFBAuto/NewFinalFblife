@@ -1111,11 +1111,11 @@
     
     
     UILabel *newTitle = [[UILabel alloc] initWithFrame:oldFrame];
-    newTitle.font = [UIFont boldSystemFontOfSize:18];
+    newTitle.font = [UIFont systemFontOfSize:18];
     newTitle.textAlignment = NSTextAlignmentCenter;
     newTitle.backgroundColor = [UIColor clearColor];
-    newTitle.textColor = RGBCOLOR(139,139,139);
-    newTitle.text = @"图文分享";
+    newTitle.textColor = RGBCOLOR(160,160,160);
+    newTitle.text = @"分享";
     [editActionSheet addSubview:newTitle];
     
     
