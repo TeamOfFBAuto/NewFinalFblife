@@ -101,7 +101,7 @@
     
     [button_back setImage:[UIImage imageNamed:@"atlas_fanhui"] forState:UIControlStateNormal];
     
-    button_back.center = CGPointMake(20,42);
+    button_back.center = CGPointMake(30,42);
     
     [daohangView addSubview:button_back];
     

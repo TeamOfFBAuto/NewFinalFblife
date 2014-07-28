@@ -68,7 +68,7 @@
     UIButton *button_back=[[UIButton alloc]initWithFrame:self.isMain? CGRectMake(MY_MACRO_NAME? -2:5, (44-33/2)/2, 36/2, 33/2):CGRectMake(MY_MACRO_NAME? -5:5, (44-43/2)/2, 12, 43/2)];
     
     [button_back addTarget:self action:@selector(doback) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:self.isMain? [UIImage imageNamed:@"homenewz36_33.png"]:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
+    [button_back setBackgroundImage:self.isMain? [UIImage imageNamed:@"homenewz36_33.png"]:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
     [back_view addSubview:button_back];

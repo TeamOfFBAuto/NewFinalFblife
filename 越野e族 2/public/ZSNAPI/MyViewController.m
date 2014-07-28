@@ -86,7 +86,7 @@
     {
         UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
         [button_back addTarget:self action:@selector(leftButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-        [button_back setImage:[UIImage imageNamed:@"ios7_back"] forState:UIControlStateNormal];
+        [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
         UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
         self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
     }else if (theType == MyViewControllerLeftbuttonTypelogo)

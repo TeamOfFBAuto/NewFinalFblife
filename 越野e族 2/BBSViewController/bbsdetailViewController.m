@@ -27,6 +27,15 @@
 #import "SSWBViewController.h"
 
 
+#define PRAISE_IMAGE @"atlas_zan-2"
+#define UN_PRAISE_IMAGE @"love_unselected_image"
+
+#define COLLECTED_IMAGE @"atlas_collect-1"
+#define UN_COLLECTED_IMAGE @"star_unselected_image-1"
+
+
+
+
 #define TEXT_COLOR	 [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
 @interface bbsdetailViewController (){
     NSDictionary *dic;
@@ -323,17 +332,20 @@
         
     }
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3, 12, 43/2)];
+    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = MY_MACRO_NAME?-10:5;
+    
+    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3,40,44)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:@"fanhui_image"] forState:UIControlStateNormal];
     
     UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
     [back_view addSubview:button_back];
     back_view.backgroundColor=[UIColor clearColor];
     [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
-    self.navigationItem.leftBarButtonItem=back_item;
+    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
+    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
     
     
     //点赞的
@@ -346,9 +358,9 @@
     UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [heartButton addTarget:self action:@selector(dianzan:) forControlEvents:UIControlEventTouchUpInside];
     
-    [heartButton setImage:[UIImage imageNamed:@"blackheart42_37.png"] forState:UIControlStateNormal];
+    [heartButton setImage:[UIImage imageNamed:UN_PRAISE_IMAGE] forState:UIControlStateNormal];
     
-    [heartButton setImage:[UIImage imageNamed:@"redheart42_37.png"] forState:UIControlStateSelected];
+    [heartButton setImage:[UIImage imageNamed:PRAISE_IMAGE] forState:UIControlStateSelected];
     
     if  (isPraise)
     {
@@ -363,14 +375,14 @@
     
     //收藏的
     
-    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(70, (44-43/2)/2, 44/2, 43/2)];
+    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(80,0, 44/2,44)];
     [collectButton addTarget:self action:@selector(shoucang:) forControlEvents:UIControlEventTouchUpInside];
-    [collectButton setBackgroundImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:UIControlStateNormal];
+    [collectButton setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
     
     
     
     
-  UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?140: 25-3, (44-34/2)/2, 43/2, 34/2)];
+    UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?140: 25-3,0, 43/2,44)];
     
     
     button_comment.tag=26;
@@ -378,10 +390,10 @@
     //[button_comment setTitle:@"评论" forState:UIControlStateNormal];
     button_comment.titleLabel.font=[UIFont systemFontOfSize:14];
     [button_comment addTarget:self action:@selector(ShareMore) forControlEvents:UIControlEventTouchUpInside];
-    [button_comment setBackgroundImage:[UIImage imageNamed:@"ios_zhuanfa44_37.png"] forState:UIControlStateNormal];
+    [button_comment setImage:[UIImage imageNamed:@"zhuanfa_image.png"] forState:UIControlStateNormal];
    // button_comment.userInteractionEnabled=NO;
     
-UIButton *    rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 44)];
+    UIButton *    rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 44)];
     // [rightView addTarget:self action:@selector(ShareMore) forControlEvents:UIControlEventTouchUpInside];
     [rightView addSubview:button_comment];
     
@@ -587,7 +599,7 @@ UIButton *    rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 44)
             
             sender.userInteractionEnabled=YES;
             
-            [sender setBackgroundImage:[UIImage imageNamed:@"newscollect44_43.png"] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:COLLECTED_IMAGE] forState:UIControlStateNormal];
             
             
             
@@ -617,7 +629,7 @@ UIButton *    rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 44)
         
         if ([[dicinfo objectForKey:@"errcode"] intValue]==0) {
             
-            [sender setBackgroundImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
             
             
         }
@@ -659,23 +671,45 @@ UIButton *    rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 44)
             sender.userInteractionEnabled=YES;
             [self.thezkingAlertV zkingalertShowWithString:@"收藏成功"];
             
-            [sender setBackgroundImage:[UIImage imageNamed:@"newscollect44_43.png"] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:COLLECTED_IMAGE] forState:UIControlStateNormal];
             
-            [UIView animateWithDuration:0.6 animations:^{
-                
-                sender.frame=CGRectMake(sender.frame.origin.x-5, sender.frame.origin.y-5, 1.4*sender.frame.size.width,  1.4*sender.frame.size.height);
-                
-                
-                
-                
-            } completion:^(BOOL finished) {}];
+            //zsn
             
-            [UIView animateWithDuration:0.6 animations:^{
+            
+            [UIView animateWithDuration:0.5 animations:^{
                 
-                sender.frame=CGRectMake(sender.frame.origin.x+5, sender.frame.origin.y+5, 0.71428571*sender.frame.size.width,  0.71428571*sender.frame.size.height);
+                sender.transform = CGAffineTransformMakeScale(1.5,1.5);
                 
+            } completion:^(BOOL finished) {
                 
-            } completion:^(BOOL finished) {}];
+                [UIView animateWithDuration:0.5 animations:^{
+                    
+                    sender.transform = CGAffineTransformMakeScale(1.0,1.0);
+                    
+                } completion:^(BOOL finished) {
+                    
+                }];
+                
+            }];
+            
+            
+            
+ //szk
+//            [UIView animateWithDuration:0.6 animations:^{
+//                
+//                sender.frame=CGRectMake(sender.frame.origin.x-5, sender.frame.origin.y-5, 1.4*sender.frame.size.width,  1.4*sender.frame.size.height);
+//                
+//                
+//                
+//                
+//            } completion:^(BOOL finished) {}];
+//            
+//            [UIView animateWithDuration:0.6 animations:^{
+//                
+//                sender.frame=CGRectMake(sender.frame.origin.x+5, sender.frame.origin.y+5, 0.71428571*sender.frame.size.width,  0.71428571*sender.frame.size.height);
+//                
+//                
+//            } completion:^(BOOL finished) {}];
             
             
             
@@ -725,7 +759,7 @@ UIButton *    rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 44)
             
             [self.thezkingAlertV zkingalertShowWithString:@"已取消收藏"];
 
-            [sender setBackgroundImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
             
         }
         

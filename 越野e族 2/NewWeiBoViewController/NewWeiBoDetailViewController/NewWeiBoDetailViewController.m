@@ -267,7 +267,7 @@
     
     [button_back addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
     
-    [button_back setImage:[UIImage imageNamed:@"ios7_back"] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     

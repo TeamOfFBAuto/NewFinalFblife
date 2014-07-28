@@ -26,6 +26,13 @@
 #import "CustomInputView.h"//少男写的公共评论条
 
 
+#define PRAISE_IMAGE @"atlas_zan-2"//赞图片
+#define UN_PRAISE_IMAGE @"love_unselected_image"//未赞图片
+
+#define COLLECTED_IMAGE @"atlas_collect-1"//收藏图片
+#define UN_COLLECTED_IMAGE @"star_unselected_image-1"//未收藏图片
+
+
 #define TEXT_COLOR	 [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
 @interface newsdetailViewController (){
     NSDictionary * dic ;
@@ -381,17 +388,20 @@
         
     }
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3, 12, 43/2)];
+    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = MY_MACRO_NAME?-10:5;
+    
+    UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3,40,44)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:@"fanhui_image"] forState:UIControlStateNormal];
     
     UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
     [back_view addSubview:button_back];
     back_view.backgroundColor=[UIColor clearColor];
     [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
-    self.navigationItem.leftBarButtonItem=back_item;
+    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
+    self.navigationItem.leftBarButtonItems=@[spaceButton,back_item];
     
     
     //点赞的
@@ -409,25 +419,21 @@
     UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [heartButton addTarget:self action:@selector(dianzan:) forControlEvents:UIControlEventTouchUpInside];
     
-    [heartButton setImage:[UIImage imageNamed:@"blackheart42_37.png"] forState:UIControlStateNormal];
+    [heartButton setImage:[UIImage imageNamed:UN_PRAISE_IMAGE] forState:UIControlStateNormal];
     
-    [heartButton setImage:[UIImage imageNamed:@"redheart42_37.png"] forState:UIControlStateSelected];
+    [heartButton setImage:[UIImage imageNamed:PRAISE_IMAGE] forState:UIControlStateSelected];
     
     if  (isPraise)
     {
-        
-        
-        
-        
         heartButton.selected = YES;
     }
     
     
     //收藏的
     
-    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(78, -1+(44-43/2)/2, 44/2, 43/2)];
+    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(78,0,30,44)];
     [collectButton addTarget:self action:@selector(shoucang:) forControlEvents:UIControlEventTouchUpInside];
-    [collectButton setBackgroundImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:UIControlStateNormal];
+    [collectButton setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
 
 //    collectButton setImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:uic
     
@@ -443,7 +449,7 @@
     [button_comment addTarget:self action:@selector(ShareMore) forControlEvents:UIControlEventTouchUpInside];
     //[button_comment setBackgroundImage:[UIImage imageNamed:@"ios_zhuanfa44_37.png"] forState:UIControlStateNormal];
     
-    [button_comment setImage:[UIImage imageNamed:@"ios_zhuanfa44_37.png"] forState:UIControlStateNormal];
+    [button_comment setImage:[UIImage imageNamed:@"zhuanfa_image.png"] forState:UIControlStateNormal];
     
     button_comment.userInteractionEnabled=YES;
     
@@ -606,7 +612,7 @@
             
             wsender.userInteractionEnabled=YES;
             
-            [wsender setBackgroundImage:[UIImage imageNamed:@"newscollect44_43.png"] forState:UIControlStateNormal];
+            [wsender setImage:[UIImage imageNamed:COLLECTED_IMAGE] forState:UIControlStateNormal];
 
             
             
@@ -632,7 +638,7 @@
         if ([[dicinfo objectForKey:@"errno"] intValue]==0) {
             
             
-            [wsendeer setBackgroundImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:UIControlStateNormal];
+            [wsendeer setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
             
         }
         
@@ -692,21 +698,42 @@
             wsender.userInteractionEnabled=YES;
 
             
-            [wsender setBackgroundImage:[UIImage imageNamed:@"newscollect44_43.png"] forState:UIControlStateNormal];
+            [wsender setImage:[UIImage imageNamed:COLLECTED_IMAGE] forState:UIControlStateNormal];
             
-            [UIView animateWithDuration:0.6 animations:^{
-                
-                wsender.frame=CGRectMake(wsender.frame.origin.x-5, wsender.frame.origin.y-5, 1.4*wsender.frame.size.width,  1.4*wsender.frame.size.height);
-                
-                
-            } completion:^(BOOL finished) {}];
             
-            [UIView animateWithDuration:0.6 animations:^{
+            //zsn
+            
+            [UIView animateWithDuration:0.5 animations:^{
                 
-                wsender.frame=CGRectMake(wsender.frame.origin.x+5, wsender.frame.origin.y+5, 0.71428571*wsender.frame.size.width,  0.71428571*wsender.frame.size.height);
+                wsender.transform = CGAffineTransformMakeScale(1.5,1.5);
                 
+            } completion:^(BOOL finished) {
                 
-            } completion:^(BOOL finished) {}];
+                [UIView animateWithDuration:0.5 animations:^{
+                    
+                    wsender.transform = CGAffineTransformMakeScale(1.0,1.0);
+                    
+                } completion:^(BOOL finished) {
+                    
+                }];
+                
+            }];
+            
+            
+//szk
+//            [UIView animateWithDuration:0.6 animations:^{
+//                
+//                wsender.frame=CGRectMake(wsender.frame.origin.x-5, wsender.frame.origin.y-5, 1.4*wsender.frame.size.width,  1.4*wsender.frame.size.height);
+//                
+//                
+//            } completion:^(BOOL finished) {}];
+//            
+//            [UIView animateWithDuration:0.6 animations:^{
+//                
+//                wsender.frame=CGRectMake(wsender.frame.origin.x+5, wsender.frame.origin.y+5, 0.71428571*wsender.frame.size.width,  0.71428571*wsender.frame.size.height);
+//                
+//                
+//            } completion:^(BOOL finished) {}];
             
             
             
@@ -754,7 +781,7 @@
             [ weself.thezkingAlertV ZkingAlerthide];
 
         
-            [wsender setBackgroundImage:[UIImage imageNamed:@"newsuncollect44_43.png"] forState:UIControlStateNormal];
+            [wsender setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
 
         
         }

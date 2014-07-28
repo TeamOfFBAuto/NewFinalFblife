@@ -92,9 +92,7 @@
 
 
 @interface SliderBBSViewController ()
-{
-    SliderBBSTitleView * seg_view;//精选 全部版块 选择
-    
+{    
     SliderBBSSectionView * sectionView;//订阅 最新浏览 排行榜 选择
     
     ASINetworkQueue * networkQueue;//加载全部版块队列
@@ -116,7 +114,8 @@
 @synthesize forum_temp_array = _forum_temp_array;
 @synthesize forum_section_collection_array = _forum_section_collection_array;
 @synthesize recently_look_array = _recently_look_array;
-
+@synthesize seg_view = _seg_view;
+@synthesize seg_current_page = _seg_current_page;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -192,26 +191,26 @@
     theType = ForumDiQuType;
     
     
-    self.leftImageName = self.isMain?@"slider_bbs_home":@"ios7_back.png";
+    self.leftImageName = self.isMain?@"slider_bbs_home":BACK_DEFAULT_IMAGE;
     
     self.rightImageName = @"slider_bbs_me";
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     
     
-    seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,0,190,44)];
+    _seg_view = [[SliderBBSTitleView alloc] initWithFrame:CGRectMake(0,0,190,44)];
     
     __weak typeof(self) bself = self;
 
     
-    [seg_view setAllViewsWith:[NSArray arrayWithObjects:@"精选推荐",@"全部版块",nil] withBlock:^(int index) {
+    [_seg_view setAllViewsWith:[NSArray arrayWithObjects:@"精选推荐",@"全部版块",nil] withBlock:^(int index) {
         
         [bself.myScrollView setContentOffset:CGPointMake(340*index,0) animated:YES];
         
     }];
     
-    self.navigationItem.titleView = seg_view;
-    
+    self.navigationItem.titleView = _seg_view;
+
     
     //获取论坛精选数据
     
@@ -233,6 +232,11 @@
     [self.view addSubview:_myScrollView];
     
     _myScrollView.contentSize = CGSizeMake(340*2,0);
+    
+    
+    [_seg_view MyButtonStateWithIndex:_seg_current_page];
+    
+    [self.myScrollView setContentOffset:CGPointMake(340*_seg_current_page,0) animated:YES];
     
     
     _myTableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,_myScrollView.frame.size.height)];
@@ -336,7 +340,7 @@
         
         logInVC.delegate = self;
         
-        [self presentViewController:logInVC animated:YES completion:NULL];
+        [bself presentViewController:logInVC animated:YES completion:NULL];
     }];
     
     
@@ -443,7 +447,7 @@
 //        [bself setCollectionViewsWith:bself.forum_section_collection_array];
         
         
-        [self loadSectionViewDataWithType:0 WithArray:bself.forum_section_collection_array];
+        [bself loadSectionViewDataWithType:0 WithArray:bself.forum_section_collection_array];
         
         
         [[NSUserDefaults standardUserDefaults] setObject:bself.forum_section_collection_array forKey:@"forumSectionCollectionArray"];
@@ -458,7 +462,7 @@
 //        }
 //        [bself setCollectionViewsWith:bself.forum_section_collection_array];
         
-        [self loadSectionViewDataWithType:0 WithArray:bself.forum_section_collection_array];
+        [bself loadSectionViewDataWithType:0 WithArray:bself.forum_section_collection_array];
     }];
     
 }
@@ -516,7 +520,7 @@
         
         @try
         {
-            [self doneLoadingTableViewData];
+            [bself doneLoadingTableViewData];
             
             [loadview stopLoading:1];
             
@@ -559,7 +563,7 @@
     }];
     
     [request setFailedBlock:^{
-        [self doneLoadingTableViewData];
+        [bself doneLoadingTableViewData];
         
         [loadview stopLoading:1];
     }];
@@ -836,6 +840,11 @@
             
                 [wself turntoOtherVCwithtype:thebuttontype thedic:dic theid:theWhateverid];
         }];
+        
+        
+        UIView *selectback=[[UIView alloc]initWithFrame:cell.frame];
+        selectback.backgroundColor=RGBCOLOR(242, 242, 242);
+        cell.selectedBackgroundView=selectback;
         
         return cell;
     }else
@@ -1316,7 +1325,7 @@
         // 根据当前的x坐标和页宽度计算出当前页数
         int current_page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 
-        [seg_view MyButtonStateWithIndex:current_page];
+        [_seg_view MyButtonStateWithIndex:current_page];
     }else if (scrollView == _myTableView1)
     {
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
@@ -1513,7 +1522,7 @@
                 break;
             case 3:
             {
-                [seg_view MyButtonStateWithIndex:1];
+                [_seg_view MyButtonStateWithIndex:1];
             }
                 break;
             case 4:

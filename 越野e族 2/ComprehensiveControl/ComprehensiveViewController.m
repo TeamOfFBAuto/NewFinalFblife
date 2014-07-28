@@ -948,7 +948,10 @@
             {
                 SliderBBSViewController *_bbsVC=[[SliderBBSViewController alloc]init];
                 
+                _bbsVC.seg_current_page = 1;
+                
                 [self.navigationController pushViewController:_bbsVC animated:YES];
+                
             }
                 break;
             case 4:
@@ -1137,6 +1140,18 @@
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
     
 	return [NSDate date]; // should return date data source was last changed
+}
+
+
+
+#pragma mark - dealloc
+
+
+-(void)dealloc
+{
+    
+    
+    
 }
 
 

@@ -295,12 +295,13 @@
                     
                 }else if([_newmodel.type isEqualToString:@"3"]){
                     
+                    self.littleAndBigLine.frame=CGRectMake(142, BIGORIGIN+9, 5, 1);
                     
-                    _bigLeixing.frame=CGRectMake(100+10, BIGORIGIN, 30, 15);
+                    _bigLeixing.frame=CGRectMake(100+10, BIGORIGIN, 30, 18);
                     
                     CGSize titleSize = [_newmodel.forumname sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
                     [_littleLeixing setTitle:_newmodel.forumname forState:UIControlStateNormal];
-                    _littleLeixing.frame=CGRectMake(140+10, BIGORIGIN, titleSize.width, 15);
+                    _littleLeixing.frame=CGRectMake(140+10, BIGORIGIN, titleSize.width+2, 18);
                     
                     [_bigLeixing setTitle:@"论坛" forState:UIControlStateNormal];
                     //[_bigLabel:RGBCOLOR(103, 103, 103)];

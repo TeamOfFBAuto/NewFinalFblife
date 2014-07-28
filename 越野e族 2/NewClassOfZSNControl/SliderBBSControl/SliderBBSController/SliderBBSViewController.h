@@ -31,6 +31,7 @@
 @property(nonatomic,strong)NSMutableArray * forum_sub;
 
 
+
 -(SliderBBSForumModel *)initWithDictionary:(NSDictionary *)dic;
 
 @end
@@ -103,6 +104,9 @@ typedef enum{
 
 @property(nonatomic,strong)NSMutableArray * recently_look_array;//存放最近浏览数据
 
+@property(nonatomic,strong)SliderBBSTitleView * seg_view;//精选 全部版块 选择
+
+@property(nonatomic,assign)int seg_current_page;//记录当前是 精选还是版块(0为精选  1为论坛版块)
 
 
 @property(nonatomic,strong)SliderBBSJingXuanModel * myModel;

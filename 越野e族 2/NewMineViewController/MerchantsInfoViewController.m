@@ -127,7 +127,7 @@
     
     back_button.frame = CGRectMake(0,0,12,21.5);
     
-    [back_button setImage:[UIImage imageNamed:@"ios7_back.png"] forState:UIControlStateNormal];
+    [back_button setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     [back_button addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
     
