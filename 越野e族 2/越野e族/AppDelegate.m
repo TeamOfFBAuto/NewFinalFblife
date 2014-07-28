@@ -909,7 +909,7 @@ static int numberof = 0;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             while (1)
             {
-                NSLog(@"%d",temptest);
+//                NSLog(@"%d",temptest);
                 sleep(1);
                 temptest++;
             }
@@ -1310,7 +1310,7 @@ static int numberof = 0;
                 
             }
             
-          NSLog(@"BackgroundTaskWithExpiration:%f",remainingTime);
+//          NSLog(@"BackgroundTaskWithExpiration:%f",remainingTime);
             
             sleep(1);
             

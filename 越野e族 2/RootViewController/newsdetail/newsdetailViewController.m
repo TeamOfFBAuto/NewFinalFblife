@@ -416,7 +416,7 @@
     NSLog(@"ispr===%d",isPraise);
     
 
-    UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
+    UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [heartButton addTarget:self action:@selector(dianzan:) forControlEvents:UIControlEventTouchUpInside];
     
     [heartButton setImage:[UIImage imageNamed:UN_PRAISE_IMAGE] forState:UIControlStateNormal];
@@ -431,7 +431,7 @@
     
     //收藏的
     
-    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(78,0,30,44)];
+    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(70,0,30,42.5)];
     [collectButton addTarget:self action:@selector(shoucang:) forControlEvents:UIControlEventTouchUpInside];
     [collectButton setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
 
@@ -1730,10 +1730,14 @@
 -(void)ShareMore{
     
     my_array =[[NSMutableArray alloc]init];
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"图文分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
     
-    [editActionSheet addButtonWithTitle:@"分享到自留地"];
+    [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
+    
+    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
+    
+    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
     
     for (NSString *snsName in [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray) {
         /*2013-07-22 17:09:59.546 UMSocial[4631:907] name==qzone
@@ -1768,9 +1772,8 @@
         
         
     }
-    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
-    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
-    [editActionSheet addButtonWithTitle:@"分享到邮箱"];
+ 
+    [editActionSheet addButtonWithTitle:@"分享到朋友邮箱"];
 
     
     [editActionSheet addButtonWithTitle:@"取消"];
@@ -1815,48 +1818,36 @@
         }
         
     }else if(buttonIndex==1){
-        NSLog(@"到新浪微博界面的");
-//        
-//        NSString *string_islogin=[[NSUserDefaults standardUserDefaults]objectForKey:@"issinalongin"];
-//        
-//        if ([string_islogin isEqualToString:@"no error"]) {
-//            
-//            SSWBViewController *_sinaShare=[[SSWBViewController alloc]init];
-//            _sinaShare._shareimg=self.imgforshare;
-//            _sinaShare.string_text=[NSString stringWithFormat:@"%@  %@（分享自@越野e族）",_title_Str,_weburl_Str] ;
-//            [self presentModalViewController:_sinaShare animated:YES];
-//            
-//            
-//            
-//        }else{
-//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:@"sina"];
-//            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-//                NSLog(@"lalallalalresponse is %@",response);
-//                
-//                NSString  *mes=response.message;
-//                
-//                NSLog(@"mes--===re==%@",mes);
-//                [[NSUserDefaults standardUserDefaults] setObject:@"no error" forKey:@"issinalongin"];
-//                
-//                
-//            });
-//            
-//        }
-//
-     
-        WBWebpageObject *pageObject = [ WBWebpageObject object ];
-        pageObject.objectID =@"nimeideid";
-        pageObject.thumbnailData =UIImageJPEGRepresentation([self scaleToSize:self.imgforshare size:CGSizeMake(self.imgforshare.size.width/5, self.imgforshare.size.height/5)], 1);
-        pageObject.title = @"分享自越野e族客户端";
-        pageObject.description = _title_Str;
-        pageObject.webpageUrl = _weburl_Str;
-        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
-        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",_title_Str] ;
-
-        message.mediaObject = pageObject;
-        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
-        req.message = message;
-        [ WeiboSDK sendRequest:req ];
+        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = _title_Str;
+            message.description = _title_Str;
+            NSLog(@"????share==%@",self.imgforshare);
+            
+            [message setThumbImage:[self scaleToSize:self.imgforshare size:CGSizeMake(self.imgforshare.size.width/5, self.imgforshare.size.height/5)] ];
+            WXWebpageObject *ext = [WXWebpageObject object];
+            //ext.imageData = _weburl_Str;
+            ext.webpageUrl=_weburl_Str;
+            message.mediaObject = ext;
+            
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            
+            req.bText = NO;
+            req.message = message;
+            req.scene=WXSceneTimeline;
+            
+            [WXApi sendReq:req];
+        }
+        
+        else{
+            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
+            [alView show];
+            
+        }
+        
+        
+        
+        NSLog(@"分享到微信朋友圈");
         
     }
     
@@ -1896,36 +1887,26 @@
         }
     }
     else if ( buttonIndex==3){
-        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
-            WXMediaMessage *message = [WXMediaMessage message];
-            message.title = _title_Str;
-            message.description = _title_Str;
-            NSLog(@"????share==%@",self.imgforshare);
-            
-            [message setThumbImage:[self scaleToSize:self.imgforshare size:CGSizeMake(self.imgforshare.size.width/5, self.imgforshare.size.height/5)] ];
-            WXWebpageObject *ext = [WXWebpageObject object];
-            //ext.imageData = _weburl_Str;
-            ext.webpageUrl=_weburl_Str;
-            message.mediaObject = ext;
-            
-            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-            
-            req.bText = NO;
-            req.message = message;
-            req.scene=WXSceneTimeline;
-            
-            [WXApi sendReq:req];
-        }
         
-        else{
-            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
-            [alView show];
-            
-        }
+        NSLog(@"到新浪微博界面的");
         
         
+        WBWebpageObject *pageObject = [ WBWebpageObject object ];
+        pageObject.objectID =@"nimeideid";
+        pageObject.thumbnailData =UIImageJPEGRepresentation([self scaleToSize:self.imgforshare size:CGSizeMake(self.imgforshare.size.width/5, self.imgforshare.size.height/5)], 1);
+        pageObject.title = @"分享自越野e族客户端";
+        pageObject.description = _title_Str;
+        pageObject.webpageUrl = _weburl_Str;
+        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
+        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",_title_Str] ;
         
-        NSLog(@"分享到微信朋友圈");
+        message.mediaObject = pageObject;
+        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
+        req.message = message;
+        [ WeiboSDK sendRequest:req ];
+
+        
+     
         
     }
     //    else {

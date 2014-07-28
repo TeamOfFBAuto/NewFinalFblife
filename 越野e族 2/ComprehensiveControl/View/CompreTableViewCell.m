@@ -11,6 +11,8 @@
 #define BIGHEIGHT 14
 
 
+
+
 #import "CompreTableViewCell.h"
 
 
@@ -59,7 +61,7 @@
         
         self.rightImageV=[[AsyncImageView alloc] init];
         
-        _zanImageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"likes21_19.png"]];
+        _zanImageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"talknumberofnew.png"]];
         
         self.zanlabel=[[UILabel alloc] init];
         
@@ -117,9 +119,9 @@
         
         _zanlabel.font=[UIFont systemFontOfSize:9];
         
-        _zanlabel.textColor=RGBCOLOR(235, 79, 83);
+        _zanlabel.textColor=RGBCOLOR(160, 160, 160);
         
-        _zanlabel.textAlignment=NSTextAlignmentRight;
+        _zanlabel.textAlignment=NSTextAlignmentLeft;
         
         _fenGeLine.backgroundColor=RGBCOLOR(142, 142, 142);
         
@@ -147,14 +149,14 @@
                 [_newmodel NewMainViewModelSetdic:theDic];
 
                 
-                _zanImageV.center=CGPointMake(290, 122-3);
-                _zanlabel.frame=CGRectMake(290,114 , 320-290-10, 11);
+                _zanImageV.center=CGPointMake(286, 122-3);
+                _zanlabel.frame=CGRectMake(286+9,113 , 320-286-10, 11);
                 
-                if (_newmodel.likes.length>2) {
-                    _zanImageV.center=CGPointMake(290-10, 122-4);
-                    _zanlabel.frame=CGRectMake(290-10,114 , 320-280-10, 11);
-
-                }
+//                if (_newmodel.likes.length>2) {
+//                    _zanImageV.center=CGPointMake(286, 122-4);
+//                    _zanlabel.frame=CGRectMake(286,112 , 320-286-10, 11);
+//
+//                }
                 
                              //标题
                 
@@ -214,8 +216,8 @@
                 
                 
                 
-                _zanImageV.center=CGPointMake(290, 66);
-                _zanlabel.frame=CGRectMake(290,BIGORIGIN+6 , 320-290-10, 11);
+                _zanImageV.center=CGPointMake(286, 66);
+                _zanlabel.frame=CGRectMake(286+9,BIGORIGIN+5 , 320-286-10, 11);
                 
                 
                 
@@ -228,11 +230,11 @@
                 
                 
                 
-                if (_newmodel.likes.length>2) {
-                    _zanImageV.center=CGPointMake(290-10, 66);
-                    _zanlabel.frame=CGRectMake(280,BIGORIGIN+6 , 320-280-10, 11);
-                    
-                }
+//                if (_newmodel.likes.length>2) {
+//                    _zanImageV.center=CGPointMake(286, 66);
+//                    _zanlabel.frame=CGRectMake(286,BIGORIGIN+4 , 320-286-10, 11);
+//                    
+//                }
 
                 
                 

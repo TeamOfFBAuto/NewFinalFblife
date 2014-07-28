@@ -108,8 +108,8 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 6.0; //switch interval time
     _pagecontrol.backgroundColor = [UIColor clearColor];
     _pagecontrol.numberOfPages = 5;
     _pagecontrol.indicatorMargin=8.0f;
-    [_pagecontrol setPageIndicatorImage:[UIImage imageNamed:@"dot.png"]];
-    [_pagecontrol setCurrentPageIndicatorImage:[UIImage imageNamed:@"dot1.png"]];
+    [_pagecontrol setPageIndicatorImage:[UIImage imageNamed:@"roundgray.png"]];
+    [_pagecontrol setCurrentPageIndicatorImage:[UIImage imageNamed:@"roundblue.png"]];
     _pagecontrol.center=CGPointMake(280, 135+13);
     
     _pagecontrol.currentPage = 0;

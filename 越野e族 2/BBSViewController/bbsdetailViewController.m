@@ -355,7 +355,7 @@
     
     isPraise = [[[PraiseAndCollectedModel getTeamInfoById:self.bbsdetail_tid] praise] intValue];
 
-    UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
+    UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [heartButton addTarget:self action:@selector(dianzan:) forControlEvents:UIControlEventTouchUpInside];
     
     [heartButton setImage:[UIImage imageNamed:UN_PRAISE_IMAGE] forState:UIControlStateNormal];
@@ -375,7 +375,7 @@
     
     //收藏的
     
-    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(80,0, 44/2,44)];
+    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(74,0, 44/2,42.5)];
     [collectButton addTarget:self action:@selector(shoucang:) forControlEvents:UIControlEventTouchUpInside];
     [collectButton setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
     
@@ -793,10 +793,14 @@
 -(void)ShareMore{
     
     my_array =[[NSMutableArray alloc]init];
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"图文分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
     
-    [editActionSheet addButtonWithTitle:@"分享到自留地"];
+    [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
+    
+    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
+    
+    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
     
     for (NSString *snsName in [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray) {
         /*2013-07-22 17:09:59.546 UMSocial[4631:907] name==qzone
@@ -844,9 +848,8 @@
         
         
     }
-    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
-    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
-    [editActionSheet addButtonWithTitle:@"分享到邮箱"];
+
+    [editActionSheet addButtonWithTitle:@"分享到朋友邮箱"];
 
     [editActionSheet addButtonWithTitle:@"取消"];
     editActionSheet.cancelButtonIndex = editActionSheet.numberOfButtons - 1;
@@ -877,20 +880,35 @@
         
         
     }else if(buttonIndex==1){
-        NSLog(@"到新浪微博界面的");
-        WBWebpageObject *pageObject = [ WBWebpageObject object ];
-        pageObject.objectID =@"nimeideid";
-        pageObject.thumbnailData =UIImageJPEGRepresentation([UIImage imageNamed:@"Icon@2x.png"], 1);
-        pageObject.title = @"分享自越野e族客户端";
-        pageObject.description = string_title;
-        pageObject.webpageUrl = string_url;
-        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
-        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
+        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = string_title;
+            message.description = string_title;
+            NSLog(@"????share==%@",self.imgforshare);
+            
+            [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
+            WXWebpageObject *ext = [WXWebpageObject object];
+            //ext.imageData = _weburl_Str;
+            ext.webpageUrl=string_url;
+            message.mediaObject = ext;
+            
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            
+            req.bText = NO;
+            req.message = message;
+            req.scene=WXSceneTimeline;
+            
+            [WXApi sendReq:req];
+        }else{
+            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能，使用微信可以方便的把你喜欢的作品分享给好友。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
+            [alView show];
+            
+        }
         
-        message.mediaObject = pageObject;
-        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
-        req.message = message;
-        [ WeiboSDK sendRequest:req ];
+        
+        NSLog(@"分享到微信朋友圈");
+
+
         
     }
     
@@ -939,33 +957,22 @@
         
     }
     else if(buttonIndex==3){
-        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
-            WXMediaMessage *message = [WXMediaMessage message];
-            message.title = string_title;
-            message.description = string_title;
-            NSLog(@"????share==%@",self.imgforshare);
-            
-            [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
-            WXWebpageObject *ext = [WXWebpageObject object];
-            //ext.imageData = _weburl_Str;
-            ext.webpageUrl=string_url;
-            message.mediaObject = ext;
-            
-            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-            
-            req.bText = NO;
-            req.message = message;
-            req.scene=WXSceneTimeline;
-            
-            [WXApi sendReq:req];
-        }else{
-            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能，使用微信可以方便的把你喜欢的作品分享给好友。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
-            [alView show];
-            
-        }
         
+        NSLog(@"到新浪微博界面的");
+        WBWebpageObject *pageObject = [ WBWebpageObject object ];
+        pageObject.objectID =@"nimeideid";
+        pageObject.thumbnailData =UIImageJPEGRepresentation([UIImage imageNamed:@"Icon@2x.png"], 1);
+        pageObject.title = @"分享自越野e族客户端";
+        pageObject.description = string_title;
+        pageObject.webpageUrl = string_url;
+        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
+        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
         
-        NSLog(@"分享到微信朋友圈");
+        message.mediaObject = pageObject;
+        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
+        req.message = message;
+        [ WeiboSDK sendRequest:req ];
+        
         
     }
     //分享编辑页面的接口

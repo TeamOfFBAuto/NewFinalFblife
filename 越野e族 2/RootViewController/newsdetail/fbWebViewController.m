@@ -221,10 +221,14 @@
 -(void)ShareMore{
     
     my_array =[[NSMutableArray alloc]init];
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"图文分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
     
-    [editActionSheet addButtonWithTitle:@"分享到自留地"];
+    [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
+    
+    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
+    
+    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
     
     for (NSString *snsName in [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray) {
         /*2013-07-22 17:09:59.546 UMSocial[4631:907] name==qzone
@@ -258,9 +262,8 @@
         
         
     }
-    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
-    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
-    [editActionSheet addButtonWithTitle:@"分享到邮箱"];
+ 
+    [editActionSheet addButtonWithTitle:@"分享朋友到邮箱"];
     
     
     [editActionSheet addButtonWithTitle:@"取消"];
@@ -300,21 +303,38 @@
         
         
     }else if(buttonIndex==1){
-        NSLog(@"到新浪微博界面的");
         
-        WBWebpageObject *pageObject = [ WBWebpageObject object ];
-        pageObject.objectID =@"nimeideid";
-        pageObject.thumbnailData =UIImageJPEGRepresentation([self scaleToSize:[UIImage imageNamed:@"Icon@2x.png"] size:CGSizeMake([UIImage imageNamed:@"Icon@2x.png"].size.width/5, [UIImage imageNamed:@"Icon@2x.png"].size.height/5)], 1);
-        pageObject.title = @"分享自越野e族客户端";
-        pageObject.description = string_title;
-        pageObject.webpageUrl = self.urlstring;
-        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
-        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
+        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = string_title;
+            message.description = string_title;
+            NSLog(@"????share==%@",[UIImage imageNamed:@"Icon@2x.png"]);
+            
+            [message setThumbImage:[self scaleToSize:[UIImage imageNamed:@"Icon@2x.png"] size:CGSizeMake([UIImage imageNamed:@"Icon@2x.png"].size.width/5, [UIImage imageNamed:@"Icon@2x.png"].size.height/5)] ];
+            WXWebpageObject *ext = [WXWebpageObject object];
+            //ext.imageData = self.urlstring;
+            ext.webpageUrl=self.urlstring;
+            message.mediaObject = ext;
+            
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            
+            req.bText = NO;
+            req.message = message;
+            req.scene=WXSceneTimeline;
+            
+            [WXApi sendReq:req];
+        }
         
-        message.mediaObject = pageObject;
-        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
-        req.message = message;
-        [ WeiboSDK sendRequest:req ];
+        else{
+            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
+            [alView show];
+            
+        }
+        
+        
+        
+        NSLog(@"分享到微信朋友圈");
+
         
     }
     
@@ -353,36 +373,23 @@
         }
     }
     else if ( buttonIndex==3){
-        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
-            WXMediaMessage *message = [WXMediaMessage message];
-            message.title = string_title;
-            message.description = string_title;
-            NSLog(@"????share==%@",[UIImage imageNamed:@"Icon@2x.png"]);
-            
-            [message setThumbImage:[self scaleToSize:[UIImage imageNamed:@"Icon@2x.png"] size:CGSizeMake([UIImage imageNamed:@"Icon@2x.png"].size.width/5, [UIImage imageNamed:@"Icon@2x.png"].size.height/5)] ];
-            WXWebpageObject *ext = [WXWebpageObject object];
-            //ext.imageData = self.urlstring;
-            ext.webpageUrl=self.urlstring;
-            message.mediaObject = ext;
-            
-            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-            
-            req.bText = NO;
-            req.message = message;
-            req.scene=WXSceneTimeline;
-            
-            [WXApi sendReq:req];
-        }
         
-        else{
-            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
-            [alView show];
-            
-        }
+        NSLog(@"到新浪微博界面的");
         
+        WBWebpageObject *pageObject = [ WBWebpageObject object ];
+        pageObject.objectID =@"nimeideid";
+        pageObject.thumbnailData =UIImageJPEGRepresentation([self scaleToSize:[UIImage imageNamed:@"Icon@2x.png"] size:CGSizeMake([UIImage imageNamed:@"Icon@2x.png"].size.width/5, [UIImage imageNamed:@"Icon@2x.png"].size.height/5)], 1);
+        pageObject.title = @"分享自越野e族客户端";
+        pageObject.description = string_title;
+        pageObject.webpageUrl = self.urlstring;
+        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
+        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
         
-        
-        NSLog(@"分享到微信朋友圈");
+        message.mediaObject = pageObject;
+        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
+        req.message = message;
+        [ WeiboSDK sendRequest:req ];
+
         
     }
 }
