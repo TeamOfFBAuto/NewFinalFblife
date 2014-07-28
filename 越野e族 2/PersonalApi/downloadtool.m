@@ -78,7 +78,11 @@
     [_mutabledata appendData:data];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    [self.delegate downloadtool:self didfinishdownloadwithdata:_mutabledata];
+    if (self.delegate) {
+        [self.delegate downloadtool:self didfinishdownloadwithdata:_mutabledata];
+
+    }
+    
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
