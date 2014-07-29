@@ -333,14 +333,14 @@
     }
     
     UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceButton.width = MY_MACRO_NAME?-10:5;
+    spaceButton.width = MY_MACRO_NAME?-13:5;
     
     UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3,40,44)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
     [button_back setImage:[UIImage imageNamed:@"fanhui_image"] forState:UIControlStateNormal];
     
-    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 28)];
+    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 50, 44)];
     [back_view addSubview:button_back];
     back_view.backgroundColor=[UIColor clearColor];
     [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];

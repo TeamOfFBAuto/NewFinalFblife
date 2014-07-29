@@ -147,7 +147,7 @@
    UIButton *button_comment;
 //
     if (MY_MACRO_NAME) {
-        button_comment=[[UIButton alloc]initWithFrame:CGRectMake(15, (44-37/2)/2, 50, 37/2)];
+        button_comment=[[UIButton alloc]initWithFrame:CGRectMake(18, (44-37/2)/2, 50, 37/2)];
         
     }else{
         button_comment=[[UIButton alloc]initWithFrame:CGRectMake(8, (44-37/2)/2, 50, 37/2)];
@@ -1174,7 +1174,7 @@
             aview1.frame=CGRectMake(57 , 34, 250, aview1.frame.size.height);
             aview1.backgroundColor=[UIColor whiteColor];
             [otherheaderview addSubview:aview1];
-            label_time.frame=CGRectMake(245, image_head.frame.origin.y-1, 100, 20);
+            label_time.frame=CGRectMake(245, 10, 100, 20);
             img_reply.frame=CGRectMake(280, haha+49, 26/2, 25/2);
            // [otherheaderview addSubview:img_reply];
             

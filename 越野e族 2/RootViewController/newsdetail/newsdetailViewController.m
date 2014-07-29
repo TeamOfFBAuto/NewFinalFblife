@@ -125,7 +125,7 @@
 {
     
     
-//    [super viewDidLoad];
+    [super viewDidLoad];
     
     
     //commentNumberaddandadd
@@ -389,7 +389,7 @@
     }
     
     UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceButton.width = MY_MACRO_NAME?-10:5;
+    spaceButton.width = MY_MACRO_NAME?-13:5;
     
     UIButton *button_back=[[UIButton alloc]initWithFrame: CGRectMake(MY_MACRO_NAME? -5:5, 3,40,44)];
     

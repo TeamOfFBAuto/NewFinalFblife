@@ -61,7 +61,8 @@
         
         self.rightImageV=[[AsyncImageView alloc] init];
         
-        _zanImageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"talknumberofnew.png"]];
+        _zanImageV=[[UIImageView alloc]init];
+        _zanImageV.image=[UIImage imageNamed:@"talknumberofnew.png"];
         
         self.zanlabel=[[UILabel alloc] init];
         
@@ -149,7 +150,9 @@
                 [_newmodel NewMainViewModelSetdic:theDic];
 
                 
+                _zanImageV.frame=CGRectMake(0, 0, 22/2, 23/2);
                 _zanImageV.center=CGPointMake(286, 122-3);
+                
                 _zanlabel.frame=CGRectMake(286+9,113 , 320-286-10, 11);
                 
 //                if (_newmodel.likes.length>2) {
@@ -215,7 +218,8 @@
                 
                 
                 
-                
+                _zanImageV.frame=CGRectMake(0, 0, 22/2, 23/2);
+
                 _zanImageV.center=CGPointMake(286, 66);
                 _zanlabel.frame=CGRectMake(286+9,BIGORIGIN+5 , 320-286-10, 11);
                 

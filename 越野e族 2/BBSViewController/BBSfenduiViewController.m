@@ -124,7 +124,7 @@
   */
     
     UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceButton.width = MY_MACRO_NAME?-12:5;
+    spaceButton.width = MY_MACRO_NAME?-8:5;
     
     
     UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,8,30,44)];
