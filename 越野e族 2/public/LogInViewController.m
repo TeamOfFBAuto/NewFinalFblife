@@ -420,8 +420,10 @@
 
 -(void)downloadtool:(downloadtool *)tool didfinishdownloadwithdata:(NSData *)data
 {
+    [hud hide];
     
-    @try {
+    @try
+    {
         if (tool.tag==101)
         {
             dictionary= [data objectFromJSONData];
@@ -434,7 +436,6 @@
                 
             }else
             {
-                [hud hide];
                 [[NSUserDefaults standardUserDefaults] setBool:NO forKey:USER_IN];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 UIAlertView *alert_=[[UIAlertView alloc]initWithTitle:@"提示" message:@"用户名或密码不正确" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
@@ -449,7 +450,6 @@
             
             if ([[dic_ objectForKey:@"errcode"] intValue] == 1)
             {
-                [hud hide];
                 //登陆成功保存用户信息
                 [[NSUserDefaults standardUserDefaults] setObject:userNameField.text forKey:USER_NAME] ;
                 [[NSUserDefaults standardUserDefaults] setObject:pwNameField.text forKey:USER_PW] ;
@@ -479,8 +479,6 @@
         }else
         {
             NSLog(@"正在开通");
-            
-            [hud hide];
             
             NSDictionary * dic = [data objectFromJSONData];
             
@@ -519,7 +517,6 @@
     @finally {
         
     }
-    
     
 }
 
@@ -569,6 +566,8 @@
     @finally {
         
     }
+    
+    [hud hide];
 }
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
