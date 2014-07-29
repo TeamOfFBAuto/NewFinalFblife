@@ -525,7 +525,18 @@
     NSString *emailBody =___str;
     [picker setMessageBody:emailBody isHTML:NO];
     
-    [self presentModalViewController:picker animated:YES];
+    @try {
+        [self presentViewController:picker animated:YES completion:^{
+            
+        }];
+        
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
     
     
     

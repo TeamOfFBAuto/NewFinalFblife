@@ -45,7 +45,10 @@
         
         self.shownum=[NSString stringWithFormat:@"%@",[thedic objectForKey:@"shownum"]];
 
+        //comment
         
+        self.comment=[NSString stringWithFormat:@"%@",[thedic objectForKey:@"comment"]];
+
         
     }
     @catch (NSException *exception) {

@@ -167,7 +167,7 @@
                 _bigLabel.textAlignment=NSTextAlignmentLeft;
                 
                 
-                _zanlabel.text=_newmodel.likes;
+                _zanlabel.text=_newmodel.comment;
                 
                 //三个图片
                 
@@ -226,7 +226,7 @@
                 NewMainViewModel *_newmodel=[[NewMainViewModel alloc]init];
                 [_newmodel NewMainViewModelSetdic:theDic];
                 
-                _zanlabel.text=_newmodel.likes;
+                _zanlabel.text=_newmodel.comment;
                 
                 
                 

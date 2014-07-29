@@ -1174,10 +1174,21 @@
         return NO;
     }
     if ([str_test isEqualToString:@"ht"]) {//外链
-        fbWebViewController *_web=[[fbWebViewController alloc]init];
-        _web.urlstring=request.URL.absoluteString;
-        [self.navigationController pushViewController:_web animated:YES];
-        return NO;
+        return YES;
+        
+        NSLog(@"request.URL.relativeString====%@",request.URL.relativeString);
+        NSLog(@"request.URL.absoluteString====%@",request.URL.absoluteString);
+        
+        if ([request.URL.relativeString rangeOfString:@"player"].length) {
+            
+            return NO;
+        }else {
+            
+            fbWebViewController *_web=[[fbWebViewController alloc]init];
+            _web.urlstring=request.URL.absoluteString;
+            [self.navigationController pushViewController:_web animated:YES];
+            return NO;
+        }
         
     }
     
@@ -1268,7 +1279,7 @@
          addSubview:_isloadingIv];
         _isloadingIv.hidden=NO;
         newstool=[[downloadtool alloc]init];
-        NSString *string_url=[NSString stringWithFormat:@"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newsinfo&id=%@&type=json&page=%d",self.string_Id,currentpage];
+        NSString *string_url=[NSString stringWithFormat:@"http://cmsweb.fblife.com/ajax.php?c=newstwo&a=newsinfo&id=%@&type=json&page=%d&showvideo=1",self.string_Id,currentpage];
         //  NSString *string_test=@"http://cmstest.fblife.com/ajax.php?c=newstwo&a=newsinfo&type=json&id=3457&page=3&pagesize=1";
         NSLog(@"请求的url为%@",string_url);
         [newstool setUrl_string:string_url];
@@ -2056,6 +2067,9 @@
 }
 
 -(void)okokokokokokowithstring:(NSString *)___str{
+    
+    
+    
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
     picker.mailComposeDelegate = self;
     
@@ -2068,8 +2082,22 @@
     NSString *emailBody =___str;
     [picker setMessageBody:emailBody isHTML:NO];
     
-    [self presentModalViewController:picker animated:YES];
+//    [self presentModalViewController:picker animated:YES];
+    
+    @try {
+        [self presentViewController:picker animated:YES completion:^{
+            
+        }];
 
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+    
+//
     
     
 }

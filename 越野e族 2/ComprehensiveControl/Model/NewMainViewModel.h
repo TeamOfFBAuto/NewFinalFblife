@@ -88,6 +88,8 @@
 
 @property(nonatomic,strong)NSString *shownum;//赞的数量
 
+@property(nonatomic,strong)NSString *comment;//评论的数量
+
 
 
 
