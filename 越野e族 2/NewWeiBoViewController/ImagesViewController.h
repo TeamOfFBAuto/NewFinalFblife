@@ -10,7 +10,7 @@
 #import "MWPhotoBrowser.h"
 #import "ImagesCell.h"
 
-@interface ImagesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,ImageCellDelegate>
+@interface ImagesViewController : MyViewController<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,ImageCellDelegate>
 {
     ATMHud *hud;
     

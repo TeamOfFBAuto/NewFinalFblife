@@ -181,30 +181,32 @@
     
     myUid = [[NSUserDefaults standardUserDefaults] objectForKey:USER_UID];
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        //iOS 5 new UINavigationBar custom background
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS_VERSION>=7.0?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+//    {
+//        //iOS 5 new UINavigationBar custom background
+//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS_VERSION>=7.0?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//    }
     
     self.navigationItem.title = _theTitle;
     
-    UIColor * cc = [UIColor blackColor];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
-    UIBarButtonItem * spaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    
-    spaceBar.width = MY_MACRO_NAME?-4:5;
-    
-    
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
-    [button_back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    self.navigationItem.leftBarButtonItems=@[spaceBar,back_item];
+//    UIColor * cc = [UIColor blackColor];
+//    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+//    
+//    self.navigationController.navigationBar.titleTextAttributes = dict;
+//    
+//    UIBarButtonItem * spaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    
+//    spaceBar.width = MY_MACRO_NAME?-4:5;
+//    
+//    
+//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
+//    [button_back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
+//    self.navigationItem.leftBarButtonItems=@[spaceBar,back_item];
     
     
     _dataArray = [[NSMutableArray alloc] init];

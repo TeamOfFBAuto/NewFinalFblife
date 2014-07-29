@@ -17,7 +17,7 @@
 #import "CarType.h"
 #import "SaleModel.h"
 
-@interface CarPortDetailViewController : UIViewController<CarPortSegDelegate,UITableViewDataSource,UITableViewDelegate,PictureModelDelegate,MWPhotoBrowserDelegate,NewsModelDelegate,UIScrollViewDelegate,SummaryModelDelegate,SaleModelDelegate>{
+@interface CarPortDetailViewController : MyViewController<CarPortSegDelegate,UITableViewDataSource,UITableViewDelegate,PictureModelDelegate,MWPhotoBrowserDelegate,NewsModelDelegate,UIScrollViewDelegate,SummaryModelDelegate,SaleModelDelegate>{
     CarPortSeg *segview;
     CarPortSeg *threeseg;
     UITableView *imagetableview;//图片的tableview

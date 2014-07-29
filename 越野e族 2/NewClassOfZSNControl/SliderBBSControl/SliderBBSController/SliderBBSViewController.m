@@ -630,27 +630,44 @@
     
     [request setCompletionBlock:^{
         
-        NSDictionary * _dic = [collection_request.responseString objectFromJSONString];
-        
-        NSLog(@"我的订阅数据 ---  %@",_dic);
-        
-        int issuccess=[[_dic objectForKey:@"errcode"]integerValue];
-        
-        NSArray *array_test=[_dic objectForKey:@"bbsinfo"];
-        
-        if (issuccess==0)
-        {
-            [bself setCollectionViewsWith:array_test];
-        }else
-        {
-            [bself setCollectionViewsWith:[NSArray array]];
+        @try {
+            NSDictionary * _dic = [collection_request.responseString objectFromJSONString];
+            
+            NSLog(@"我的订阅数据 ---  %@",_dic);
+            
+            int issuccess=[[_dic objectForKey:@"errcode"]integerValue];
+            
+            NSArray *array_test=[_dic objectForKey:@"bbsinfo"];
+            
+            if (issuccess==0)
+            {
+                [bself setCollectionViewsWith:array_test];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:array_test forKey:@"forumSectionCollectionArray"];
+            }else
+            {
+                NSArray * array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
+                
+                [bself setCollectionViewsWith:array];
+            }
         }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+       
     }];
     
     
     [request setFailedBlock:^{
         
-        [bself setCollectionViewsWith:[NSArray array]];
+        NSArray * array = [[NSUserDefaults standardUserDefaults] objectForKey:@"forumSectionCollectionArray"];
+
+        
+        [bself setCollectionViewsWith:array];
         
     }];
     
@@ -1041,7 +1058,7 @@
         
         UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,44)];
         
-        view.tag = [model.forum_fid intValue] + 1000000;
+        view.tag = 10000 + section;
         
         view.backgroundColor = [UIColor whiteColor];
         
@@ -1091,39 +1108,31 @@
         {
             UIButton * fenlei_button = [UIButton buttonWithType:UIButtonTypeCustom];
             
+            fenlei_button.userInteractionEnabled = NO;
+            
             fenlei_button.frame = CGRectMake(271,0,49,44);
             
             [fenlei_button setImage:[UIImage imageNamed:@"bbs_forum_fenlei"] forState:UIControlStateNormal];
             
-            fenlei_button.tag = 10000 + section;
+//            fenlei_button.tag = 10000 + section;
             
             fenlei_button.backgroundColor = [UIColor clearColor];
             
-            [fenlei_button addTarget:self action:@selector(ShowSecondView:) forControlEvents:UIControlEventTouchUpInside];
+//            [fenlei_button addTarget:self action:@selector(ShowSecondView:) forControlEvents:UIControlEventTouchUpInside];
             
             [view addSubview:fenlei_button];
         }
         
         
-        
-//        if (model.forum_isOpen)
-//        {
-//            UIView * bottom_view = [[UIView alloc] initWithFrame:CGRectMake(0,43.5,320,0.5)];
-//            
-//            bottom_view.backgroundColor = RGBCOLOR(228,228,228);
-//            
-//            [view addSubview:bottom_view];
-//        }
-        
-        
         //跳转到对应的版块页
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ShowForumSectionDetailTap:)];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ShowSecondView:)];
         
-     //   [view addGestureRecognizer:tap];
+        [view addGestureRecognizer:tap];
         
         return view;
     }
 }
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1290,13 +1299,13 @@
 
 #pragma mark - 弹出收回二级分类按钮
 
--(void)ShowSecondView:(UIButton *)sender
+-(void)ShowSecondView:(UITapGestureRecognizer *)sender
 {
-    SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:sender.tag-10000];
+    SliderBBSForumModel * model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:sender.view.tag-10000];
     
     model.forum_isOpen = !model.forum_isOpen;
     
-    [_myTableView2 reloadSections:[NSIndexSet indexSetWithIndex:sender.tag-10000] withRowAnimation:UITableViewRowAnimationFade];
+    [_myTableView2 reloadSections:[NSIndexSet indexSetWithIndex:sender.view.tag-10000] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

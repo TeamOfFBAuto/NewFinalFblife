@@ -10,7 +10,7 @@
 #import "WenJiFeed.h"
 #import "loadingview.h"
 
-@interface WenJiViewController : UIViewController<UIWebViewDelegate>
+@interface WenJiViewController : MyViewController<UIWebViewDelegate>
 {
     UIWebView * webView;
     UIScrollView * myScrollView;

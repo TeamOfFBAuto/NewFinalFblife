@@ -21,7 +21,7 @@
 #import <MessageUI/MessageUI.h>
 #import "WeiboSDK.h"
 #import <MessageUI/MFMailComposeViewController.h>
-@interface fbWebViewController : UIViewController<UIWebViewDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,downloaddelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate,BottombarviewDelegate,SelectNumberViewDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
+@interface fbWebViewController : MyViewController<UIWebViewDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,downloaddelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate,BottombarviewDelegate,SelectNumberViewDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
     UIWebView *awebview;
     UIButton *button_comment;
     UILabel *titleview;

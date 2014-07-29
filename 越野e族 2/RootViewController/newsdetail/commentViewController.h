@@ -14,7 +14,7 @@
 #import "AsyncImageView.h"
 #import "NewFaceView.h"
 #import "WeiBoFaceScrollView.h"
-@interface commentViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,UIActionSheetDelegate,UIScrollViewDelegate,downloaddelegate>{
+@interface commentViewController : MyViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,UIActionSheetDelegate,UIScrollViewDelegate,downloaddelegate>{
     UITableView *tab_pinglunliebiao;
     
     UILabel *label_bigbiaoti;

@@ -152,12 +152,21 @@
     
 //    [self receivemyimage_head];
     
-    
     headerImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(103,46,82,82)];
     
     if (islogin)
     {
-        [headerImageView loadImageFromURL:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+        NSString * header_image_url = [userDefaults objectForKey:USER_FACE];
+        
+        if (header_image_url.length == 0)
+        {
+            [self receivemyimage_head];
+        }else{
+            [headerImageView loadImageFromURL:header_image_url withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+        }
+        
+        
+        
     }else
     {
         headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];
@@ -334,7 +343,7 @@
                 NSString * userName = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"nickname"]];
                 
                 NSString * userFace = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"face_original"]];
-                
+                                
                 NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
                 
                 [defaults setObject:string_uid forKey:USER_UID];

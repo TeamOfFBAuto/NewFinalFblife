@@ -136,13 +136,13 @@
 
     //导航部分
     
-    self.navigationItem.title = @"评论";
+    self.title = @"评论";
     
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
+//    UIColor * cc = [UIColor blackColor];
+//    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+//    
+//    self.navigationController.navigationBar.titleTextAttributes = dict;
     
    UIButton *button_comment;
 //
@@ -173,31 +173,34 @@
 //    button_comment.backgroundColor=[UIColor redColor];
     
     
-    UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
+//    UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
  //排序不先要，所以先隐藏掉
 //    self.navigationItem.rightBarButtonItem=comment_item;
 
     
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-        
-        //iOS 5 new UINavigationBar custom background
-              [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
-    }
-    //self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:74 green:73 blue:72 alpha:1];
-    
-    UIButton *button_back=[[UIButton alloc]initWithFrame:MY_MACRO_NAME? CGRectMake(-5, (44-43/2)/2, 12, 43/2):CGRectMake(5, (44-43/2)/2, 12, 43/2)];
-    
-    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-    
-    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
-    [back_view addSubview:button_back];
-    back_view.backgroundColor=[UIColor clearColor];
-    [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
-    self.navigationItem.leftBarButtonItem=back_item;
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+//        
+//        //iOS 5 new UINavigationBar custom background
+//              [self.navigationController.navigationBar setBackgroundImage:MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"] forBarMetrics: UIBarMetricsDefault];
+//    }
+//    //self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:74 green:73 blue:72 alpha:1];
+//    
+//    UIButton *button_back=[[UIButton alloc]initWithFrame:MY_MACRO_NAME? CGRectMake(-5, (44-43/2)/2, 12, 43/2):CGRectMake(5, (44-43/2)/2, 12, 43/2)];
+//    
+//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    
+//    UIButton *back_view=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
+//    [back_view addSubview:button_back];
+//    back_view.backgroundColor=[UIColor clearColor];
+//    [back_view addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
+//    self.navigationItem.leftBarButtonItem=back_item;
 
+    
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    
     
     //  self.navigationItem.title=@"新闻中心";
 //    self.navigationItem.titleView=yaoxibiaoti;

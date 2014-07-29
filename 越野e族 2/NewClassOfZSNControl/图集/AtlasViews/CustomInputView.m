@@ -299,7 +299,7 @@
         
         _theTouchView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddeninputViewTap)];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddeninputViewTap1)];
         
         [_theTouchView addGestureRecognizer:tap];
         
@@ -323,6 +323,13 @@
     
 }
 
+-(void)hiddeninputViewTap1
+{
+    [text_input_view resignFirstResponder];
+    
+    _theTouchView.hidden = YES;
+}
+
 
 -(void)hiddeninputViewTap
 {
@@ -330,7 +337,7 @@
     
     text_input_view.text = @"";
     
-    commit_label.text = @"";
+    commit_label.text = @"发表评论";
     
     _theTouchView.hidden = YES;
 }

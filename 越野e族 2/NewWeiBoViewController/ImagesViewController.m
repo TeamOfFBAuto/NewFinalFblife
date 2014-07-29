@@ -95,7 +95,7 @@
                     }
                     [_myTableView reloadData];
                     //                NavTitle.title = _name;
-                    self.navigationItem.title = _name;
+                    self.title = _name;
                 }
             }
             
@@ -141,30 +141,37 @@
     self.view.backgroundColor = RGBCOLOR(242,242,242);
     
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        //iOS 5 new UINavigationBar custom background
-        
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+//    {
+//        //iOS 5 new UINavigationBar custom background
+//        
+//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//    }
+//    
+//    UIColor * cc = [UIColor blackColor];
+//    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+//    
+//    self.navigationController.navigationBar.titleTextAttributes = dict;
+//    
+//    
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = MY_MACRO_NAME?-5:5;
+//    
+//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,12,21.5)];
+//    
+//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
+//    self.navigationItem.leftBarButtonItems=@[negativeSpacer,back_item];
     
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
     
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = MY_MACRO_NAME?-5:5;
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,12,21.5)];
     
-    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    self.navigationItem.leftBarButtonItems=@[negativeSpacer,back_item];
     self.photos = [[NSMutableArray alloc] init];
     _dataArray = [[NSMutableArray alloc] init];
     

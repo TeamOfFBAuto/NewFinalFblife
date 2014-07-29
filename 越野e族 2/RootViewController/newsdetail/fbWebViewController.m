@@ -77,23 +77,28 @@
     self.navigationController.navigationBarHidden=NO;
 
     [super viewDidLoad];
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -3:5, 0, 12, 43/2)];
-    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -3:5, 0, 12, 43/2)];
+//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    
+//    UIButton *leftview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 43/2)];
+////    leftview.backgroundColor=[UIColor redColor];
+//    [leftview addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [leftview addSubview:button_back];
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:leftview];
+//    self.navigationItem.leftBarButtonItem=back_item;
+//
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
+//        
+//        //iOS 5 new UINavigationBar custom background
+//        
+//        [self.navigationController.navigationBar setBackgroundImage:IOS_VERSION>=7?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]: [UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//    }
     
-    UIButton *leftview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 43/2)];
-//    leftview.backgroundColor=[UIColor redColor];
-    [leftview addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [leftview addSubview:button_back];
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:leftview];
-    self.navigationItem.leftBarButtonItem=back_item;
-
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
-        
-        //iOS 5 new UINavigationBar custom background
-        
-        [self.navigationController.navigationBar setBackgroundImage:IOS_VERSION>=7?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]: [UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
+    
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
+    
+    
     
     button_comment=[[UIButton alloc]initWithFrame:CGRectMake(23, 0, 44, 44)];
     
@@ -196,13 +201,13 @@
     
     
     
-    self.navigationItem.title = string_title;
+    self.title = string_title;
     
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:16],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
+//    UIColor * cc = [UIColor blackColor];
+//    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:16],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+//    
+//    self.navigationController.navigationBar.titleTextAttributes = dict;
 
     button_comment.userInteractionEnabled=YES;
 }

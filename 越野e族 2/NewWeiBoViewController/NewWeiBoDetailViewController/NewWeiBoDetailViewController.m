@@ -96,99 +96,109 @@
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSDictionary * data_dic = [request.responseData objectFromJSONData];
-    
-    if (pageCount == 1)
-    {
-        [self.dataArray removeAllObjects];
-    }
-    
-    
-    NSString *errcode = [data_dic objectForKey:@"errcode"];
-    
-    if ([@"0" isEqualToString:errcode])
-    {
-        NSDictionary* weibomain = [data_dic objectForKey:@"weibomain"];
+    @try {
+        NSDictionary * data_dic = [request.responseData objectFromJSONData];
         
-        if ([weibomain isEqual:[NSNull null]])
+        if (pageCount == 1)
         {
-            //如果没有微博的话
-            NSLog(@"------------没有微博信息---------------");
-        }else
-        {
-            _feed = [[zsnApi conversionFBContent:weibomain isSave:NO WithType:0] objectAtIndex:0];
+            [self.dataArray removeAllObjects];
         }
         
-        //解析评论信息
-        NSDictionary* userinfo = [data_dic objectForKey:@"weiboinfo"];
         
-        if ([userinfo isEqual:[NSNull null]])
+        NSString *errcode = [data_dic objectForKey:@"errcode"];
+        
+        if ([@"0" isEqualToString:errcode])
         {
-            [tabelFootView stopLoading:1];
-            tabelFootView.normalLabel.text = @"还没有人评论过";
+            NSDictionary* weibomain = [data_dic objectForKey:@"weibomain"];
             
-            _myTableView.tableFooterView = tishi_view;
-            
-            //如果没有微博的话
-            NSLog(@"------------此微博没有评论信息---------------");
-        }else
-        {
-            [tabelFootView stopLoading:1];
-            tabelFootView.normalLabel.text = @"";
-            
-            _myTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0)];
-            
-            UIImageView * image_view = (UIImageView *)[tableHeaderView viewWithTag:417];
-            
-            image_view.image = [UIImage imageNamed:@"weibo_detail_line-1.png"];
-            
-            
-            NSArray *keys;
-            int i, count;
-            id key, value;
-            keys = [userinfo allKeys];
-            
-            //给keys排序降序
-            NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
-            NSArray *arr1 = [keys sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];
-            
-            count = [arr1 count];
-            
-            
-            for (i = 0; i < count; i++)
+            if ([weibomain isEqual:[NSNull null]])
             {
-                ReplysFeed *obj = [[ReplysFeed alloc] init];
-                key = [arr1 objectAtIndex: i];
-                value = [userinfo objectForKey: key];
+                //如果没有微博的话
+                NSLog(@"------------没有微博信息---------------");
+            }else
+            {
+                _feed = [[zsnApi conversionFBContent:weibomain isSave:NO WithType:0] objectAtIndex:0];
+            }
+            
+            //解析评论信息
+            NSDictionary* userinfo = [data_dic objectForKey:@"weiboinfo"];
+            
+            if ([userinfo isEqual:[NSNull null]])
+            {
+                [tabelFootView stopLoading:1];
+                tabelFootView.normalLabel.text = @"还没有人评论过";
                 
-                [obj setTid:[value objectForKey:@"tid"]];
-                [obj setUid:[value objectForKey:@"uid"]];
-                [obj setUsername:[value objectForKey:@"username"]];
-                [obj setContent:[zsnApi FBImageChange:[value objectForKey:@"content"]]];
-                [obj setContent:[self exChangeFbString:obj.content]];
+                _myTableView.tableFooterView = tishi_view;
                 
-                [obj setImageid:[value objectForKey:@"imageid"]];
-                [obj setReplys:[value objectForKey:@"replys"]];
-                [obj setForwards:[value objectForKey:@"forwards"]];
-                [obj setRoottid:[value objectForKey:@"roottid"]];
-                [obj setTotid:[value objectForKey:@"totid"]];
-                [obj setTouid:[value objectForKey:@"touid"]];
-                [obj setTousername:[value objectForKey:@"tousername"]];
-                [obj setDateline:[personal timestamp:[value objectForKey:@"dateline"]]];
-                [obj setFrom:[value objectForKey:@"from"]];
-                [obj setSort:[value objectForKey:@"sort"]];
-                [obj setSortid:[value objectForKey:@"sortid"]];
-                [obj setImageSmall:[value objectForKey:@"image_small"]];
-                [obj setImageOriginal:[value objectForKey:@"image_original"]];
-                [obj setFaceSmall:[value objectForKey:@"face_small"]];
-                [obj setFaceOriginal:[value objectForKey:@"face_original"]];
+                //如果没有微博的话
+                NSLog(@"------------此微博没有评论信息---------------");
+            }else
+            {
+                [tabelFootView stopLoading:1];
+                tabelFootView.normalLabel.text = @"";
                 
-                [self.dataArray addObject:obj];
+                _myTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0)];
+                
+                UIImageView * image_view = (UIImageView *)[tableHeaderView viewWithTag:417];
+                
+                image_view.image = [UIImage imageNamed:@"weibo_detail_line-1.png"];
+                
+                
+                NSArray *keys;
+                int i, count;
+                id key, value;
+                keys = [userinfo allKeys];
+                
+                //给keys排序降序
+                NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+                NSArray *arr1 = [keys sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];
+                
+                count = [arr1 count];
+                
+                
+                for (i = 0; i < count; i++)
+                {
+                    ReplysFeed *obj = [[ReplysFeed alloc] init];
+                    key = [arr1 objectAtIndex: i];
+                    value = [userinfo objectForKey: key];
+                    
+                    [obj setTid:[value objectForKey:@"tid"]];
+                    [obj setUid:[value objectForKey:@"uid"]];
+                    [obj setUsername:[value objectForKey:@"username"]];
+                    [obj setContent:[zsnApi FBImageChange:[value objectForKey:@"content"]]];
+                    [obj setContent:[self exChangeFbString:obj.content]];
+                    
+                    [obj setImageid:[value objectForKey:@"imageid"]];
+                    [obj setReplys:[value objectForKey:@"replys"]];
+                    [obj setForwards:[value objectForKey:@"forwards"]];
+                    [obj setRoottid:[value objectForKey:@"roottid"]];
+                    [obj setTotid:[value objectForKey:@"totid"]];
+                    [obj setTouid:[value objectForKey:@"touid"]];
+                    [obj setTousername:[value objectForKey:@"tousername"]];
+                    [obj setDateline:[personal timestamp:[value objectForKey:@"dateline"]]];
+                    [obj setFrom:[value objectForKey:@"from"]];
+                    [obj setSort:[value objectForKey:@"sort"]];
+                    [obj setSortid:[value objectForKey:@"sortid"]];
+                    [obj setImageSmall:[value objectForKey:@"image_small"]];
+                    [obj setImageOriginal:[value objectForKey:@"image_original"]];
+                    [obj setFaceSmall:[value objectForKey:@"face_small"]];
+                    [obj setFaceOriginal:[value objectForKey:@"face_original"]];
+                    
+                    [self.dataArray addObject:obj];
+                }
             }
         }
+        
+        [self.myTableView reloadData];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
     }
     
-    [self.myTableView reloadData];
     
 }
 
@@ -237,13 +247,13 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"微博正文";
+    self.title = @"微博正文";
     
-    UIColor * cc = [UIColor blackColor];
-    
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
-    
-    self.navigationController.navigationBar.titleTextAttributes = dict;
+//    UIColor * cc = [UIColor blackColor];
+//    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+//    
+//    self.navigationController.navigationBar.titleTextAttributes = dict;
     
     
     self.photos = [[NSMutableArray alloc] init];
@@ -253,26 +263,28 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        //iOS 5 new UINavigationBar custom background
-        
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-    }
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+//    {
+//        //iOS 5 new UINavigationBar custom background
+//        
+//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:MY_MACRO_NAME?IOS7DAOHANGLANBEIJING:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//    }
+//    
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = MY_MACRO_NAME?-4:5;
+//    
+//    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
+//    
+//    [button_back addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    
+//    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
+//    
+//    self.navigationItem.leftBarButtonItems=@[negativeSpacer,back_item];
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = MY_MACRO_NAME?-4:5;
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
-    
-    [button_back addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-    
-    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
-    
-    self.navigationItem.leftBarButtonItems=@[negativeSpacer,back_item];
-    
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
     
     _dataArray = [[NSMutableArray alloc] init];

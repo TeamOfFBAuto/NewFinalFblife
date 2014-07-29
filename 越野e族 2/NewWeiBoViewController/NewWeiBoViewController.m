@@ -171,6 +171,7 @@
     
     weiBo_request.tag = 9999999;
     
+    
     [weiBo_request startAsynchronous];
 }
 
@@ -546,32 +547,45 @@
     }
     
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = MY_MACRO_NAME?-5:5;
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = MY_MACRO_NAME?-5:5;
+//    
+//    
+//    UIButton * leftbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [leftbutton setImage:[UIImage imageNamed:@"slider_bbs_home"] forState:UIControlStateNormal];
+//    [leftbutton addTarget:self action:@selector(leftButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    leftbutton.frame = CGRectMake(MY_MACRO_NAME?0:8,0,38/2,38/2);
+//    
+//    UIBarButtonItem * left = [[UIBarButtonItem alloc] initWithCustomView:leftbutton];
+//    
+//    self.navigationItem.leftBarButtonItems = @[negativeSpacer,left];
+//    
+//    
+//    UIButton *rightview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 37,44)];
+//    rightview.backgroundColor=[UIColor clearColor];
+//    [rightview addTarget:self action:@selector(rightButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [rightview setImage:[UIImage imageNamed:@"slider_bbs_me"] forState:UIControlStateNormal];
+//    
+////    UIButton * searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+////    [searchButton setImage:[UIImage imageNamed:@"slider_bbs_me"] forState:UIControlStateNormal];
+////    searchButton.userInteractionEnabled = NO;
+////    searchButton.frame = CGRectMake(MY_MACRO_NAME?25:10,0,37,44);
+////    [rightview addSubview:searchButton];
+//    
+//    UIBarButtonItem * right_item = [[UIBarButtonItem alloc]initWithCustomView:rightview];
+//    
+//    self.navigationItem.rightBarButtonItems=@[negativeSpacer,right_item];
     
     
-    UIButton * leftbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftbutton setImage:[UIImage imageNamed:@"slider_bbs_home"] forState:UIControlStateNormal];
-    [leftbutton addTarget:self action:@selector(leftButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+    self.leftImageName = @"slider_bbs_home";
     
-    leftbutton.frame = CGRectMake(MY_MACRO_NAME?0:8,0,38/2,38/2);
+    self.rightImageName = @"slider_bbs_me";
     
-    UIBarButtonItem * left = [[UIBarButtonItem alloc] initWithCustomView:leftbutton];
-    
-    self.navigationItem.leftBarButtonItems = @[negativeSpacer,left];
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     
     
-    UIButton *rightview=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 37, 37/2)];
-    rightview.backgroundColor=[UIColor clearColor];
-    [rightview addTarget:self action:@selector(rightButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton * searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchButton setImage:[UIImage imageNamed:@"slider_bbs_me"] forState:UIControlStateNormal];
-    searchButton.userInteractionEnabled = NO;
-    searchButton.frame = CGRectMake(MY_MACRO_NAME?25:10,0,37/2,37/2);
-    [rightview addSubview:searchButton];
-    
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:rightview];
     
     _weibo_seg = [[WeiBoCustomSegmentView alloc] initWithFrame:CGRectMake(15,0,200,44)];
     

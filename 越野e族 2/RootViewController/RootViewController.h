@@ -24,7 +24,7 @@
 #import "rootnewsModel.h"
 #import "FBNotificationViewController.h"//fb系统通知
 #import "MessageViewController.h"//私信列表
-@interface RootViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,AlertRePlaceViewDelegate,ASIHTTPRequestDelegate,downloaddelegate,AsyncImageDelegate,AdvertisingModelDelegate,UISearchBarDelegate,CustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,MWPhotoBrowserDelegate,UITextFieldDelegate,rootNewsModelDelegate,newsTableviewDelegate>
+@interface RootViewController : MyViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,AlertRePlaceViewDelegate,ASIHTTPRequestDelegate,downloaddelegate,AsyncImageDelegate,AdvertisingModelDelegate,UISearchBarDelegate,CustomSegmentViewDelegate,NewWeiBoCustomCellDelegate,MWPhotoBrowserDelegate,UITextFieldDelegate,rootNewsModelDelegate,newsTableviewDelegate>
 {
     UIScrollView *newsScrow;
     NSArray * array_lanmu;

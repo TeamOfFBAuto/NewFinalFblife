@@ -46,7 +46,7 @@
 #define IOS6DAOHANGLANBEIJING @"sliderBBSNavigationBarImage_ios6.png"
 #define TheNavigationBarBackgroundImg MY_MACRO_NAME?[UIImage imageNamed:IOS7DAOHANGLANBEIJING]:[UIImage imageNamed:@"ios7eva320_44.png"]
 
-#define BACK_DEFAULT_IMAGE @"ios7_back"
+#define BACK_DEFAULT_IMAGE @"fanhui_image"
 
 #define TITLEFONT [UIFont fontWithName:@"Helvetica" size:20]
 #endif

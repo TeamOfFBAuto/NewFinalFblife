@@ -80,9 +80,6 @@
     rightView.backgroundColor=[UIColor clearColor];
     
     
-    
-    
-    
     UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
     
     self.navigationItem.rightBarButtonItem=comment_item;
@@ -95,12 +92,12 @@
     
     
     UIBarButtonItem * space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space.width = MY_MACRO_NAME?-4:5;
+    space.width = MY_MACRO_NAME?-10:5;
     
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,3,12,43/2)];
+    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,3,30,44)];
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     self.navigationItem.leftBarButtonItems=@[space,back_item];
