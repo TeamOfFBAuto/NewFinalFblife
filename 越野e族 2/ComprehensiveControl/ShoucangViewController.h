@@ -17,7 +17,7 @@
 
 
 
-@interface ShoucangViewController : UIViewController<FinalshoucangViewDelegate,ShoucangSegDelegate,UIScrollViewDelegate>{
+@interface ShoucangViewController : MyViewController<FinalshoucangViewDelegate,ShoucangSegDelegate,UIScrollViewDelegate>{
 
 
     UIScrollView *newsScrow;
