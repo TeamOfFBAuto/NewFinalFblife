@@ -411,7 +411,9 @@
     
     self.rightImageName = @"ios7_refresh4139.png";
     
-    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeOther];
+    self.leftImageName = @"logIn_close.png";
+    
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeOther WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     
     
     
@@ -615,7 +617,7 @@
     }
     [_isloadingIv removeFromSuperview];
     _isloadingIv = nil;
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -962,7 +964,7 @@
             // labelString:@"没有找到该联系人"
             _isloadingIv.text=@"没有找到该联系人";
             _isloadingIv.numberOfLines=0;
-            _isloadingIv.textAlignment=UITextAlignmentCenter;
+            _isloadingIv.textAlignment=NSTextAlignmentCenter;
             _isloadingIv.backgroundColor=[[UIColor grayColor]colorWithAlphaComponent:0.8];
             [_isloadingIv setTextColor:[UIColor whiteColor]];
             [_isloadingIv setFont:[UIFont systemFontOfSize:16]];

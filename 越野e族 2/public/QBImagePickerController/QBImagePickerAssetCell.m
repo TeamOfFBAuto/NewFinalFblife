@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)setAssets:(NSArray *)assets
+- (void)setAssets:(NSArray *)assets WithSelected:(NSMutableOrderedSet *)theSelected
 {
     [_assets release];
     _assets = [assets retain];
@@ -55,6 +55,16 @@
         {
             assetView.hidden = NO;
             assetView.asset = [self.assets objectAtIndex:i];
+            
+            
+            for (ALAsset * temp in theSelected) {
+                
+                if ([temp.defaultRepresentation.url isEqual:assetView.asset.defaultRepresentation.url]) {
+                    
+                    assetView.selected = YES;
+                }
+            }
+            
             
         } else
         {

@@ -50,14 +50,14 @@
         
         UIBarButtonItem * spaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
         
-        spaceBar.width = MY_MACRO_NAME?-5:5;
+        spaceBar.width = MY_MACRO_NAME?-10:5;
         
         
-        UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,12,21.5)];
+        UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,30,44)];
         
         [button_back addTarget:self action:@selector(backH) forControlEvents:UIControlEventTouchUpInside];
         
-        [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+        [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
         
         UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
         
@@ -467,7 +467,7 @@
                     
                 }
                 
-                [(QBImagePickerAssetCell *)cell setAssets:assets];
+                [(QBImagePickerAssetCell *)cell setAssets:assets WithSelected:self.selectedAssets];
                 
                 
                 

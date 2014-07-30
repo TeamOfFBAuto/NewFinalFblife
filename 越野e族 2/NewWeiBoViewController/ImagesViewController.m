@@ -38,7 +38,7 @@
 
 -(void)backH
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
@@ -269,7 +269,7 @@
     
     [self.leveyTabBarController hidesTabBar:YES animated:YES];
     
-    [self presentModalViewController:browser animated:YES];
+    [self presentViewController:browser animated:YES completion:NULL];
     
 }
 
