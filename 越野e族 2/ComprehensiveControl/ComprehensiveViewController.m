@@ -336,7 +336,17 @@
     [self.view addSubview:mainTabView];
     
     
+    UIView *placeview=[[UIView alloc]initWithFrame:mainTabView.frame];
+    placeview.tag=234;
+    //   placeview.backgroundColor=RGBCOLOR(222, 222, 222);
+    UIImageView *imgcenterlogo=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ios7_newsbeijing.png"]];
+    imgcenterlogo.center=CGPointMake(mainTabView.frame.size.width/2, mainTabView.frame.size.height/2-20);
+    [placeview addSubview:imgcenterlogo];
+    placeview.hidden=NO;
+    [mainTabView addSubview:placeview];
     
+    
+
     
     
     
@@ -462,6 +472,10 @@
 }
 
 -(void)refreshNormalWithDic:(NSDictionary *)dicc{
+    
+    [[self.view viewWithTag:234] removeFromSuperview];
+
+    
     
   NSArray *  tempnormalinfoAllArray=[NSArray arrayWithArray:[dicc objectForKey:@"app"]];
      [loadview stopLoading:1];
