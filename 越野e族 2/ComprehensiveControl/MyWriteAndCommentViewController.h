@@ -13,7 +13,7 @@
 
 #import "FinalshoucangView.h"
 
-@interface MyWriteAndCommentViewController : UIViewController<FinalshoucangViewDelegate,ShoucangSegDelegate,UIScrollViewDelegate>{
+@interface MyWriteAndCommentViewController : MyViewController<FinalshoucangViewDelegate,ShoucangSegDelegate,UIScrollViewDelegate>{
     
     
     UIScrollView *newsScrow;

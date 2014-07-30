@@ -867,7 +867,7 @@
     {
         WriteBlogViewController * writeVC = [[WriteBlogViewController alloc] init];
         [self.leveyTabBarController hidesTabBar:YES animated:YES];
-        [self presentModalViewController:writeVC animated:YES];
+        [self presentViewController:writeVC animated:YES completion:NULL];
     }
     
 }

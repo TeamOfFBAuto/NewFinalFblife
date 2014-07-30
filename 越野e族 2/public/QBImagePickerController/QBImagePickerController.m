@@ -365,7 +365,7 @@
 
 -(void)takePhoto
 {
-    [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:NULL];
     [self.delegate takeAphoto];
 }
 

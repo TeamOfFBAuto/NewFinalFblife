@@ -618,15 +618,6 @@
 }
 
 
-#pragma mark-搜车按钮
-
--(void)searchCar:(UIButton *)button
-{
-    
-}
-
-
-
 #pragma mark-scrollview
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -1243,6 +1234,8 @@
             default:
                 break;
         }
+        
+        pageCount = 1;
         
         
         [self requestFindingCarWithPage:pageCount];
