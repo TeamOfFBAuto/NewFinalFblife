@@ -1109,7 +1109,6 @@
         }
     }
     
-    
     UILabel *newTitle = [[UILabel alloc] initWithFrame:oldFrame];
     newTitle.font = [UIFont systemFontOfSize:18];
     newTitle.textAlignment = NSTextAlignmentCenter;

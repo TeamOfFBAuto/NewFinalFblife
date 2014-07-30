@@ -153,7 +153,7 @@
     //UIBarButtonItem *buttonitem_collect=[[UIBarButtonItem alloc]initWithCustomView:button_collect];
     // self.navigationItem.rightBarButtonItem=buttonitem_collect;
     
-    UIButton *button_send=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 12:2, 0, 44, 44)];
+    UIButton *button_send=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 12:2, 0,40, 44)];
     
     [button_send addTarget:self action:@selector(fatieyemian) forControlEvents:UIControlEventTouchUpInside];
 //    [button_send setBackgroundImage:[UIImage imageNamed:@"ios7_commit3839.png"] forState:UIControlStateNormal];
