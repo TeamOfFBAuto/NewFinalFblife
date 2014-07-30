@@ -212,12 +212,13 @@
     UIBarButtonItem * space_button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     space_button.width = MY_MACRO_NAME?0:5;
     
-    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,10+ios7_height,12,21.5)];
+    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,ios7_height,30,44)];
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
     
     //    UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     //    self.navigationItem.leftBarButtonItems=@[space_button,back_item];
+    
     [view_daohang addSubview:button_back];
     
     

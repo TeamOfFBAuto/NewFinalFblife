@@ -828,7 +828,8 @@
             NSString *imgurl=[NSString stringWithFormat:@"%@",[ImageArray objectAtIndex:i]];
             
             if ([imgurl isEqualToString:@""]) {
-                [self presentModalViewController:writeBlogView animated:YES];
+                
+                [self presentViewController:writeBlogView animated:YES completion:NULL];
                 
             }else{
                 
@@ -837,16 +838,14 @@
                 NSLog(@"_fatie.myAllimg=====%@",writeBlogView.myAllimgUrl);
                 if (i == ImageArray.count-1){
                     
-                    
-                    
-                    [self presentModalViewController:writeBlogView animated:YES];
+                    [self presentViewController:writeBlogView animated:YES completion:NULL];
                     
                 }
                 
             }
         
         
-    
+
     
             
         }

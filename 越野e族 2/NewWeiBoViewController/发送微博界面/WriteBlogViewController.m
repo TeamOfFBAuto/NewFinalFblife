@@ -62,9 +62,12 @@
              {
                  returnValue = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]]; //Retain Added
                  
-                 [allImageArray addObject:returnValue];
+                 if (returnValue) {
+                     [allImageArray addObject:returnValue];
+                     
+                     [allAssesters addObject:returnValue];
+                 }
                  
-                 [allAssesters addObject:returnValue];
                  
                  //                UIButton * button = (UIButton *)[morePicView viewWithTag:101+i];
                  //
@@ -424,6 +427,7 @@
 -(void)comeonmyimage
 {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
     for (int i = 0;i < self.myAllimgUrl.count;i++)
     {
         NSString *imgurl=[NSString stringWithFormat:@"%@",[self.myAllimgUrl objectAtIndex:i]];
@@ -441,13 +445,14 @@
              returnValue=[UIImage imageWithCGImage:imgRef
                                              scale:assetRep.scale
                                        orientation:(UIImageOrientation)assetRep.orientation];
-             [allImageArray addObject:returnValue];
-             [allAssesters addObject:imgurl];
              
-             if (allImageArray.count==self.myAllimgUrl.count)
-             {
-                 [self setbutton];
+             
+             if (returnValue) {
+                 [allImageArray addObject:returnValue];
+                 [allAssesters addObject:imgurl];
              }
+             
+            [self setbutton];
              
          } failureBlock:^(NSError *error)
          {

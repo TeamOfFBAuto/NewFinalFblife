@@ -34,9 +34,11 @@ typedef void(^AtlasModelFailed)(NSString * string);
 
 @property(nonatomic,strong)NSString * atlas_photocontent;
 
-@property(nonatomic,strong)NSString * atlas_iscommend;
+@property(nonatomic,strong)NSString * atlas_iscommend;//是否被推荐
 
-@property(nonatomic,strong)NSString * atlas_likes;
+@property(nonatomic,strong)NSString * atlas_likes;//赞数
+
+@property(nonatomic,strong)NSString * atlas_comment;//评论数
 
 
 -(AtlasModel *)initWithDictionary:(NSDictionary *)dic;

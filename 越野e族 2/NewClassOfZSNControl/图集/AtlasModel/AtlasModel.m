@@ -17,6 +17,7 @@
 @synthesize atlas_photocontent = _atlas_photocontent;
 @synthesize atlas_pid = _atlas_pid;
 @synthesize atlas_likes = _atlas_likes;
+@synthesize atlas_comment = _atlas_comment;
 
 
 
@@ -41,6 +42,8 @@
         _atlas_iscommend = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"iscommend"]];
         
         _atlas_likes = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"likes"]];
+        
+        _atlas_comment = [zsnApi exchangeStringForDeleteNULL:[dic objectForKey:@"comment"]];
     }
     
     return self;

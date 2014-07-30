@@ -506,7 +506,7 @@
         
         [bself loadImageInformationWith:atlasModel];
         
-        [input_view.pinglun_button setTitle:atlasModel.atlas_likes forState:UIControlStateNormal];
+        [input_view.pinglun_button setTitle:atlasModel.atlas_comment forState:UIControlStateNormal];
         
         bself.myScrollView.contentSize = CGSizeMake(340*self.allImagesUrlArray.count,0);
         bself.myScrollView.contentOffset = CGPointMake(340*_currentPage,0);
