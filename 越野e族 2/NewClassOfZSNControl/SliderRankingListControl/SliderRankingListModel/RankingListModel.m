@@ -12,6 +12,7 @@
 @synthesize ranking_id = _ranking_id;
 @synthesize ranking_num = _ranking_num;
 @synthesize ranking_title = _ranking_title;
+@synthesize myRequest = _myRequest;
 
 
 -(RankingListModel *)initWithDictionary:(NSDictionary *)dic
@@ -41,16 +42,17 @@
     
     NSLog(@"读取排行版接口 ---  %@",fullUrl);
     
+    __weak typeof(self) bself = self;
     
-    myRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
+    _myRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullUrl]];
     
-    __block typeof(myRequest) request = myRequest;
+    __block typeof(_myRequest) request = _myRequest;
     
     [request setCompletionBlock:^{
         
         @try {
             
-            NSDictionary * allDic = [myRequest.responseString objectFromJSONString];
+            NSDictionary * allDic = [bself.myRequest.responseString objectFromJSONString];
             
             if ([[allDic objectForKey:@"errcode"] intValue] == 0)
             {
@@ -91,15 +93,15 @@
         ranking_model_failed_block(@"请求失败,请重试");
     }];
     
-    [myRequest startAsynchronous];
+    [self.myRequest startAsynchronous];
 }
 
 
 -(void)dealloc
 {
-    [myRequest cancel];
+    [self.myRequest cancel];
     
-    myRequest = nil;
+    self.myRequest = nil;
 }
 
 

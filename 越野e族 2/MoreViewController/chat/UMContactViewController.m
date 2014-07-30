@@ -71,8 +71,12 @@
     self.navigationItem.title = NSLocalizedString(@"填写联系信息", @"填写联系信息");
     self.view.backgroundColor = [UIColor colorWithRed:238.0 / 255 green:238.0 / 255 blue:238.0 / 255 alpha:1.0];
 
-    [self setupCancelBtn];
-    [self setupSaveBtn];
+    self.rightString = @"保存";
+    
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeText];
+    
+//    [self setupCancelBtn];
+//    [self setupSaveBtn];
 
     self.textView.text = NSLocalizedString(@"请留下您的QQ，邮箱，电话等联系方式", @"请留下您的QQ，邮箱，电话等联系方式");
     [self.textView selectAll:self];

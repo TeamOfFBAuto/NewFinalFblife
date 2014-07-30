@@ -231,6 +231,8 @@
         
         [bself.myScrollView setContentOffset:CGPointMake(340*index,0) animated:YES];
         
+        bself.seg_current_page = index;
+        
     }];
     
     self.navigationItem.titleView = _seg_view;
@@ -716,6 +718,8 @@
 
 -(void)pushToFenDuiDetailWithId:(NSString *)theId WithName:(NSString *)theName
 {
+    
+    
     BBSfenduiViewController * _fendui=[[BBSfenduiViewController alloc]init];
     
     _fendui.collection_array = self.forum_section_collection_array;

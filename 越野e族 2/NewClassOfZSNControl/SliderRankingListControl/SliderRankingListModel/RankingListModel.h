@@ -20,8 +20,6 @@ typedef void(^RankingListModelFailedBlock)(NSString * errinfo);
     RankingListModelComplicationBlock ranking_model_complication_block;
     
     RankingListModelFailedBlock ranking_model_failed_block;
-    
-    ASIHTTPRequest * myRequest;
 }
 
 @property(nonatomic,strong)NSString * ranking_id;
@@ -29,6 +27,8 @@ typedef void(^RankingListModelFailedBlock)(NSString * errinfo);
 @property(nonatomic,strong)NSString * ranking_num;
 
 @property(nonatomic,strong)NSString * ranking_title;
+
+@property(nonatomic,strong)ASIHTTPRequest * myRequest;
 
 
 -(RankingListModel *)initWithDictionary:(NSDictionary *)dic;

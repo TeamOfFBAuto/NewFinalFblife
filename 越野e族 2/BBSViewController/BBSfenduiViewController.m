@@ -136,16 +136,16 @@
     
     
     
-    button_collect=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 15:10, (44-21)/2, 22, 21)];
+    button_collect=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?15:10, (44-21)/2, 22, 21)];
     button_collect.tag=999;
     [button_collect addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
     [button_collect setBackgroundImage:[UIImage imageNamed:@"ios7_collect44_42.png"] forState:UIControlStateNormal];
     
     
-    UIButton *viewcollect=[[UIButton alloc]initWithFrame:CGRectMake(40, 0, 30, 44)];
+    UIButton *viewcollect=[[UIButton alloc]initWithFrame:CGRectMake(20, 0,50, 44)];
     
     [viewcollect addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
-//    viewcollect.backgroundColor=[UIColor greenColor];
+    viewcollect.backgroundColor=[UIColor clearColor];
     [viewcollect addSubview:button_collect];
     
     
@@ -153,14 +153,14 @@
     //UIBarButtonItem *buttonitem_collect=[[UIBarButtonItem alloc]initWithCustomView:button_collect];
     // self.navigationItem.rightBarButtonItem=buttonitem_collect;
     
-    UIButton *button_send=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? 12:2, 0,40, 44)];
+    UIButton *button_send=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?5:2, 0,40, 44)];
     
     [button_send addTarget:self action:@selector(fatieyemian) forControlEvents:UIControlEventTouchUpInside];
 //    [button_send setBackgroundImage:[UIImage imageNamed:@"ios7_commit3839.png"] forState:UIControlStateNormal];
     
     [button_send setImage:[UIImage imageNamed:@"ios7_commit3839.png"] forState:UIControlStateNormal];
     
-    UIButton *viewsend=[[UIButton alloc]initWithFrame:CGRectMake(70, 0, 60, 44)];
+    UIButton *viewsend=[[UIButton alloc]initWithFrame:CGRectMake(65, 0, 50, 44)];
     
     viewsend.backgroundColor=[UIColor clearColor];
     
@@ -171,9 +171,9 @@
     //UIBarButtonItem *buttonitem_send=[[UIBarButtonItem alloc]initWithCustomView:button_send];
     
     
-    UIView *view_right=[[UIView alloc]initWithFrame:CGRectMake(130, 0, 110, 44)];
+    UIView *view_right=[[UIView alloc]initWithFrame:CGRectMake(130, 0,110, 44)];
     
-    
+    view_right.backgroundColor = [UIColor clearColor];
     [view_right addSubview:viewcollect];
     [view_right addSubview:viewsend];
     
@@ -188,7 +188,7 @@
     
     
     //导航栏上的label
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MY_MACRO_NAME? 25:0, 0, 100, 44)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     _titleLabel.text = @"最后回复";
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -212,8 +212,13 @@
     
     [topView addSubview:topButton];
     
+//    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceButton.width = MY_MACRO_NAME?-5:5;
+    
     //self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:buttonitem_collect,buttonitem_send, nil];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:view_right];
+    UIBarButtonItem * right_spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    right_spaceButton.width = MY_MACRO_NAME?-15:5;
+    self.navigationItem.rightBarButtonItems=@[right_spaceButton,[[UIBarButtonItem alloc]initWithCustomView:view_right]];
  
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] ) {
         //iOS 5 new UINavigationBar custom background
