@@ -17,6 +17,7 @@
 #import "SDImageCache.h"
 #import "FullyLoaded.h"
 #import "UIViewController+MMDrawerController.h"
+#import "ShowImagesViewController.h"
 
 
 @interface NewWeiBoViewController ()
@@ -2344,6 +2345,9 @@
     
     NSString * sortId = isRe?info.rsortId:info.sortId;
     
+    NSLog(@"我艹 ------  %@ ---  %d",sortId,isRe);
+    
+    
     if ([string intValue] == 7 || [string intValue] == 6 || [string intValue] == 8)//新闻
     {
         newsdetailViewController * news = [[newsdetailViewController alloc] initWithID:sortId];
@@ -2394,6 +2398,14 @@
         [self.navigationController pushViewController:wenji animated:YES];
         
         [self setHidesBottomBarWhenPushed:NO];
+    }else if ([string intValue] ==15)
+    {//跳到新版图集界面
+        ShowImagesViewController * imageV = [[ShowImagesViewController alloc] init];
+        
+        imageV.id_atlas = sortId;
+        
+        [self.navigationController pushViewController:imageV animated:YES];
+        
     }else
     {
         NewWeiBoDetailViewController * detail = [[NewWeiBoDetailViewController alloc] init];

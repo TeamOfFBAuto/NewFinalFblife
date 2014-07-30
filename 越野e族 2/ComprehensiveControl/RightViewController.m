@@ -60,7 +60,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
         
     }
-    
+
     
     [self setup];
 }
@@ -82,6 +82,8 @@
     myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.navigationController.navigationBarHidden = YES;
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(checkallmynotification) userInfo:nil repeats:YES];
 }
 
 
@@ -91,6 +93,10 @@
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     
     BOOL islogin = [userDefaults boolForKey:USER_IN];
+    
+    if (islogin) {
+        [self checkallmynotification];
+    }
     
 //    if (_rootScrollView)
 //    {
@@ -209,9 +215,6 @@
     NSArray * arrary1 = [NSArray arrayWithObjects:@"帖子",@"收藏",@"好友",@"自留地",@"私信",@"通知",@"草稿箱",@"扫一扫",nil];
     
     
-    
-    
-    
     for (int i = 0;i < 3;i++) {
         for (int j = 0;j < 3;j++)
         {
@@ -243,6 +246,27 @@
                 imageView.center = CGPointMake(22,23);
                 
                 [button addSubview:imageView];
+                
+                
+                
+                if (i*3+j == 5)
+                {
+                    if (!notification_view)
+                    {
+                        notification_view = [[UIView alloc] initWithFrame:CGRectMake(35,50,8,8)];
+                        
+                        notification_view.backgroundColor = RGBCOLOR(255,0,60);
+                        
+                        notification_view.hidden = !NewsMessageNumber;
+                        
+                        notification_view.layer.cornerRadius = 4;
+                        
+                        notification_view.layer.masksToBounds = NO;
+                        
+                        [button addSubview:notification_view];
+                    }
+                    
+                }
                 
             }
         }
@@ -320,6 +344,8 @@
 
 -(void)receivemyimage_head{
     
+    [timer fire];
+    
     NSString *authkey=[[NSUserDefaults standardUserDefaults] objectForKey:USER_AUTHOD];
     NSString * fullURL= [NSString stringWithFormat:URL_USERMESSAGE,@"(null)",authkey];
     NSLog(@"1请求的url = %@",fullURL);
@@ -390,6 +416,8 @@
     headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];
     
     LogIn_label.text = @"点击立即登录";
+    
+    [timer invalidate];
 }
 
 
@@ -469,6 +497,11 @@
             break;
         case 5://通知
         {
+            
+            NewsMessageNumber = NO;
+            
+            notification_view.hidden = YES;
+            
             FBNotificationViewController *fbno=[[FBNotificationViewController alloc]init];
             
             [myDelegate.root_nav pushViewController:fbno animated:YES];
@@ -562,6 +595,72 @@
     mine.uid = uid;
     
     [[self getAppDelegate].root_nav pushViewController:mine animated:YES];
+}
+
+
+
+#pragma mark - 获取消息
+
+-(void)checkallmynotification
+{
+    NSString *string_code=[[NSUserDefaults standardUserDefaults]objectForKey:USER_AUTHOD];
+    
+    //    NSLog(@"steing_code ----   %@",string_code);
+    
+    if (string_code.length !=0 && ![string_code isEqual:[NSNull null]])
+    {
+        if (!allnotificationtool)
+        {
+            allnotificationtool=[[downloadtool alloc]init];
+        }
+        
+        [allnotificationtool setUrl_string:[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=alert&code=alertnumbytype&fromtype=b5eeec0b&authkey=%@&fbtype=json",string_code ]];
+        
+        //  NSLog(@"未读消息接口 ----   %@",[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=alert&code=alertnumbytype&fromtype=b5eeec0b&authkey=%@&fbtype=json",string_code ]);
+        
+        allnotificationtool.delegate=self;
+        [allnotificationtool start];
+    }
+}
+
+-(void)downloadtool:(downloadtool *)tool didfinishdownloadwithdata:(NSData *)data{
+    
+    @try {
+        NSDictionary *dic=[data objectFromJSONData];
+        if (tool==allnotificationtool)
+        {
+            NewsMessageNumber = 0;
+            
+            NSDictionary * alertnum_dic = [dic objectForKey:@"alertnum"];
+            
+            NSLog(@"未读消息 ------  %@",alertnum_dic);
+            
+            for (int i = 0;i <= 16;i++)
+            {
+                if (i == 9)
+                {
+                    if ([[alertnum_dic objectForKey:[NSString stringWithFormat:@"%d",i]] intValue]>0)
+                    {
+                        NewsMessageNumber = YES;
+                        
+                        notification_view.hidden = NO;
+                    }
+                }
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+    
+}
+
+-(void)downloadtoolError
+{
+    
 }
 
 

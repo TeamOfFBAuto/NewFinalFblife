@@ -987,6 +987,10 @@
     
     NSString * fullUrl = [NSString stringWithFormat:ATLAS_COMMENT_URL,atlasModel.atlas_id,sender,atlasModel.atlas_name,AUTHKEY];
     
+    
+//    NSString * fullUrl = [NSString stringWithFormat:ATLAS_COMMENT_URL2,atlasModel.atlas_id,sender,atlasModel.atlas_name,atlasModel.atlas_content,atlasModel.atlas_photo,AUTHKEY];
+    
+    
     NSLog(@"发表图集评论接口 ---   %@",fullUrl);
     
     NSURL * url = [NSURL URLWithString:[fullUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

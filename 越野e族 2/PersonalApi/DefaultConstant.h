@@ -386,6 +386,9 @@ alpha:(a)]
 
 #define ATLAS_COMMENT_URL @"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentadd&sort=15&sortid=%@&content=%@&title=%@&fromtype=b5eeec0b&authkey=%@"
 
+#define ATLAS_COMMENT_URL2 @"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentadd&sort=15&sortid=%@&content=%@&title=%@&intro=%@&photo=%@&fromtype=b5eeec0b&authkey=%@"
+
+
 #pragma mark - 赞图集的接口
 
 #define ATLAS_PRAISE_URL @"http://cmsweb.fblife.com/ajax.php?c=photo&a=addlikes&type=json&id=%@"
@@ -401,6 +404,10 @@ alpha:(a)]
 
 #define ATLAS_CANCEL_COLLECTION_URL @"http://cmsweb.fblife.com/ajax.php?c=photo&a=delfavorites&type=json&took=%@&id=%@"
 
+
+#pragma mark - 获取图集web地址接口
+
+#define GET_ATLAS_WEB_URL @"http://special.fblife.com/listphoto/%@.html"
 
 
 #pragma mark - 获取所有收藏的板块接口

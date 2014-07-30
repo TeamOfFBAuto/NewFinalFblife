@@ -414,13 +414,13 @@
 
 -(void)downloadtoolError
 {
-    [hud hide];
+    [hud hideAfter:0.01];
     [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"登录失败,请重新登录" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil] show];
 }
 
 -(void)downloadtool:(downloadtool *)tool didfinishdownloadwithdata:(NSData *)data
 {
-    [hud hide];
+    [hud hideAfter:0.01];
     
     @try
     {
@@ -525,6 +525,7 @@
 #pragma mark-开通fb
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    [hud hideAfter:0.01];
     @try {
         if (request.tag==101) {
             NSLog(@"requeststring==%@",[request responseString]);
@@ -567,11 +568,10 @@
         
     }
     
-    [hud hide];
 }
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
-    [hud hide];
+    [hud hideAfter:0.01];
     NSLog(@"error");
 }
 

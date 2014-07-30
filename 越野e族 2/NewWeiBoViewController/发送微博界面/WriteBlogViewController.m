@@ -795,6 +795,10 @@
 {
     [myTextView resignFirstResponder];
     
+    scrollView.hidden = YES;
+    
+    morePicImageView.hidden = YES;
+    
     [UIView animateWithDuration:0.3 animations:^{
         options_view.frame = CGRectMake(0,(iPhone5?568:480)-(MY_MACRO_NAME?0:20)-72,320,73);
         

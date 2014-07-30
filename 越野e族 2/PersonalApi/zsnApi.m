@@ -881,6 +881,44 @@
             [obj setRimage_small_url_m:ex.photo];
             
             [obj setRimage_original_url_m:ex.photo];
+        }else if ([obj.sort isEqualToString:@"15"]&&[obj.type isEqualToString:@"first"])
+        {
+            NSDictionary * atlas_dic = [[value objectForKey:FB_EXTENSION] objectFromJSONString];
+            
+            NSString * title = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"title"]];
+            
+            NSString * photo = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"photo"]];
+            
+            NSString * intro = [zsnApi exchangeStringForDeleteNULL:[atlas_dic objectForKey:@"intro"]];
+            
+            obj.sort = @"0";
+            
+            obj.rootFlg = YES;
+            
+            obj.rsort = @"15";
+            
+            obj.rsortId = obj.sortId;
+            
+            if (photo.length > 0)
+            {
+                obj.rimageFlg = YES;
+                
+                obj.rimage_original_url_m = photo;
+                
+                obj.rimage_small_url_m = photo;
+            }
+            
+            if (title.length > 0)
+            {
+                obj.rtitle_content = [NSString stringWithFormat:@"<a href=\"fb://tieziDetail/%@/%@\">%@</a>",obj.sortId,obj.sortId,title];
+            }
+            
+            obj.rcontent = intro;
+            
+            
+            
+            
+                        
         }
         
         

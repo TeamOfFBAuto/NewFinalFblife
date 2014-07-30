@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "FriendListViewController.h"
+#import "downloadtool.h"
 
-@interface RightViewController : UIViewController<FriendListViewControllerDelegate,AsyncImageDelegate>
+
+@interface RightViewController : UIViewController<FriendListViewControllerDelegate,downloaddelegate>
 {
     AsyncImageView * headerImageView;//头像
     
     UILabel * LogIn_label;//用户名
+    
+    downloadtool * allnotificationtool;
+    
+    BOOL NewsMessageNumber;//消息数
+    
+    UIView * notification_view;//消息提醒，小红点
+    
+    NSTimer * timer;
 }
 
 @end

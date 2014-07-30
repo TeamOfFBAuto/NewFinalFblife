@@ -425,8 +425,6 @@
 
 -(void)SpecialClickOriginalContent
 {
-    NSLog(@"打印还是得要的 ---  %@-----%@",_weiboInfo.tid,_weiboInfo.rtid);
-    
     if (_delegate && [_delegate respondsToSelector:@selector(showOriginalWeiBoContent:)])
     {
         [_delegate showOriginalWeiBoContent:_weiboInfo.rtid];

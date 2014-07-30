@@ -107,17 +107,17 @@
 //    
     
     //创建barbutton 创建系统样式的
-    button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,44,44)];
+    button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,30,44)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
 //    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
-    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    [button_back setImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
 
-    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
-    
-    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
+//    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,8,31/2,32/2)];
+//    
+//    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
+//    [button_back setBackgroundImage:[UIImage imageNamed:@"logIn_close.png"] forState:UIControlStateNormal];
     
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     NavTitle.leftBarButtonItems=@[space_button,back_item];
@@ -431,6 +431,10 @@
     //    _tool.delegate=nil;
     //    request__.delegate=nil;
     
+    
+    faceScrollView.hidden = YES;
+    
+    morePicImageView.hidden = YES;
     
     if (![_contenttextview.text isEqualToString:@""] || ![subjectTextfield.text isEqualToString:@""] || allImageArray.count != 0 || [_contenttextview.text isEqualToString:string_content] || [subjectTextfield.text isEqualToString:string_subject])
     {
