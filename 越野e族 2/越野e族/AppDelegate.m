@@ -1115,6 +1115,14 @@ static int numberof = 0;
 
 #pragma mark--新改版，幺西
 
+-(void)prepairShareView{
+
+
+    self.halfBlackView=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+
+
+}
+
 -(void)NewShowMainVC{
     
     

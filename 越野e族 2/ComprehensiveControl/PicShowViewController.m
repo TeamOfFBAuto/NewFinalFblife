@@ -361,7 +361,7 @@
         
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
         
-        if(mainTabView.contentOffset.y > (mainTabView.contentSize.height - mainTabView.frame.size.height+40)&&isloadsuccess==YES) {
+        if(mainTabView.contentOffset.y > (mainTabView.contentSize.height - mainTabView.frame.size.height+40)&&isloadsuccess==YES&&normalinfoAllArray.count>=10) {
             
             
             [loadview startLoading];

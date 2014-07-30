@@ -14,6 +14,8 @@
 #import "UMSocialSnsPlatformManager.h"
 #import "ZkingAlert.h"
 
+#import "ShareView.h"
+
 
 @interface ShowImagesViewController ()
 {
@@ -38,6 +40,9 @@
     CustomInputView * input_view;//输入框
     
     ZkingAlert * _thezkingAlertV;
+    
+    ShareView *_shareView;
+
 }
 
 @end
@@ -694,7 +699,8 @@
         comment_.sortString=@"15";//这个是判断图集或者新闻的，图集是15
         comment_.string_ID=self.id_atlas;//这个是图集的id
         comment_.string_title = atlasModel.atlas_name;//@"越野e族";
-        comment_.string_author = @"越野e族";
+//        comment_.string_author = @"越野e族";
+        comment_.string_date=@"越野e族";
         [self.navigationController pushViewController:comment_ animated:YES];
         
         
@@ -1029,98 +1035,256 @@
 
 -(void)ShareMore{
     
-    my_array =[[NSMutableArray alloc]init];
-    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"  " delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
+    __weak typeof(_shareView)w_shareView=_shareView;
     
     
-    
-    [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
-    
-    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
-    
-    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
-    
-    for (NSString *snsName in [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray) {
-        /*2013-07-22 17:09:59.546 UMSocial[4631:907] name==qzone
-         2013-07-22 17:09:59.55x3 UMSocial[4631:907] name==sina
-         2013-07-22 17:09:59.559 UMSocial[4631:907] name==tencent
-         2013-07-22 17:09:59.564 UMSocial[4631:907] name==renren
-         2013-07-22 17:09:59.575 UMSocial[4631:907] name==douban
-         2013-07-22 17:09:59.578 UMSocial[4631:907] name==wechat
-         2013-07-22 17:09:59.583 UMSocial[4631:907] name==wxtimeline
-         2013-07-22 17:09:59.587 UMSocial[4631:907] name==email
-         2013-07-22 17:09:59.592 UMSocial[4631:907] name==sms
-         2013-07-22 17:09:59.595 UMSocial[4631:907] name==facebook
-         2013-07-22 17:09:59.598 UMSocial[4631:907] name==twitter*/
-        
-        if ([snsName isEqualToString:@"facebook"]||[snsName isEqualToString:@"twitter"]||[snsName isEqualToString:@"renren"]||[snsName isEqualToString:@"qzone"]||[snsName isEqualToString:@"douban"]||[snsName isEqualToString:@"tencent"]||[snsName isEqualToString:@"sms"]||[snsName isEqualToString:@"wxtimeline"]) {
-        }else{
-            NSLog(@"weishenmehaiyu===%@",my_array);
-            [my_array addObject:snsName];
-            if ([snsName isEqualToString:@"sina"]) {
-                [editActionSheet addButtonWithTitle:@"分享到新浪微博"];
-                
-            }
-            if ([snsName isEqualToString:@"email"]) {
-                
-            }
+    __weak typeof(self)wself=self;
+    if (!_shareView) {
+        _shareView =[[ShareView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) thebloc:^(NSInteger indexPath) {
             
-            //            else if([snsName isEqualToString:@"wechat"])
-            //            {
-            //                [editActionSheet addButtonWithTitle:@"分享给微信好友"];
-            //
-            //
-            //            }
-            //            else if([snsName isEqualToString:@"wxtimeline"])
-            //            {
-            //                [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
-            //
-            //            }
-            //            else{
-            //                [editActionSheet addButtonWithTitle:@"短信分享"];
-            //
-            //            }
-            //
+            NSLog(@"xxx==%d",indexPath);
             
-        }
+            
+            [wself clickedButtonAtIndex:indexPath];
+            
+            
+        }];
         
+        [_shareView ShareViewShow];
+        
+    }else{
+        [_shareView ShareViewShow];
         
     }
-    
-    [editActionSheet addButtonWithTitle:@"分享到朋友邮箱"];
-    
-    [editActionSheet addButtonWithTitle:@"取消"];
-    editActionSheet.cancelButtonIndex = editActionSheet.numberOfButtons - 1;
-    // [editActionSheet showFromTabBar:self.tabBarController.tabBar];
-    [editActionSheet showFromRect:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height) inView:self.view animated:YES];
-    editActionSheet.delegate = self;
-    
-    
-    CGRect oldFrame;
-    
-    for (id label in editActionSheet.subviews)
-    {
-        if ([label isKindOfClass:[UILabel class]])
-        {
-            [[(UILabel *)label text] isEqualToString:@"  "];
-            
-            oldFrame = [(UILabel *)label frame];
-        }
-    }
-    
-    
-    UILabel *newTitle = [[UILabel alloc] initWithFrame:oldFrame];
-    newTitle.font = [UIFont systemFontOfSize:18];
-    newTitle.textAlignment = NSTextAlignmentCenter;
-    newTitle.backgroundColor = [UIColor clearColor];
-    newTitle.textColor = RGBCOLOR(160,160,160);
-    newTitle.text = @"分享";
-    [editActionSheet addSubview:newTitle];
     
     
     
 }
+
+-(void)clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    
+    NSString * string_url = [NSString stringWithFormat:@"http://special.fblife.com/listphoto/%@.html",self.id_atlas];
+    
+    if(buttonIndex==0){
+        
+        
+        BOOL islogin = [self isLogIn];
+        
+        if (!islogin)
+        {
+            return;
+        }
+        
+        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:USER_IN])
+        {
+            WriteBlogViewController * writeBlogView = [[WriteBlogViewController alloc] init];
+            
+            writeBlogView.theText = [NSString stringWithFormat:@"分享图集:“%@”,链接:%@",string_title,string_url] ;
+            
+            [self presentViewController:writeBlogView animated:YES completion:NULL];
+        }
+        else{
+            //没有激活fb，弹出激活提示
+            LogInViewController *login=[LogInViewController sharedManager];
+            [self presentViewController:login animated:YES completion:nil];
+        }
+        
+        
+    }else if(buttonIndex==3){
+        NSLog(@"到新浪微博界面的");
+        WBWebpageObject *pageObject = [ WBWebpageObject object ];
+        pageObject.objectID =@"nimeideid";
+        pageObject.thumbnailData =UIImageJPEGRepresentation([UIImage imageNamed:@"Icon@2x.png"], 1);
+        pageObject.title = @"分享自越野e族客户端";
+        pageObject.description = string_title;
+        pageObject.webpageUrl = string_url;
+        WBMessageObject *message = [ [ WBMessageObject alloc ] init ];
+        message.text =[NSString stringWithFormat:@"%@（分享自@越野e族）",string_title] ;
+        
+        message.mediaObject = pageObject;
+        WBSendMessageToWeiboRequest *req = [ [  WBSendMessageToWeiboRequest alloc ] init  ];
+        req.message = message;
+        [ WeiboSDK sendRequest:req ];
+        
+    }
+    
+    else if(buttonIndex==4){
+        
+        NSLog(@"分享到邮箱");
+        
+        //        [UMSocialData defaultData].shareText =[NSString stringWithFormat:@"%@（分享自越野e族）  %@<html><a href=http://mobile.fblife.com/>\n点击下载越野e族客户端</a></html>",string_title,string_url] ;
+        //
+        //        UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:@"email"];
+        //
+        //        snsPlatform.snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+        
+        NSString *string_bodyofemail=[NSString stringWithFormat:@"%@ \n %@ \n\n 下载越野e族客户端 http://mobile.fblife.com/download.php",string_title,string_url] ;
+        [self okokokokokokowithstring:string_bodyofemail];
+        
+        
+    }else if(buttonIndex==1){
+        NSLog(@"分享给微信好友");
+        
+        
+        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = string_title;
+            message.description = string_title;
+            
+            [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
+            WXWebpageObject *ext = [WXWebpageObject object];
+            //ext.imageData = _weburl_Str;
+            ext.webpageUrl=string_url;
+            message.mediaObject = ext;
+            
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            
+            req.bText = NO;
+            req.message = message;
+            req.scene=WXSceneSession;
+            
+            [WXApi sendReq:req];
+        }else{
+            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能，使用微信可以方便的把你喜欢的作品分享给好友。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
+            [alView show];
+            
+        }
+        
+    }
+    else if(buttonIndex==2){
+        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = string_title;
+            message.description = string_title;
+            
+            [message setThumbImage:[UIImage imageNamed:@"Icon@2x.png"]] ;
+            WXWebpageObject *ext = [WXWebpageObject object];
+            //ext.imageData = _weburl_Str;
+            ext.webpageUrl=string_url;
+            message.mediaObject = ext;
+            
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            
+            req.bText = NO;
+            req.message = message;
+            req.scene=WXSceneTimeline;
+            
+            [WXApi sendReq:req];
+        }else{
+            UIAlertView *alView = [[UIAlertView alloc]initWithTitle:@"" message:@"你的iPhone上还没有安装微信,无法使用此功能，使用微信可以方便的把你喜欢的作品分享给好友。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"免费下载微信", nil];
+            [alView show];
+            
+        }
+        
+        
+        NSLog(@"分享到微信朋友圈");
+        
+    }
+    //分享编辑页面的接口
+    
+    
+    
+}
+
+
+
+
+//-(void)ShareMore{
+//    
+//    my_array =[[NSMutableArray alloc]init];
+//    UIActionSheet * editActionSheet = [[UIActionSheet alloc] initWithTitle:@"  " delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+//    editActionSheet.actionSheetStyle = UIActivityIndicatorViewStyleGray;
+//    
+//    
+//    
+//    [editActionSheet addButtonWithTitle:@"分享到FB自留地"];
+//    
+//    [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
+//    
+//    [editActionSheet addButtonWithTitle:@"分享给微信好友"];
+//    
+//    for (NSString *snsName in [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray) {
+//        /*2013-07-22 17:09:59.546 UMSocial[4631:907] name==qzone
+//         2013-07-22 17:09:59.55x3 UMSocial[4631:907] name==sina
+//         2013-07-22 17:09:59.559 UMSocial[4631:907] name==tencent
+//         2013-07-22 17:09:59.564 UMSocial[4631:907] name==renren
+//         2013-07-22 17:09:59.575 UMSocial[4631:907] name==douban
+//         2013-07-22 17:09:59.578 UMSocial[4631:907] name==wechat
+//         2013-07-22 17:09:59.583 UMSocial[4631:907] name==wxtimeline
+//         2013-07-22 17:09:59.587 UMSocial[4631:907] name==email
+//         2013-07-22 17:09:59.592 UMSocial[4631:907] name==sms
+//         2013-07-22 17:09:59.595 UMSocial[4631:907] name==facebook
+//         2013-07-22 17:09:59.598 UMSocial[4631:907] name==twitter*/
+//        
+//        if ([snsName isEqualToString:@"facebook"]||[snsName isEqualToString:@"twitter"]||[snsName isEqualToString:@"renren"]||[snsName isEqualToString:@"qzone"]||[snsName isEqualToString:@"douban"]||[snsName isEqualToString:@"tencent"]||[snsName isEqualToString:@"sms"]||[snsName isEqualToString:@"wxtimeline"]) {
+//        }else{
+//            NSLog(@"weishenmehaiyu===%@",my_array);
+//            [my_array addObject:snsName];
+//            if ([snsName isEqualToString:@"sina"]) {
+//                [editActionSheet addButtonWithTitle:@"分享到新浪微博"];
+//                
+//            }
+//            if ([snsName isEqualToString:@"email"]) {
+//                
+//            }
+//            
+//            //            else if([snsName isEqualToString:@"wechat"])
+//            //            {
+//            //                [editActionSheet addButtonWithTitle:@"分享给微信好友"];
+//            //
+//            //
+//            //            }
+//            //            else if([snsName isEqualToString:@"wxtimeline"])
+//            //            {
+//            //                [editActionSheet addButtonWithTitle:@"分享到微信朋友圈"];
+//            //
+//            //            }
+//            //            else{
+//            //                [editActionSheet addButtonWithTitle:@"短信分享"];
+//            //
+//            //            }
+//            //
+//            
+//        }
+//        
+//        
+//    }
+//    
+//    [editActionSheet addButtonWithTitle:@"分享到朋友邮箱"];
+//    
+//    [editActionSheet addButtonWithTitle:@"取消"];
+//    editActionSheet.cancelButtonIndex = editActionSheet.numberOfButtons - 1;
+//    // [editActionSheet showFromTabBar:self.tabBarController.tabBar];
+//    [editActionSheet showFromRect:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height) inView:self.view animated:YES];
+//    editActionSheet.delegate = self;
+//    
+//    
+//    CGRect oldFrame;
+//    
+//    for (id label in editActionSheet.subviews)
+//    {
+//        if ([label isKindOfClass:[UILabel class]])
+//        {
+//            [[(UILabel *)label text] isEqualToString:@"  "];
+//            
+//            oldFrame = [(UILabel *)label frame];
+//        }
+//    }
+//    
+//    
+//    UILabel *newTitle = [[UILabel alloc] initWithFrame:oldFrame];
+//    newTitle.font = [UIFont systemFontOfSize:18];
+//    newTitle.textAlignment = NSTextAlignmentCenter;
+//    newTitle.backgroundColor = [UIColor clearColor];
+//    newTitle.textColor = RGBCOLOR(160,160,160);
+//    newTitle.text = @"分享";
+//    [editActionSheet addSubview:newTitle];
+//    
+//    
+//    
+//}
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString * string_url = [NSString stringWithFormat:@"http://special.fblife.com/listphoto/%@.html",self.id_atlas];

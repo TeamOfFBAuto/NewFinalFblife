@@ -30,7 +30,10 @@
         
         self.rightImageV=[[AsyncImageView alloc] init];
 
-        self.zanImageV=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"likes21_19.png"]];
+        self.zanImageV=[[UIImageView alloc]init];
+        
+        //WithImage:[UIImage imageNamed:@"likes21_19.png"]
+      self.zanImageV.image=[UIImage imageNamed:@"talknumberofnew.png"];
         
         self.zanlabel=[[UILabel alloc] init];
         
@@ -55,6 +58,11 @@
         
         [self addSubview:_normalLine];
         
+        _zanlabel.font=[UIFont systemFontOfSize:10];
+        
+        _zanlabel.textColor=RGBCOLOR(160, 160, 160);
+        
+        
         
         _bigLabel.font=[UIFont systemFontOfSize:16];
         _bigLabel.textAlignment=NSTextAlignmentLeft;
@@ -70,9 +78,9 @@
 
 -(void)picCellSetDic:(NSDictionary *)theDic{
 
-    
-    _zanImageV.center=CGPointMake(290, 120);
-    _zanlabel.frame=CGRectMake(290,113 , 320-290-10, 11);
+    _zanImageV.frame=CGRectMake(0, 0, 22/2, 23/2);
+    _zanImageV.center=CGPointMake(286, 117);
+    _zanlabel.frame=CGRectMake(286+9,110 , 320-286-10, 11);
     
     NewMainViewModel *_newmodel=[[NewMainViewModel alloc]init];
     [_newmodel NewMainViewModelSetdic:theDic];
@@ -83,28 +91,25 @@
 
     
     
-    _zanlabel.text=_newmodel.likes;
+    _zanlabel.text=_newmodel.comment;
     
     //三个图片
     
     if (_newmodel.photo.count>=3) {
         
-        _leftImageV.frame=CGRectMake(12+102*0, 38, 90, 62);
+        _leftImageV.frame=CGRectMake(12+102*0, 38, 90, 60);
         [_leftImageV loadImageFromURL:[NSString stringWithFormat:@"%@",[_newmodel.photo objectAtIndex:0]] withPlaceholdImage:[UIImage imageNamed:@"smallimplace.png"]];
         
-        _centerImageV.frame=CGRectMake(12+102*1, 38, 90, 62);
+        _centerImageV.frame=CGRectMake(12+102*1, 38, 90, 60);
         [_centerImageV loadImageFromURL:[NSString stringWithFormat:@"%@",[_newmodel.photo objectAtIndex:1]] withPlaceholdImage:[UIImage imageNamed:@"smallimplace.png"]];
         
-        _rightImageV.frame=CGRectMake(12+102*2, 38, 90, 62);
+        _rightImageV.frame=CGRectMake(12+102*2, 38, 90, 60);
         [_rightImageV loadImageFromURL:[NSString stringWithFormat:@"%@",[_newmodel.photo objectAtIndex:2]] withPlaceholdImage:[UIImage imageNamed:@"smallimplace.png"]];
     }
     
+
     
-    _zanlabel.font=[UIFont systemFontOfSize:10];
-    
-    _zanlabel.textColor=RGBCOLOR(232, 94, 105);
-    
-    _zanlabel.textAlignment=NSTextAlignmentRight;
+    _zanlabel.textAlignment=NSTextAlignmentLeft;
     
     _textBigLabel.text=[personal timechange:_newmodel.publishtime ];
     

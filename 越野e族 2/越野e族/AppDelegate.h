@@ -32,6 +32,11 @@
 #import "MMDrawerController.h"
 #import <CoreData/CoreData.h>
 
+//新改版的share界面
+
+#import "ShareView.h"
+
+
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,LogInViewControllerDelegate,downloaddelegate,LeveyTabBarControllerDelegate,LeveyTabBarDelegate,AsyncImageDelegate,MobClickDelegate,WXApiDelegate,RESideMenuDelegate>
@@ -88,7 +93,9 @@
 
 @property(strong,nonatomic,readonly)NSPersistentStoreCoordinator* persistentStoreCoordinator;
 
+@property(strong,nonatomic)ShareView *globalShareView;
 
+@property(strong,nonatomic)UIView *halfBlackView;
 
 
 @end

@@ -21,6 +21,11 @@
 #import <MessageUI/MessageUI.h>
 #import "WeiboSDK.h"
 #import <MessageUI/MFMailComposeViewController.h>
+//新版分享
+
+#import "ShareView.h"
+
+
 @interface fbWebViewController : MyViewController<UIWebViewDelegate,NSURLConnectionDataDelegate,UITextFieldDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,downloaddelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate,BottombarviewDelegate,SelectNumberViewDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
     UIWebView *awebview;
     UIButton *button_comment;
@@ -29,6 +34,9 @@
 
     NSMutableArray *my_array;
     NSString *string_title;
+    
+    
+
 
 }
 @property(nonatomic,strong) NSString * urlstring;

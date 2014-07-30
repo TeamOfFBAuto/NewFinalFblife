@@ -1037,25 +1037,29 @@
         label_mytime.text=self.string_date;
         label_mytime.backgroundColor=[UIColor clearColor];
         [firstsectionview addSubview:label_mytime];
+        if ([self.sortString isEqualToString:@"7"]) {
+            UILabel *label_fblife=[[UILabel alloc]initWithFrame:CGRectMake(90,labelSize.height+15, 60, 20)];
+            label_fblife.font=[UIFont systemFontOfSize:11];
+            label_fblife.textAlignment=UITextAlignmentLeft;
+            label_fblife.textColor=[UIColor grayColor];
+            label_fblife.text=@"越野e族";
+            label_fblife.backgroundColor=[UIColor clearColor];
+            [firstsectionview addSubview:label_fblife];
+            
+            UILabel *label_comment=[[UILabel alloc]initWithFrame:CGRectMake(150, labelSize.height+15, 100, 20)];
+            label_comment.font=[UIFont systemFontOfSize:11];
+            label_comment.textAlignment=UITextAlignmentLeft;
+            label_comment.textColor=[UIColor grayColor];
+            label_comment.backgroundColor=[UIColor clearColor];
+            label_comment.text=[NSString stringWithFormat:@"%@" ,self.string_author ];
+            [firstsectionview addSubview:label_comment];
+            
+
+        }
         
-        UILabel *label_fblife=[[UILabel alloc]initWithFrame:CGRectMake(90,labelSize.height+15, 60, 20)];
-        label_fblife.font=[UIFont systemFontOfSize:11];
-        label_fblife.textAlignment=UITextAlignmentLeft;
-        label_fblife.textColor=[UIColor grayColor];
-        label_fblife.text=@"越野e族";
-        label_fblife.backgroundColor=[UIColor clearColor];
-        [firstsectionview addSubview:label_fblife];
         
         
-        
-        UILabel *label_comment=[[UILabel alloc]initWithFrame:CGRectMake(150, labelSize.height+15, 100, 20)];
-        label_comment.font=[UIFont systemFontOfSize:11];
-        label_comment.textAlignment=UITextAlignmentLeft;
-        label_comment.textColor=[UIColor grayColor];
-        label_comment.backgroundColor=[UIColor clearColor];
-        label_comment.text=[NSString stringWithFormat:@"%@" ,self.string_author ];
-        [firstsectionview addSubview:label_comment];
-        
+     
         
         
         return firstsectionview ;

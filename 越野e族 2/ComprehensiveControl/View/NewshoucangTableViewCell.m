@@ -89,7 +89,7 @@
             CGSize labelsize = [_bigTitleLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
             
             
-            _bigTitleLabel.frame=CGRectMake(12, 12, 300-24, labelsize.height);
+            _bigTitleLabel.frame=CGRectMake(12, 12, 320-24, labelsize.height);
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
@@ -117,7 +117,7 @@
             CGSize labelsize = [_bigTitleLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
             
             
-            _bigTitleLabel.frame=CGRectMake(12, 12, 300-24, labelsize.height);
+            _bigTitleLabel.frame=CGRectMake(12, 12, 320-24, labelsize.height);
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
@@ -137,7 +137,7 @@
             
             _bigTitleLabel.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
 
-            _bigTitleLabel.frame=CGRectMake(12, 12, 300-24, 20);
+            _bigTitleLabel.frame=CGRectMake(12, 12, 320-24, 20);
             
             
             _timeLabel.text=[NSString stringWithFormat:@"今日新贴 %@",[dic objectForKey:@"postcount"]];
@@ -165,7 +165,7 @@
             CGSize labelsize = [_bigTitleLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
             
             
-            _bigTitleLabel.frame=CGRectMake(12, 12, 300-24, labelsize.height);
+            _bigTitleLabel.frame=CGRectMake(12, 12, 320-24, labelsize.height);
             
             //_pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
@@ -198,7 +198,7 @@
             CGSize labelsize = [_bigTitleLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
             
             
-            _bigTitleLabel.frame=CGRectMake(12, 12, 300-24, labelsize.height);
+            _bigTitleLabel.frame=CGRectMake(12, 12, 320-24, labelsize.height);
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             
@@ -225,7 +225,7 @@
             CGSize labelsize = [_bigTitleLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
             
             
-            _bigTitleLabel.frame=CGRectMake(12, 12, 300-24, labelsize.height);
+            _bigTitleLabel.frame=CGRectMake(12, 12, 320-24, labelsize.height);
             
             _pindaoLabel.frame=CGRectMake(12, 12+labelsize.height+12, 200, 15);
             

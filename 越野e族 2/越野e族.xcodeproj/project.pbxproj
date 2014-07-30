@@ -84,6 +84,12 @@
 		19B6450719862E3100E9C3F6 /* talknumberofnew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6450619862E3100E9C3F6 /* talknumberofnew@2x.png */; };
 		19B6450A19863FB700E9C3F6 /* roundblue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6450819863FB700E9C3F6 /* roundblue@2x.png */; };
 		19B6450B19863FB700E9C3F6 /* roundgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B6450919863FB700E9C3F6 /* roundgray@2x.png */; };
+		19B6450E19888B9000E9C3F6 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B6450D19888B9000E9C3F6 /* ShareView.m */; };
+		19B645151988A8AF00E9C3F6 /* sharefriendquan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B645101988A8AF00E9C3F6 /* sharefriendquan@2x.png */; };
+		19B645161988A8AF00E9C3F6 /* sharemail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B645111988A8AF00E9C3F6 /* sharemail@2x.png */; };
+		19B645171988A8AF00E9C3F6 /* shareweibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B645121988A8AF00E9C3F6 /* shareweibo@2x.png */; };
+		19B645181988A8AF00E9C3F6 /* shareweixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B645131988A8AF00E9C3F6 /* shareweixin@2x.png */; };
+		19B645191988A8AF00E9C3F6 /* shareziliudi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B645141988A8AF00E9C3F6 /* shareziliudi@2x.png */; };
 		19B8118019613A3B0083EEE3 /* ComprehensiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B8117F19613A3B0083EEE3 /* ComprehensiveViewController.m */; };
 		19B8118519613A800083EEE3 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B8118219613A800083EEE3 /* LeftViewController.m */; };
 		19B8118619613A800083EEE3 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B8118419613A800083EEE3 /* RightViewController.m */; };
@@ -1458,6 +1464,13 @@
 		19B6450619862E3100E9C3F6 /* talknumberofnew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talknumberofnew@2x.png"; sourceTree = "<group>"; };
 		19B6450819863FB700E9C3F6 /* roundblue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundblue@2x.png"; sourceTree = "<group>"; };
 		19B6450919863FB700E9C3F6 /* roundgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundgray@2x.png"; sourceTree = "<group>"; };
+		19B6450C19888B9000E9C3F6 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		19B6450D19888B9000E9C3F6 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		19B645101988A8AF00E9C3F6 /* sharefriendquan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharefriendquan@2x.png"; sourceTree = "<group>"; };
+		19B645111988A8AF00E9C3F6 /* sharemail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharemail@2x.png"; sourceTree = "<group>"; };
+		19B645121988A8AF00E9C3F6 /* shareweibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareweibo@2x.png"; sourceTree = "<group>"; };
+		19B645131988A8AF00E9C3F6 /* shareweixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareweixin@2x.png"; sourceTree = "<group>"; };
+		19B645141988A8AF00E9C3F6 /* shareziliudi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareziliudi@2x.png"; sourceTree = "<group>"; };
 		19B8117E19613A3B0083EEE3 /* ComprehensiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComprehensiveViewController.h; sourceTree = "<group>"; };
 		19B8117F19613A3B0083EEE3 /* ComprehensiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComprehensiveViewController.m; sourceTree = "<group>"; };
 		19B8118119613A800083EEE3 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
@@ -3020,6 +3033,18 @@
 			name = custonnb;
 			sourceTree = "<group>";
 		};
+		19B6450F1988A8AF00E9C3F6 /* ShareImages */ = {
+			isa = PBXGroup;
+			children = (
+				19B645101988A8AF00E9C3F6 /* sharefriendquan@2x.png */,
+				19B645111988A8AF00E9C3F6 /* sharemail@2x.png */,
+				19B645121988A8AF00E9C3F6 /* shareweibo@2x.png */,
+				19B645131988A8AF00E9C3F6 /* shareweixin@2x.png */,
+				19B645141988A8AF00E9C3F6 /* shareziliudi@2x.png */,
+			);
+			path = ShareImages;
+			sourceTree = "<group>";
+		};
 		19B8117D19613A100083EEE3 /* ComprehensiveControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -3063,6 +3088,7 @@
 		19B811A619615C770083EEE3 /* ImagesofNew */ = {
 			isa = PBXGroup;
 			children = (
+				19B6450F1988A8AF00E9C3F6 /* ShareImages */,
 				19B6450819863FB700E9C3F6 /* roundblue@2x.png */,
 				19B6450919863FB700E9C3F6 /* roundgray@2x.png */,
 				19B6450619862E3100E9C3F6 /* talknumberofnew@2x.png */,
@@ -3149,6 +3175,8 @@
 				190F034119764A4700EC6C47 /* PicShowTableViewCell.m */,
 				19F9364F197F9BAE00288E6C /* ZkingAlert.h */,
 				19F93650197F9BAE00288E6C /* ZkingAlert.m */,
+				19B6450C19888B9000E9C3F6 /* ShareView.h */,
+				19B6450D19888B9000E9C3F6 /* ShareView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6113,6 +6141,7 @@
 				19ECDAAA186EA94E002B2281 /* ios7_tabbarchose@2x.png in Resources */,
 				563365FF1862E7590069F838 /* segcenter@2x.png in Resources */,
 				56624DFD187564C70043A367 /*  icon7.png in Resources */,
+				19B645161988A8AF00E9C3F6 /* sharemail@2x.png in Resources */,
 				566E7C0B185EE88400BB88C5 /* send-highlighted.png in Resources */,
 				566E7C69185EE8F100BB88C5 /* 2-128-98.png in Resources */,
 				566E778D185EE71100BB88C5 /* line-1.png in Resources */,
@@ -6175,6 +6204,7 @@
 				566075E8188F5D2E00C25ACE /* qrcode_flash.png in Resources */,
 				5634D4A618605A21003868D7 /* write_blog_add_more@2x.png in Resources */,
 				565D3263197611F300AF0881 /* atlas_collect@2x.png in Resources */,
+				19B645191988A8AF00E9C3F6 /* shareziliudi@2x.png in Resources */,
 				566E78F5185EE75D00BB88C5 /* face17.png in Resources */,
 				566E7900185EE75D00BB88C5 /* face21_1.png in Resources */,
 				566E7A28185EE7D000BB88C5 /* menu_self_sel.png in Resources */,
@@ -6313,6 +6343,7 @@
 				563364961862E7490069F838 /* yellow_star32X31.png in Resources */,
 				566E7922185EE75D00BB88C5 /* face37_1.png in Resources */,
 				5633650C1862E7500069F838 /* blueArrow@2x.png in Resources */,
+				19B645181988A8AF00E9C3F6 /* shareweixin@2x.png in Resources */,
 				563365C11862E7590069F838 /* ping@2x.png in Resources */,
 				566E7BFB185EE88400BB88C5 /* bubble-square-outgoing-selected.png in Resources */,
 				563363951862E68D0069F838 /* ios7_newsselected@2x.png in Resources */,
@@ -6355,6 +6386,7 @@
 				566E7BFE185EE88400BB88C5 /* bubble-square-outgoing@2x.png in Resources */,
 				566E7CD4185EEA4800BB88C5 /* pinglun-xiao@2x.png in Resources */,
 				56C9554F185EED9A00763E69 /* weiboDetail_more@2x.png in Resources */,
+				19B645151988A8AF00E9C3F6 /* sharefriendquan@2x.png in Resources */,
 				563364571862E7490069F838 /* xiala_bglittle.png in Resources */,
 				566E7A2A185EE7D000BB88C5 /* self_bgup.png in Resources */,
 				566E7561185EE6E800BB88C5 /* talk1@2x.png in Resources */,
@@ -6562,6 +6594,7 @@
 				5650CCE21977AFCD001EA523 /* bbs_forum_zhuti-1@2x.png in Resources */,
 				5634D475186042F7003868D7 /* MessageSend@2x.png in Resources */,
 				56C955AE185EEE5500763E69 /* highlightpicKuang@2x.jpeg in Resources */,
+				19B645171988A8AF00E9C3F6 /* shareweibo@2x.png in Resources */,
 				5634D49F1860588B003868D7 /* smile_write@2x.png in Resources */,
 				566E7566185EE6E800BB88C5 /* selectedsanjia@2x.png in Resources */,
 				563363731862E68D0069F838 /* 114_1@2x.png in Resources */,
@@ -7064,6 +7097,7 @@
 				190F034219764A4700EC6C47 /* PicShowTableViewCell.m in Sources */,
 				561B65B51964F5AE00572350 /* SliderBBSTitleView.m in Sources */,
 				566E78CF185EE75D00BB88C5 /* loadingimview.m in Sources */,
+				19B6450E19888B9000E9C3F6 /* ShareView.m in Sources */,
 				566E777C185EE71100BB88C5 /* SummaryModel.m in Sources */,
 				566E777F185EE71100BB88C5 /* CarPortViewController.m in Sources */,
 				56C95545185EED9A00763E69 /* ForwardingViewController.m in Sources */,

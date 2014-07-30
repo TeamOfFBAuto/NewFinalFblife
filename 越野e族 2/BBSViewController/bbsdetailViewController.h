@@ -22,6 +22,12 @@
 #import "PraiseAndCollectedModel.h"
 
 #import <MessageUI/MFMailComposeViewController.h>
+
+//新版分享
+
+#import "ShareView.h"
+
+
 @interface bbsdetailViewController : UIViewController<downloaddelegate,BottombarviewDelegate,SelectNumberViewDelegate,AlertRePlaceViewDelegate,UIWebViewDelegate,MWPhotoBrowserDelegate,UIScrollViewDelegate,UIActionSheetDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
     
     BOOL isauthor;
@@ -77,6 +83,9 @@
 
 
     BOOL isPraise;//是否赞过
+    
+    ShareView *_shareView;
+
 
     
 }

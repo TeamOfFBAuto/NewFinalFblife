@@ -95,15 +95,18 @@
     
     
     UIBarButtonItem * space_button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space_button.width = MY_MACRO_NAME?-4:5;
+    space_button.width = MY_MACRO_NAME?-13:5;
     
     
     
     //创建barbutton 创建系统样式的
-    button_back=[[UIButton alloc]initWithFrame:CGRectMake(10,IOS_VERSION>=7.0?0:8,12,21.5)];
+    button_back=[[UIButton alloc]initWithFrame:CGRectMake(0,0,44,44)];
     
     [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
-    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+    
+    [button_back setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+
     
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:button_back];
     NavTitle.leftBarButtonItems=@[space_button,back_item];
@@ -114,7 +117,7 @@
     
     send_button.titleLabel.textAlignment = NSTextAlignmentRight;
     
-    [send_button setTitle:@"发送" forState:UIControlStateNormal];
+    [send_button setTitle:@"发表" forState:UIControlStateNormal];
     [send_button.titleLabel setFont:[UIFont systemFontOfSize:15]];
     
     [send_button setTitleColor:RGBCOLOR(89,89,89) forState:UIControlStateNormal];

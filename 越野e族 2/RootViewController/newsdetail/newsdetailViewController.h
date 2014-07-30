@@ -23,6 +23,10 @@
 #import "ZkingAlert.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
+//新版分享
+
+#import "ShareView.h"
+
 @interface newsdetailViewController : UIViewController<NSURLConnectionDataDelegate,UITextFieldDelegate,UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,downloaddelegate,MWPhotoBrowserDelegate,AlertRePlaceViewDelegate,BottombarviewDelegate,SelectNumberViewDelegate,WXApiDelegate,MFMailComposeViewControllerDelegate,WeiboSDKDelegate>{
     NSMutableData * _data;
     UILabel *label_bigbiaoti;
@@ -95,6 +99,8 @@
     
     int zanNumber;
     BOOL isPraise;//是否赞过
+    
+    ShareView *_shareView;
 
     
 }
