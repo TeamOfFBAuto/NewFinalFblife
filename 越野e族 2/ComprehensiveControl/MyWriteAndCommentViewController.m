@@ -1,6 +1,6 @@
 //
 //  MyWriteAndCommentViewController.m
-//  越野e族
+//  越野e族s
 //
 //  Created by 史忠坤 on 14-7-15.
 //  Copyright (c) 2014年 soulnear. All rights reserved.
