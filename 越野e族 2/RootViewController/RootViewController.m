@@ -64,6 +64,13 @@
 }
 
 
+-(void)dealloc{
+
+
+
+}
+
+
 -(void)umengEvent:(NSString *)eventId attributes:(NSDictionary *)attributes number:(NSNumber *)number{
     NSString *numberKey = @"__ct__";
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithDictionary:attributes];
