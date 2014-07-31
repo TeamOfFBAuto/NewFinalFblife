@@ -78,7 +78,6 @@
     self.navigationItem.leftBarButtonItem=back_item;
     
     
-    
     //[UIImage imageNamed:@"fblifelogo102_38_.png"];
     
     self.navigationItem.title = @"图集";
