@@ -388,10 +388,10 @@
     imv_down.userInteractionEnabled=YES;
     
     
-    //动态获取键盘高度
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    //点击隐藏键盘按钮所触发的事件
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    //动态获取键盘高度
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    //点击隐藏键盘按钮所触发的事件
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     /*发表评论的接口*/
     //http://t.fblife.com/openapi/index.php?mod=comment&code=commentadd&sortid=511&content=ttttt&title=ssfsf&fromtype=b5eeec0b&authkey=V2gAalEwUzcCMlM/USoH1QHAVYEMllqyUZQ=

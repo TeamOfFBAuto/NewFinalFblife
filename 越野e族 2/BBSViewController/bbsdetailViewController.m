@@ -252,7 +252,7 @@
     
     UIButton *button_send=[[UIButton alloc]initWithFrame:CGRectMake(40, 8, 32, 27.5)];
     [button_send addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
-    [button_send setBackgroundImage:[UIImage imageNamed:@"big_pen64X55.png"] forState:UIControlStateNormal];
+    [button_send setBackgroundImage:[UIImage imageNamed:WRITE_DEFAULT_IMAGE] forState:UIControlStateNormal];
     // UIBarButtonItem *buttonitem_send=[[UIBarButtonItem alloc]initWithCustomView:button_send];
     
     

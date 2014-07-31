@@ -79,6 +79,8 @@
     
     pinglun_button = [UIButton buttonWithType:UIButtonTypeCustom];
     
+    pinglun_button.backgroundColor = [UIColor clearColor];
+    
     pinglun_button.frame = CGRectMake(275,7,30,30);
     
     pinglun_button.userInteractionEnabled = YES;
@@ -96,7 +98,7 @@
     [self addSubview:pinglun_button];
     
     
-    UIImageView * pinglun_image_view = [[UIImageView alloc] initWithFrame:CGRectMake(20,0,11,11.5)];
+    UIImageView * pinglun_image_view = [[UIImageView alloc] initWithFrame:CGRectMake(25,0,11,11.5)];
     
     pinglun_image_view.image = [UIImage imageNamed:@"atlas_talk"];
     

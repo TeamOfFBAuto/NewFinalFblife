@@ -325,7 +325,7 @@
     
     self.title = @"私信";
     
-    self.rightImageName = @"ios7_commit3839";
+    self.rightImageName = WRITE_DEFAULT_IMAGE;
     
     [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     

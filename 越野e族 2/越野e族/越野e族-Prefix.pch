@@ -48,6 +48,8 @@
 
 #define BACK_DEFAULT_IMAGE @"fanhui_image"
 
+#define WRITE_DEFAULT_IMAGE @"default_write_pen_image.png"
+
 #define TITLEFONT [UIFont fontWithName:@"Helvetica" size:20]
 #endif
 

@@ -481,6 +481,9 @@
         case FinalshoucangViewTypebankuai:{ //删除板块
             
             str_delete = [NSString stringWithFormat:@"http://bbs.fblife.com/bbsapinew/delfavorites.php?delid=%@&formattype=json&authcode=%@",[dic objectForKey:@"fid"],string_code];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"fid"],@"forumSectionId",nil]];
+            
         }
             
             break;

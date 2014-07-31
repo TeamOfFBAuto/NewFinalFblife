@@ -166,7 +166,7 @@
     
     [self.myScrollView setContentOffset:CGPointMake(340*_seg_current_page,0) animated:YES];
     
-    [self.myTableView2 reloadData];
+//    [self.myTableView2 reloadData];
 }
 
 -(void)rightButtonTap:(UIButton *)sender
@@ -381,7 +381,32 @@
     //请求所有论坛板块数据
     
     [self loadAllForums];
+    
+    
+    
+    //论坛版块收藏通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forumSectionChange:) name:@"forumSectionChange" object:nil];
 }
+
+#pragma mark - 获取论坛版块收藏更改通知
+
+-(void)forumSectionChange:(NSNotification *)notification
+{
+    NSDictionary * dictionary = notification.userInfo;
+    
+    NSString * theId = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"forumSectionId"]];
+    
+    if ([self.forum_section_collection_array containsObject:theId])
+    {
+        [self.forum_section_collection_array removeObject:theId];
+    }else
+    {
+        [self.forum_section_collection_array addObject:theId];
+    }
+    
+    [self.myTableView2 reloadData];
+}
+
 
 #pragma mark - 切换我的订阅数据跟最近浏览
 

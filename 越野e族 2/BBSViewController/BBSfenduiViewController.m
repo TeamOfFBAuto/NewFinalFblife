@@ -158,7 +158,7 @@
     [button_send addTarget:self action:@selector(fatieyemian) forControlEvents:UIControlEventTouchUpInside];
 //    [button_send setBackgroundImage:[UIImage imageNamed:@"ios7_commit3839.png"] forState:UIControlStateNormal];
     
-    [button_send setImage:[UIImage imageNamed:@"ios7_commit3839.png"] forState:UIControlStateNormal];
+    [button_send setImage:[UIImage imageNamed:WRITE_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     UIButton *viewsend=[[UIButton alloc]initWithFrame:CGRectMake(65, 0, 50, 44)];
     

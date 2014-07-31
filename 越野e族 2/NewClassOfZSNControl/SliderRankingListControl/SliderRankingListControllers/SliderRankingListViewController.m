@@ -367,7 +367,7 @@
         
         cell.collection_button.selected = !isCollected;
         
-        if (isCollected)
+        if (isCollected)//取消收藏
         {
             if (bself.currentPage == 1)
             {
@@ -377,13 +377,16 @@
                 }
             }else
             {
-                if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
-                {
-                    [bself.bbs_forum_collection_array removeObject:model.ranking_id];
-                }
+//                if ([bself.bbs_forum_collection_array containsObject:model.ranking_id])
+//                {
+//                    [bself.bbs_forum_collection_array removeObject:model.ranking_id];
+//                }
+                
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
             }
             
-        }else
+        }else//收藏
         {
             if (bself.currentPage == 1)
             {
@@ -393,10 +396,12 @@
                 }
             }else
             {
-                if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
-                {
-                    [bself.bbs_forum_collection_array addObject:model.ranking_id];
-                }
+//                if (![bself.bbs_forum_collection_array containsObject:model.ranking_id])
+//                {
+//                    [bself.bbs_forum_collection_array addObject:model.ranking_id];
+//                }
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"forumSectionChange" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:model.ranking_id,@"forumSectionId",nil]];
             }
             
         }

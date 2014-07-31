@@ -109,7 +109,7 @@
     
 }
 -(void)setcommentimage2{
-    [_button_comment setBackgroundImage:[UIImage imageNamed:@"weibo_write_image.png"] forState:UIControlStateNormal];
+    [_button_comment setBackgroundImage:[UIImage imageNamed:WRITE_DEFAULT_IMAGE] forState:UIControlStateNormal];
     
     
 }

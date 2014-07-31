@@ -118,6 +118,8 @@
         
         button.frame = CGRectMake(130 + 70*i,20,60,44);
         
+        button.backgroundColor = [UIColor clearColor];
+        
         button.tag = 10000 + i;
         
         [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
@@ -289,11 +291,11 @@
         @try {
             AtlasModel * model = [self.allImagesUrlArray objectAtIndex:0];
             
-            int count = [model.atlas_likes intValue];
+            int count = [model.atlas_comment intValue];
             
-            model.atlas_likes = [NSString stringWithFormat:@"%d",count+1];
+            model.atlas_comment = [NSString stringWithFormat:@"%d",count+1];
             
-            [input_view.pinglun_button setTitle:model.atlas_likes forState:UIControlStateNormal];
+            [input_view.pinglun_button setTitle:model.atlas_comment forState:UIControlStateNormal];
             
             isPraise = YES;
             
