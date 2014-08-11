@@ -329,6 +329,15 @@
             
             [button addSubview:label];
         }
+        
+        
+        
+        if ([title_string isEqualToString:@"微博"] || [title_string isEqualToString:@"文集"] || [title_string isEqualToString:@"画廊"] || [title_string isEqualToString:@"圈子"]) {
+            [button setTitleColor:RGBCOLOR(142,142,142) forState:UIControlStateNormal];
+        }
+        
+        
+        
     }
     
     _tap_background_view.contentSize = CGSizeMake((127/2)*count + (count-1)/2,0);

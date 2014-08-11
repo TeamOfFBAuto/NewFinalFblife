@@ -109,39 +109,41 @@
     
     [self initHttpRequest];
     
-    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        //iOS 5 new UINavigationBar custom background
-        
-        if (IOS_VERSION>=7.0)
-        {
-            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS7DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-        }else
-        {
-            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
-        }
-    }
-    
-    
-    UIButton * back_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    back_button.frame = CGRectMake(0,0,12,21.5);
-    
-    [back_button setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
-    
-    [back_button addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:back_button];
+//    if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+//    {
+//        //iOS 5 new UINavigationBar custom background
+//        
+//        if (IOS_VERSION>=7.0)
+//        {
+//            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS7DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//        }else
+//        {
+//            [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:IOS6DAOHANGLANBEIJING] forBarMetrics: UIBarMetricsDefault];
+//        }
+//    }
+//    
+//    
+//    UIButton * back_button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    
+//    back_button.frame = CGRectMake(0,0,12,21.5);
+//    
+//    [back_button setImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
+//    
+//    [back_button addTarget:self action:@selector(backH:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:back_button];
     
     
     self.navigationItem.title = @"资讯";
     
-    UIColor * cc = [UIColor blackColor];
+//    UIColor * cc = [UIColor blackColor];
+//    
+//    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+//    
+//    self.navigationController.navigationBar.titleTextAttributes = dict;
     
-    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
     
-    self.navigationController.navigationBar.titleTextAttributes = dict;
-    
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeBack WithRightButtonType:MyViewControllerRightbuttonTypeNull];
     
     
     _myTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];

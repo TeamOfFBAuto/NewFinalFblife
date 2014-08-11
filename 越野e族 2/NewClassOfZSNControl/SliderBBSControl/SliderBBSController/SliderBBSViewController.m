@@ -1383,8 +1383,6 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
-    NSLog(@"-------%f",scrollView.contentOffset.x);
     if (scrollView.contentOffset.x<-40)
     {
         [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];

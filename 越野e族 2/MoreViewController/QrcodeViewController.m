@@ -63,7 +63,7 @@
 //    biaotiV.backgroundColor=[UIColor clearColor];
 //    [biaotiV addSubview:labelbiaoti];
     //
-    UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?35: 23, (44-37/2)/2, 43/2, 37/2)];
+    UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?35: 23, (44-37/2)/2, 43/2, 38/2)];
     
     
     button_comment.tag=26;
@@ -71,7 +71,7 @@
     //[button_comment setTitle:@"评论" forState:UIControlStateNormal];
     button_comment.titleLabel.font=[UIFont systemFontOfSize:14];
     [button_comment addTarget:self action:@selector(simPleshare) forControlEvents:UIControlEventTouchUpInside];
-    [button_comment setBackgroundImage:[UIImage imageNamed:@"ios_zhuanfa44_37.png"] forState:UIControlStateNormal];
+    [button_comment setImage:[UIImage imageNamed:@"zhuanfa_image.png"] forState:UIControlStateNormal];
     button_comment.userInteractionEnabled=NO;
     
     UIButton *   rightView=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
