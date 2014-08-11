@@ -20,6 +20,8 @@
 #import "WriteBlogViewController.h"
 #import "SSWBViewController.h"
 
+#import "MMDrawerController.h"///yaome?
+
 
 #import "PraiseAndCollectedModel.h"
 
@@ -127,7 +129,7 @@
     
     [super viewDidLoad];
     
-    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
     //commentNumberaddandadd
     
     [[NSNotificationCenter defaultCenter]
@@ -197,13 +199,21 @@
     secondWebView.delegate=self;
     secondWebView.scrollView.delegate=self;
     
-    UISwipeGestureRecognizer* recognizer;
+    UISwipeGestureRecognizer* recognizer1;
     // handleSwipeFrom 是偵測到手势，所要呼叫的方法
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+    recognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
     
-    recognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [_webView addGestureRecognizer:recognizer];
-    [secondWebView addGestureRecognizer:recognizer];
+    recognizer1.direction = UISwipeGestureRecognizerDirectionRight;
+    [_webView addGestureRecognizer:recognizer1];
+    
+    
+    UISwipeGestureRecognizer* recognizer2;
+    // handleSwipeFrom 是偵測到手势，所要呼叫的方法
+    recognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+    
+    recognizer2.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [secondWebView addGestureRecognizer:recognizer2];
     //评论部分
     
     if (isiphone5) {
@@ -988,6 +998,13 @@
 #pragma mark-轻扫
 
 -(void)handleSwipeFrom{
+    
+    
+    
+    
+    
+    
+    
     newstool.delegate=nil;
     [newstool stop];
     [_request cancel];
@@ -2256,7 +2273,6 @@
     picker.mailComposeDelegate = self;
     
     [picker setSubject:@"分享自越野e族"];
-    
     
  
     

@@ -408,8 +408,21 @@
 {
     [super viewWillAppear:animated];
     
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+
+    
     [MobClick beginEvent:@"CarPortViewController"];
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+    
+    
+}
+
 
 - (void)viewDidLoad
 {

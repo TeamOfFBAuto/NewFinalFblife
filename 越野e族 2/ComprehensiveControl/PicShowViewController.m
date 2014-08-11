@@ -242,9 +242,21 @@
     
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+    
+    
+}
+
+
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:NO];
+    [XTSideMenuManager resetSideMenuRecognizerEnable:YES];
+
     
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     

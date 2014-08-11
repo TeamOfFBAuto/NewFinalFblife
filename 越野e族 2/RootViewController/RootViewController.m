@@ -112,8 +112,20 @@
     
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+    
+    
+}
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:NO];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:YES];
     
     //    for (UIView *_viewhalf in [UIApplication sharedApplication].keyWindow.subviews) {
     //        [_viewhalf removeFromSuperview];

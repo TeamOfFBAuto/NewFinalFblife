@@ -110,6 +110,10 @@
 
 -(void)handleSingleTapFrom{
     
+    
+    
+    
+    
     if (string_url.length!=0||[string_url isEqualToString:@"(null)"]) {
         
         

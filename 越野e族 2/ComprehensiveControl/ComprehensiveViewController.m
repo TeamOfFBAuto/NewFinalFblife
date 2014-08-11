@@ -189,6 +189,8 @@
 }
 
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -204,8 +206,7 @@
     numberofpage=1;
     //点击了广告
     
-    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
-    
+   // [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
     
     
     
@@ -235,6 +236,10 @@
 
 #pragma mark-跳到fb页面
 -(void)ssTurntoFbWebview:(NSNotification*)sender{
+    
+    
+    
+    
     
     fbWebViewController *fbweb=[[fbWebViewController alloc]init];
     fbweb.urlstring=[NSString stringWithFormat:@"%@",[sender.userInfo objectForKey:@"link"]];
@@ -369,12 +374,25 @@
     
     [super viewWillAppear:NO];
     
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:YES];
+    
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
   [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     
 //    self.navigationController.navigationBarHidden=YES;
     
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+
+    [super viewDidDisappear:YES];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+
+
 }
 
 

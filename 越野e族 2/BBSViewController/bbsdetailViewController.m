@@ -288,6 +288,27 @@
     [aview addSubview:_webView];
 
     [aview addSubview:secondWebView];
+    
+    
+    
+    
+    UISwipeGestureRecognizer* recognizer1;
+    // handleSwipeFrom 是偵測到手势，所要呼叫的方法
+    recognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+    
+    recognizer1.direction = UISwipeGestureRecognizerDirectionRight;
+    [_webView addGestureRecognizer:recognizer1];
+    
+    
+    UISwipeGestureRecognizer* recognizer2;
+    // handleSwipeFrom 是偵測到手势，所要呼叫的方法
+    recognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
+    
+    recognizer2.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [secondWebView addGestureRecognizer:recognizer2];
+    
+    
 
     if (IOS_VERSION >= 5.0)
     {
@@ -315,7 +336,11 @@
  
 }
 
+-(void)handleSwipeFrom{
 
+    [self backto];
+
+}
 
 #pragma mark--准备导航栏
 -(void)prepairNavigationbar{

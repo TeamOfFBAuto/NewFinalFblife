@@ -392,6 +392,15 @@
     
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+    
+    
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -399,6 +408,8 @@
     {
         self.navigationController.navigationBarHidden=YES;
     }
+    [XTSideMenuManager resetSideMenuRecognizerEnable:YES];
+
     
     [self.leveyTabBarController hidesTabBar:NO animated:YES];
     

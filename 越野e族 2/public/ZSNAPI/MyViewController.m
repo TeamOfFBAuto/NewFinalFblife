@@ -46,6 +46,9 @@
 {
     [super viewDidLoad];
     
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+
+    
     if (MY_MACRO_NAME) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
