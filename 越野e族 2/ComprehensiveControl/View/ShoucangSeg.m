@@ -32,7 +32,7 @@
 -(void)setAllViewsWith:(NSArray *)array index:(int)index
 {
     if (array.count==2) {
-        lineImageView.frame=CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-30,1);
+        lineImageView.frame=CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-47,1);
 
     }
     
