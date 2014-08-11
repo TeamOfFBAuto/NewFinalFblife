@@ -25,7 +25,7 @@
 @interface fbWebViewController (){
 
     ShareView *_shareView;
-
+    UILabel   *titleLabel;
 
 }
 
@@ -82,6 +82,25 @@
     self.navigationController.navigationBarHidden=NO;
 
     [super viewDidLoad];
+    
+    
+    
+    UIView * topView = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,44)];
+    topView.backgroundColor = [UIColor clearColor];
+    //    //导航栏上的label
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MY_MACRO_NAME? 20:0, 0, 180, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font= [UIFont systemFontOfSize:15];
+    titleLabel.textColor = [UIColor blackColor];
+//    titleLabel.text=@"xx";
+    titleLabel.tag=200;
+    
+    [topView addSubview:titleLabel];
+    
+    self.navigationItem.titleView = topView;
+
+    
 //    UIButton *button_back=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME? -3:5, 0, 12, 43/2)];
 //    [button_back addTarget:self action:@selector(backto) forControlEvents:UIControlEventTouchUpInside];
 //    [button_back setBackgroundImage:[UIImage imageNamed:BACK_DEFAULT_IMAGE] forState:UIControlStateNormal];
@@ -197,16 +216,33 @@
     }
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+    string_title=[NSString stringWithFormat:@"%@",[webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
+    NSLog(@"wca==%@",string_title);
+    
+    
+    
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     string_title=[NSString stringWithFormat:@"%@",[webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
 
+//    string_title=@"中国人民";
+    
+//    UILabel *labe_t=(UILabel *)[self.view viewWithTag:200];
+    
+    if (string_title.length>15) {
+        
+        
+        string_title=[string_title substringToIndex:15];
+    }
     
     
+    titleLabel.text= string_title;
     
+    NSLog(@"wca==%@",string_title);
+
     
-    self.title = string_title;
     
 //    UIColor * cc = [UIColor blackColor];
 //    

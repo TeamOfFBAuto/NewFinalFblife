@@ -114,6 +114,7 @@
 		19C556E41886674200CD11B6 /* ios7_unread13_13@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C556E21886674200CD11B6 /* ios7_unread13_13@2x.png */; };
 		19C74617186C3EC400EA05BA /* ios7_implace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C74616186C3EC400EA05BA /* ios7_implace@2x.png */; };
 		19C74619186C421500EA05BA /* ios7_newsbeijing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C74618186C421500EA05BA /* ios7_newsbeijing@2x.png */; };
+		19CDB653199917B000844B99 /* ios7_refresh4139@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CDB652199917B000844B99 /* ios7_refresh4139@2x.png */; };
 		19CF4121186C51BF00AA51A9 /* zc_phoneNum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CF411E186C51BF00AA51A9 /* zc_phoneNum@2x.png */; };
 		19CF4122186C51BF00AA51A9 /* zc_resendimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CF411F186C51BF00AA51A9 /* zc_resendimage@2x.png */; };
 		19CF4123186C51BF00AA51A9 /* zc_xieyi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CF4120186C51BF00AA51A9 /* zc_xieyi@2x.png */; };
@@ -277,7 +278,6 @@
 		563363841862E68D0069F838 /* ios7_luntanjingxuanselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363401862E68D0069F838 /* ios7_luntanjingxuanselected@2x.png */; };
 		563363851862E68D0069F838 /* ios7_luntanjingxuanunselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363411862E68D0069F838 /* ios7_luntanjingxuanunselect@2x.png */; };
 		563363861862E68D0069F838 /* ios7_photo_write53_36@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363421862E68D0069F838 /* ios7_photo_write53_36@2x.png */; };
-		563363871862E68D0069F838 /* ios7_refresh4139@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363431862E68D0069F838 /* ios7_refresh4139@2x.png */; };
 		563363881862E68D0069F838 /* ios7_zhuti@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363441862E68D0069F838 /* ios7_zhuti@2x.png */; };
 		563363891862E68D0069F838 /* ios7_zuijinliulanselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363451862E68D0069F838 /* ios7_zuijinliulanselected@2x.png */; };
 		5633638A1862E68D0069F838 /* ios7_zuijinliulanunselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 563363461862E68D0069F838 /* ios7_zuijinliulanunselect@2x.png */; };
@@ -1510,6 +1510,7 @@
 		19C556E21886674200CD11B6 /* ios7_unread13_13@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_unread13_13@2x.png"; sourceTree = "<group>"; };
 		19C74616186C3EC400EA05BA /* ios7_implace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_implace@2x.png"; sourceTree = "<group>"; };
 		19C74618186C421500EA05BA /* ios7_newsbeijing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_newsbeijing@2x.png"; sourceTree = "<group>"; };
+		19CDB652199917B000844B99 /* ios7_refresh4139@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios7_refresh4139@2x.png"; path = "ios7Images/ios7bbsimg/ios7_refresh4139@2x.png"; sourceTree = SOURCE_ROOT; };
 		19CF411E186C51BF00AA51A9 /* zc_phoneNum@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zc_phoneNum@2x.png"; sourceTree = "<group>"; };
 		19CF411F186C51BF00AA51A9 /* zc_resendimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zc_resendimage@2x.png"; sourceTree = "<group>"; };
 		19CF4120186C51BF00AA51A9 /* zc_xieyi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zc_xieyi@2x.png"; sourceTree = "<group>"; };
@@ -1659,7 +1660,6 @@
 		563363401862E68D0069F838 /* ios7_luntanjingxuanselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_luntanjingxuanselected@2x.png"; sourceTree = "<group>"; };
 		563363411862E68D0069F838 /* ios7_luntanjingxuanunselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_luntanjingxuanunselect@2x.png"; sourceTree = "<group>"; };
 		563363421862E68D0069F838 /* ios7_photo_write53_36@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_photo_write53_36@2x.png"; sourceTree = "<group>"; };
-		563363431862E68D0069F838 /* ios7_refresh4139@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_refresh4139@2x.png"; sourceTree = "<group>"; };
 		563363441862E68D0069F838 /* ios7_zhuti@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_zhuti@2x.png"; sourceTree = "<group>"; };
 		563363451862E68D0069F838 /* ios7_zuijinliulanselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_zuijinliulanselected@2x.png"; sourceTree = "<group>"; };
 		563363461862E68D0069F838 /* ios7_zuijinliulanunselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_zuijinliulanunselect@2x.png"; sourceTree = "<group>"; };
@@ -3359,7 +3359,6 @@
 				563363401862E68D0069F838 /* ios7_luntanjingxuanselected@2x.png */,
 				563363411862E68D0069F838 /* ios7_luntanjingxuanunselect@2x.png */,
 				563363421862E68D0069F838 /* ios7_photo_write53_36@2x.png */,
-				563363431862E68D0069F838 /* ios7_refresh4139@2x.png */,
 				563363441862E68D0069F838 /* ios7_zhuti@2x.png */,
 				563363451862E68D0069F838 /* ios7_zuijinliulanselected@2x.png */,
 				563363461862E68D0069F838 /* ios7_zuijinliulanunselect@2x.png */,
@@ -3400,6 +3399,7 @@
 		563363481862E68D0069F838 /* ios7newsimg */ = {
 			isa = PBXGroup;
 			children = (
+				19CDB652199917B000844B99 /* ios7_refresh4139@2x.png */,
 				193E101818BC28B100F6D9C8 /* ios7_commentkuang421_58@2x.png */,
 				193E101918BC28B100F6D9C8 /* ios7_newssendbutton_99_56@2x.png */,
 				1913EA791890BDC40045CBD8 /* ios7_halfblack640_158@2x.png */,
@@ -6277,6 +6277,7 @@
 				566E78F0185EE75D00BB88C5 /* face14_1.png in Resources */,
 				5633646E1862E7490069F838 /* bbs_menu_huifu@2x.png in Resources */,
 				5634D4A918605BFC003868D7 /* 1111@2x.png in Resources */,
+				19CDB653199917B000844B99 /* ios7_refresh4139@2x.png in Resources */,
 				566E7948185EE75D00BB88C5 /* face54_1.png in Resources */,
 				560AD6EB197A6DAA003CEBF7 /* saoyisao_440_440@2x.png in Resources */,
 				566E7533185EE6E800BB88C5 /* ios7_line594_1@2x.png in Resources */,
@@ -6631,7 +6632,6 @@
 				19B1185E186871B600CA4C07 /* image_dowoland@2x.png in Resources */,
 				566E79E5185EE7B000BB88C5 /* recentlook.sqlite in Resources */,
 				563363741862E68D0069F838 /* ios7_bbs_down20_12@2x.png in Resources */,
-				563363871862E68D0069F838 /* ios7_refresh4139@2x.png in Resources */,
 				563365D01862E7590069F838 /* zixuntop2bg@2x.png in Resources */,
 				566E7560185EE6E800BB88C5 /* ios_daohanglan@2x.png in Resources */,
 				563365151862E7510069F838 /* messages_tableview_background.png in Resources */,
@@ -7336,7 +7336,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/越野e族/社会化分享/UMSocial_";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "3A72525B-3641-4B18-A06F-45C3ECB6517D";
 				PROVISIONING_PROFILE = "A2B9C6B6-2215-4468-9918-ACCFAB23E633";
 				SDKROOT = iphoneos;
 			};
@@ -7372,7 +7371,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/越野e族/社会化分享/UMSocial_";
-				PROVISIONING_PROFILE = "3A72525B-3641-4B18-A06F-45C3ECB6517D";
 				PROVISIONING_PROFILE = "A2B9C6B6-2215-4468-9918-ACCFAB23E633";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -7405,7 +7403,6 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3A72525B-3641-4B18-A06F-45C3ECB6517D";
 				PROVISIONING_PROFILE = "A2B9C6B6-2215-4468-9918-ACCFAB23E633";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7s armv7 arm64";
@@ -7439,7 +7436,6 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3A72525B-3641-4B18-A06F-45C3ECB6517D";
 				PROVISIONING_PROFILE = "A2B9C6B6-2215-4468-9918-ACCFAB23E633";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7s armv7 arm64";
