@@ -47,15 +47,34 @@
     {
         _fenye_button = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        _fenye_button.frame = CGRectMake(0,0,36,self.frame.size.height);
+        _fenye_button.frame = CGRectMake(0,0,50,self.frame.size.height);
         
-        _fenye_button.center = CGPointMake(28,self.frame.size.height/2);
+        _fenye_button.center = CGPointMake(25,self.frame.size.height/2);
         
         _fenye_button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
         [_fenye_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
         _fenye_button.titleLabel.font = [UIFont systemFontOfSize:14];
+        
+        _fenye_button.backgroundColor=[UIColor clearColor];
+        
+        
+        _mylabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 1, 50, self.frame.size.height-1)];
+        
+        _mylabel.font=[UIFont systemFontOfSize:14];
+        
+        _mylabel.backgroundColor=RGBCOLOR(250, 250, 250);
+        
+        _mylabel.textAlignment=NSTextAlignmentCenter;
+        
+        [_fenye_button addSubview:_mylabel];
+        
+        
+        
+        
+        
+
         
 //        [_fenye_button setImage:[UIImage imageNamed:@"bottom_fenye_image"] forState:UIControlStateNormal];
         

@@ -41,6 +41,8 @@ typedef void(^InputViewSendToPinglunBlock)(NSString * content,BOOL isForward);//
 
 @property(nonatomic,strong)UIButton * send_button;//发送评论按钮
 
+@property(nonatomic,strong)UILabel *mylabel;//显示数木23/32
+
 ///分页按钮
 @property(nonatomic,strong)UIButton * fenye_button;
 

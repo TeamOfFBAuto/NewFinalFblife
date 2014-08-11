@@ -348,9 +348,8 @@
                 [_SelectPick removeFromSuperview];
             }
 
-            [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
 
-            
+            inputV.mylabel.text=[NSString stringWithFormat:@"%d/%d",currentpage,allpages];
             
             
         }
@@ -1015,7 +1014,7 @@
         [_SelectPick Dismiss];
         NSLog(@"上啦");
     }
-    [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
+    inputV.mylabel.text=[NSString stringWithFormat:@"%d/%d",currentpage,allpages];
 
     
     
@@ -1447,7 +1446,7 @@
                     
                     _webView.delegate=self;
                     
-                    [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
+                    inputV.mylabel.text=[NSString stringWithFormat:@"%d/%d",currentpage,allpages];
 
                     
                     [self ShowbeforeFineshed];
