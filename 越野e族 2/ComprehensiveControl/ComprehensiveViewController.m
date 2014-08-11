@@ -291,7 +291,7 @@
     UIBarButtonItem *back_item=[[UIBarButtonItem alloc]initWithCustomView:back_view];
     self.navigationItem.leftBarButtonItem=back_item;
     
-  UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?37: 25, (44-34/2)/2, 41/2, 39/2)];
+  UIButton *  button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?37: 25, (44-39/2)/2, 41/2, 39/2)];
     
     
     

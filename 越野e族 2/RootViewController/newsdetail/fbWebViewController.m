@@ -91,7 +91,7 @@
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MY_MACRO_NAME? 20:0, 0, 180, 44)];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font= [UIFont systemFontOfSize:15];
+    titleLabel.font= [UIFont systemFontOfSize:16];
     titleLabel.textColor = [UIColor blackColor];
 //    titleLabel.text=@"xx";
     titleLabel.tag=200;
@@ -234,7 +234,7 @@
     if (string_title.length>15) {
         
         
-        string_title=[string_title substringToIndex:15];
+        string_title=[string_title substringToIndex:14];
     }
     
     
