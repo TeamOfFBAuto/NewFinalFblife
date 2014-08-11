@@ -135,14 +135,12 @@
         @try {
             NSDictionary * dic = [[NSDictionary alloc] initWithDictionary:[_request_friend.responseData objectFromJSONData]];
             
-            NSLog(@"---------dic ----%@",dic);
-            
             NSDictionary * content = [dic objectForKey:@"data"];
             
             [self exchangeData:content isCache:NO];
         }
         @catch (NSException *exception) {
-            
+            NSLog(@"exception ---  %@",exception);
         }
         @finally {
             
@@ -232,6 +230,7 @@
         {
             NSInteger sect = [theCollation sectionForObject:info collationStringSelector:@selector(getFirstName)];//getLastName是实现中文安拼音检索的核心，见NameIndex类
             info._sectionNum = sect; //设定姓的索引编号
+            
             if (![number_array containsObject:[NSNumber numberWithInt:sect]])
             {
                 [number_array addObject:[NSNumber numberWithInt:sect]];
@@ -259,8 +258,11 @@
         
         for (PersonInfo * item in self.dataArray)
         {
-            [(NSMutableArray *)[sectionArrays objectAtIndex:item._sectionNum-1] addObject:item];
+            [(NSMutableArray *)[sectionArrays objectAtIndex:item._sectionNum] addObject:item];
         }
+    
+    
+    
         for (NSMutableArray *sectionArray in sectionArrays)
         {
             if (sectionArray.count != 0)
