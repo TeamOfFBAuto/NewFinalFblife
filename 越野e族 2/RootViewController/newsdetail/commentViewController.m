@@ -1653,6 +1653,7 @@
         [request startAsynchronous];
         
     }
+    
     text_write.text=@"";
 }
 -(void)faceview{

@@ -78,7 +78,45 @@
     
     
     
-    self.navigationItem.title = self.string_name;
+  //  self.navigationItem.title = self.string_name;
+    
+    
+    
+     UIView * topView = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,44)];
+    topView.backgroundColor = [UIColor clearColor];
+    //    //导航栏上的label
+ UILabel   *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(MY_MACRO_NAME? -40:0, 0, 180, 44)];
+    titleLabel.text = self.string_name;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font= [UIFont systemFontOfSize:15];
+    titleLabel.textColor = [UIColor blackColor];
+    [topView addSubview:titleLabel];
+    //
+    //
+    //
+    //    UIButton *button_author=[[UIButton alloc]initWithFrame:CGRectMake(120, (44-35/2)/2, 70/2, 35/2)];
+    //    button_author.tag=1314;
+    //    [button_author setBackgroundImage:[UIImage imageNamed:@"ios7_authorunselect70_37.png"] forState:UIControlStateNormal];
+    //    [button_author setTitle:@"楼主" forState:UIControlStateNormal];
+    //    button_author.titleLabel.font=[UIFont systemFontOfSize:12];
+    //    [button_author setTitleColor:RGBCOLOR(108, 108, 108) forState:UIControlStateNormal];
+    //    [button_author setTitleColor:RGBCOLOR(108, 108, 108) forState:UIControlStateSelected];
+    //    [button_author setTitleColor:RGBCOLOR(108, 108, 108) forState:UIControlStateHighlighted];
+    //
+    //    [topView addSubview:button_author];
+    //    [button_author addTarget:self action:@selector(Doauthor:) forControlEvents:UIControlEventTouchUpInside];
+    //    
+    //
+    //
+        self.navigationItem.titleView = topView;
+    
+    
+    
+    
+    
+//    UIView *titleV=[[UIView alloc]initWithFrame:<#(CGRect)#>];
+    
     
     UIColor * cc = [UIColor blackColor];
     

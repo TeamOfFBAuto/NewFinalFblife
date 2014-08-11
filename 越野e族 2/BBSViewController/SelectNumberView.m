@@ -57,7 +57,7 @@
 //    [DoneButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
 //    [DoneButton.layer setBorderWidth:0.1]; //边框宽度
     
-    text_label=[[UITextField alloc]initWithFrame:CGRectMake(130, 10, 60, 24)];
+    text_label=[[UITextField alloc]initWithFrame:CGRectMake(135, 10, 60, 24)];
     text_label.backgroundColor=[UIColor clearColor];
     text_label.text=@"1";
     text_label.textAlignment=NSTextAlignmentCenter;

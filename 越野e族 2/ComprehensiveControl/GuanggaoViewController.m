@@ -114,7 +114,7 @@
     
     
     
-    if (string_url.length!=0||[string_url isEqualToString:@"(null)"]) {
+    if (string_url.length!=0&&![string_url isEqualToString:@"(null)"]) {
         
         
         NSDictionary *dic_userinfo=@{@"link": string_url};

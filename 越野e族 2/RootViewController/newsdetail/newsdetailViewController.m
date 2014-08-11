@@ -309,6 +309,7 @@
 
     inputV=[[CustomInputView alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, 320, 41)];
     
+    
     inputV.isShowFenYe = YES;
     
     __weak typeof(inputV)weakInputV = inputV;
@@ -324,6 +325,34 @@
         }else//分页按钮
         {
             NSLog(@"分页按钮");
+            
+            NSMutableArray *array_shu=[[NSMutableArray alloc]init];
+            for (int i=0; i<allpages; i++) {
+                [array_shu addObject:[NSString stringWithFormat:@"%d",i+1]];
+            }
+            if (!_SelectPick) {
+                _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, 320, 200) receiveArray:array_shu];
+                
+            }
+            _SelectPick.delegate=self;
+            if (dangqianwebview==1) {
+                [_webView addSubview:_SelectPick];
+                
+            }else{
+                [secondWebView addSubview:_SelectPick];
+            }
+            
+            if (allpages>1) {
+                [_SelectPick ShowPick];}
+            else{
+                [_SelectPick removeFromSuperview];
+            }
+
+            [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
+
+            
+            
+            
         }
         
         
@@ -383,7 +412,7 @@
           }];
     }];
     
-    [inputV.fenye_button setTitle:@"6/18" forState:UIControlStateNormal];
+    [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",1,1] forState:UIControlStateNormal];
     
     [aview addSubview:inputV];
 }
@@ -885,7 +914,8 @@
             }
             
             if (allpages>1) {
-                [_SelectPick ShowPick];}else{
+                [_SelectPick ShowPick];}
+            else{
                     [_SelectPick removeFromSuperview];
                 }
         }
@@ -928,6 +958,10 @@
 
 #pragma selectviewdelegate
 -(void)ReceiveNumber:(NSInteger)number{
+    
+    
+    
+    
     NSLog(@"======%d",number);
     
     if (currentpage>number) {
@@ -981,7 +1015,8 @@
         [_SelectPick Dismiss];
         NSLog(@"上啦");
     }
-    
+    [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
+
     
     
 }
@@ -1072,7 +1107,6 @@
         diimgv.image=[UIImage imageNamed:@"bluedown.png"];
     }
     if (scrollView.contentOffset.y< (scrollView.contentSize.height - scrollView.frame.size.height+55)&&scrollView.contentOffset.y>0) {
-        NSLog(@"慢慢来吧，总会到达的！");
         didulabel.hidden=YES;
     }
     
@@ -1412,6 +1446,9 @@
                     [barview setcommentimage1:[NSString stringWithFormat:@"%@",string_pinglun]];
                     
                     _webView.delegate=self;
+                    
+                    [inputV.fenye_button setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
+
                     
                     [self ShowbeforeFineshed];
                    [self shareimgload];

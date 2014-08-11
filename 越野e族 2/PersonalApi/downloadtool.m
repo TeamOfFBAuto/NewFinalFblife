@@ -78,17 +78,32 @@
     [_mutabledata appendData:data];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    if (self.delegate) {
+    
+    @try {
         [self.delegate downloadtool:self didfinishdownloadwithdata:_mutabledata];
 
     }
-    
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     //    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"当前网络不稳定" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     //    [alert show];
-    [self.delegate downloadtoolError];
+    @try {
+        [self.delegate downloadtoolError];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
     
 }
 @end
