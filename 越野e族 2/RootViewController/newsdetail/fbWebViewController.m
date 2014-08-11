@@ -231,10 +231,10 @@
     
 //    UILabel *labe_t=(UILabel *)[self.view viewWithTag:200];
     
-    if (string_title.length>15) {
+    if (string_title.length>12) {
         
         
-        string_title=[string_title substringToIndex:14];
+        string_title=[string_title substringToIndex:12];
     }
     
     
