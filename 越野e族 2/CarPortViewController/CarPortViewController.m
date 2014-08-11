@@ -469,7 +469,15 @@
 //    
 //    self.navigationItem.rightBarButtonItems= @[space_button,[[UIBarButtonItem alloc] initWithCustomView:refreshButton]];
     
+    
+    UIColor * cc = [UIColor blackColor];
+    
+    NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
+    
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+    
     self.navigationItem.title = @"车库";
+
     
     self.leftImageName = @"slider_bbs_home";
     
