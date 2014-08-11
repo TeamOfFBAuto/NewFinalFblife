@@ -373,6 +373,8 @@
           }];
     }];
     
+    [inputV.fenye_button setTitle:@"6/18" forState:UIControlStateNormal];
+    
     [aview addSubview:inputV];
 }
 

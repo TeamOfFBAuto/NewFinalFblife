@@ -51,9 +51,15 @@
         
         _fenye_button.frame = CGRectMake(0,0,30,self.frame.size.height);
         
-        _fenye_button.center = CGPointMake(18,self.frame.size.height/2);
+        _fenye_button.center = CGPointMake(30,self.frame.size.height/2);
         
-        [_fenye_button setImage:[UIImage imageNamed:@"bottom_fenye_image"] forState:UIControlStateNormal];
+        _fenye_button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [_fenye_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        _fenye_button.titleLabel.font = [UIFont systemFontOfSize:13];
+        
+//        [_fenye_button setImage:[UIImage imageNamed:@"bottom_fenye_image"] forState:UIControlStateNormal];
         
         [_fenye_button addTarget:self action:@selector(fenyeTap:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -61,7 +67,7 @@
     }
     
     
-    commot_background_view = [[UIView alloc] initWithFrame:CGRectMake(11+(_isShowFenYe?30:0),(self.bounds.size.height-30)/2,255-(_isShowFenYe?30:0),30)];
+    commot_background_view = [[UIView alloc] initWithFrame:CGRectMake(11+(_isShowFenYe?40:0),(self.bounds.size.height-30)/2,255-(_isShowFenYe?40:0),30)];
     
     commot_background_view.backgroundColor = [UIColor whiteColor];
     
