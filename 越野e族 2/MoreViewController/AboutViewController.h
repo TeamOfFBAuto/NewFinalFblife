@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "downloadtool.h"
-@interface AboutViewController : UIViewController<downloaddelegate,MobClickDelegate>{
+@interface AboutViewController : MyViewController<downloaddelegate,MobClickDelegate>{
     downloadtool *newstool;
     UIImageView * imageView;
     int currentpage;

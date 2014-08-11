@@ -26,4 +26,5 @@
 
 @property(nonatomic,strong)NSMutableArray * bbs_post_collection_array;//论坛帖子收藏的数据
 
+
 @end
