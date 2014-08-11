@@ -37,15 +37,15 @@
             
             button.titleLabel.font = [UIFont systemFontOfSize:15];
             
-            button.frame = CGRectMake(7+115*i,0,80,44);
+            button.frame = CGRectMake(5+118*i,0,80,44);
             
             [button setTitle:[array1 objectAtIndex:i] forState:UIControlStateNormal];
             
             [button setImage:[UIImage imageNamed:[array2 objectAtIndex:i]] forState:UIControlStateNormal];
             
-            [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,1,15)];
+            [button setImageEdgeInsets:UIEdgeInsetsMake(0,0,1,10)];
             
-            [button setTitleEdgeInsets:UIEdgeInsetsMake(0,8,0,0)];
+            [button setTitleEdgeInsets:UIEdgeInsetsMake(0,5,0,0)];
             
             [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
             

@@ -19,7 +19,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,frame.size.height,self.frame.size.width/2-20,1)];
+        lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,frame.size.height,self.frame.size.width/2-30,1)];
         
         lineImageView.backgroundColor = RGBCOLOR(3,3,4);
         
