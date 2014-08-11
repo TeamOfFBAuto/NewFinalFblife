@@ -596,8 +596,8 @@
     UIImageView * silderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ios7_huandongtiao.png"]];
     silderImageView.backgroundColor = [UIColor clearColor];
     silderImageView.tag = 99;
-    silderImageView.frame = CGRectMake(35/2, 0, 71/2, 2);
-    silderImageView.center=CGPointMake(28, 1);
+    silderImageView.frame = CGRectMake(35/2, 0, 71/2, 1);
+    silderImageView.center=CGPointMake(28.5, 0.5);
     
     [_titleView addSubview:silderImageView];
     
@@ -2692,29 +2692,7 @@
     
     if (scrollView==_titleView) {
         NSLog(@"_tit.x=====%f",_titleView.contentOffset.x);
-        //        _ImgvRight.image=[UIImage imageNamed:_titleView.contentOffset.x>100?@"left1523.png":@"right1523.png"];
-        //        UIImageView * imageView = (UIImageView *)[self.view viewWithTag:99];
-        //        NSLog(@"center.x==%f",imageView.center.x);
-        //        //335
-        //        if ((_titleView.contentOffset.x==300&&imageView.center.x==285)) {
-        //            imageView.hidden=YES;
-        //        }else if(_titleView.contentOffset.x==0&&imageView.center.x==335)
-        //        {
-        //
-        //            imageView.hidden=YES;
-        //        }else{
-        //
-        //            imageView.hidden=NO;
-        //        }
-        //
-        //        if (_titleView.contentOffset.x==300) {
-        //            _ImgvRight.center=CGPointMake(306, 20);
-        //        }else{
-        //            _ImgvRight.center=CGPointMake(312, 20);
-        //
-        //        }
-        
-        //
+
         
     }else if (scrollView==imagesc)
     {
@@ -2769,7 +2747,7 @@
         //   NSLog(@"yes当前是%@===number==%d====%f",[array_lanmu objectAtIndex:number],number,newsScrow.contentOffset.x);
         UIImageView * imageView = (UIImageView *)[self.view viewWithTag:99];
         //  imageView.frame=CGRectMake(35/2+48*newsScrow.contentOffset.x/320, 0, 71/2, 2);
-        imageView.center=CGPointMake(28+48*newsScrow.contentOffset.x/320, 1);
+        imageView.center=CGPointMake(28+48*newsScrow.contentOffset.x/320, 0.5);
         
         if (number==6) {
             _titleView.contentOffset=CGPointMake(285, 0);
