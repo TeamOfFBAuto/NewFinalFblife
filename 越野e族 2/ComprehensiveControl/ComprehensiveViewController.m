@@ -1098,6 +1098,8 @@
 	
     //	[self refreshwithrag:self.tag];
     //    [self.delegate refreshmydatawithtag:self.tag];
+    numberofpage=1;
+
     [self loadNomalData];
     [self loadHuandeng];
 	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
@@ -1107,16 +1109,9 @@
     //要判断当前是哪一个，有mainTabView/imagesc/twoscrow/sec2
     if (scrollView==mainTabView) {
         
+      //  NSLog(@"table.y===%f",mainTabView.contentOffset.y);
         
-        NSLog(@"table.y===%f",mainTabView.contentOffset.y);
-        
-        if (mainTabView.contentOffset.y==-64) {
-            
-            
-            mainTabView.contentOffset=CGPointMake(0, 0);
-            
-        }
-        
+   
         
         
         
@@ -1132,7 +1127,6 @@
         }
         
     }
-    
     
     
     

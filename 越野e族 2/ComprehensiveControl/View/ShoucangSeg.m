@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,frame.size.height,self.frame.size.width/4-23,2)];
+        lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,frame.size.height,self.frame.size.width/4-23,1)];
         
         lineImageView.backgroundColor = RGBCOLOR(88,88,88);
         
@@ -32,7 +32,7 @@
 -(void)setAllViewsWith:(NSArray *)array index:(int)index
 {
     if (array.count==2) {
-        lineImageView.frame=CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-30,2);
+        lineImageView.frame=CGRectMake(0,self.frame.size.height,self.frame.size.width/array.count-30,1);
 
     }
     
@@ -63,7 +63,7 @@
         
          button.tag = 100 + i;
         
-        button.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
         
         [button setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
         
