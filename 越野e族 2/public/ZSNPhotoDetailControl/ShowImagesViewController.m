@@ -693,17 +693,25 @@
     
     input_view = [[CustomInputView alloc] initWithFrame:CGRectMake(0,content_back_view.frame.origin.y + content_back_view.frame.size.height,320,44)];
     
-    [input_view loadAllViewWithPinglunCount:@"0" WithPushBlock:^{
+    [input_view loadAllViewWithPinglunCount:@"0" WithType:0 WithPushBlock:^(int type){
         
-        NSLog(@"跳到评论");
         
-        commentViewController * comment_=[[commentViewController alloc]init];
-        comment_.sortString=@"15";//这个是判断图集或者新闻的，图集是15
-        comment_.string_ID=self.id_atlas;//这个是图集的id
-        comment_.string_title = atlasModel.atlas_name;//@"越野e族";
-//        comment_.string_author = @"越野e族";
-        comment_.string_date=@"越野e族";
-        [self.navigationController pushViewController:comment_ animated:YES];
+        if (type == 0)
+        {
+            NSLog(@"跳到评论");
+            
+            commentViewController * comment_=[[commentViewController alloc]init];
+            comment_.sortString=@"15";//这个是判断图集或者新闻的，图集是15
+            comment_.string_ID=self.id_atlas;//这个是图集的id
+            comment_.string_title = atlasModel.atlas_name;//@"越野e族";
+            //        comment_.string_author = @"越野e族";
+            comment_.string_date=@"越野e族";
+            [self.navigationController pushViewController:comment_ animated:YES];
+        }else
+        {
+            NSLog(@"分类按钮");
+        }        
+        
         
         
     } WithSendBlock:^(NSString *content, BOOL isForward) {

@@ -426,8 +426,15 @@
     
     __weak typeof(self)wself=self;
     
-    
-    [inputV loadAllViewWithPinglunCount:self.string_commentnumber WithPushBlock:^{
+    [inputV loadAllViewWithPinglunCount:self.string_commentnumber WithType:1 WithPushBlock:^(int type){
+        
+        if (type == 0)//评论
+        {
+            
+        }else//分页
+        {
+            
+        }
         
         
     } WithSendBlock:^(NSString *content, BOOL isForward) {
