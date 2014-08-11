@@ -35,9 +35,9 @@
             
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
-            button.titleLabel.font = [UIFont systemFontOfSize:13];
+            button.titleLabel.font = [UIFont systemFontOfSize:15];
             
-            button.frame = CGRectMake(35+98.5*i,14.5,60,16);
+            button.frame = CGRectMake(7+115*i,0,80,44);
             
             [button setTitle:[array1 objectAtIndex:i] forState:UIControlStateNormal];
             
