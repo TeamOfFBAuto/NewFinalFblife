@@ -22,6 +22,8 @@
 {
     AlertRePlaceView *_replaceAlertView;
     AlertRePlaceView *_replaceAlertView1;
+    
+    UIScrollView * myScrollView;
 }
 
 @end
@@ -483,6 +485,8 @@
 //    self.navigationItem.rightBarButtonItems= @[space_button,[[UIBarButtonItem alloc] initWithCustomView:refreshButton]];
     
     
+  
+    
     UIColor * cc = [UIColor blackColor];
     
     NSDictionary * dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:cc,[UIFont systemFontOfSize:20],[UIColor clearColor],nil] forKeys:[NSArray arrayWithObjects:UITextAttributeTextColor,UITextAttributeFont,UITextAttributeTextShadowColor,nil]];
@@ -500,6 +504,20 @@
     
     
     
+  
+    
+    
+    myScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    
+    myScrollView.contentSize = CGSizeMake(320.5,0);
+    
+    myScrollView.delegate = self;
+    
+    myScrollView.bounces = YES;
+    
+    [self.view addSubview:myScrollView];
+    
+    
     seg = [[CarPortSeg alloc] initWithFrame:CGRectMake(0,0,320,33)];
     
     seg.NameArray = [NSArray arrayWithObjects:@"车型",@"价格",@"国别",@"尺寸",nil];
@@ -508,7 +526,7 @@
     
     seg.delegate = self;
     
-    [self.view addSubview:seg];
+    [myScrollView addSubview:seg];
     
     
     if (_refreshHeaderView == nil) {
@@ -523,17 +541,20 @@
     
     
     
+    
     CGRect rect = CGRectMake(0,33,320,iPhone5?568-33-20-44:480-33-20-44);
     
     self.myTableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
     
     self.myTableView.delegate = self;
     
+    self.myTableView.bounces = YES;
+    
     self.myTableView.dataSource = self;
     
     self.myTableView.tableHeaderView = _refreshHeaderView;
     
-    [self.view addSubview:self.myTableView];
+    [myScrollView addSubview:self.myTableView];
     
     
     
@@ -564,7 +585,7 @@
     
     _Screening_tableView.hidden = YES;
     
-    [self.view addSubview:_Screening_tableView];
+    [myScrollView addSubview:_Screening_tableView];
     
     
     if (IOS_VERSION >=6.0)
@@ -643,8 +664,8 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
-    if (scrollView == _myTableView) {
+    if (scrollView == _myTableView)
+    {
         [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     }
     
@@ -664,6 +685,26 @@
          {
              
          }];
+    }
+    
+    
+    if (scrollView == myScrollView)
+    {
+        [UIView animateWithDuration:0.2 animations:^{
+            _silder_view.frame = CGRectMake(322,self.myTableView.frame.origin.y,_silder_view.frame.size.width,self.myTableView.frame.size.height);
+        } completion:^(BOOL finished)
+         {
+             
+         }];
+        
+        if (scrollView.contentOffset.x<-40)
+        {
+            [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+            
+        }else if(scrollView.contentOffset.x>40)
+        {
+            [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+        }
     }
 }
 

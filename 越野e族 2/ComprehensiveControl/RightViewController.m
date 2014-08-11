@@ -135,7 +135,7 @@
     
     _rootScrollView.backgroundColor = [UIColor clearColor];
     
-    [self.view addSubview:_rootScrollView];
+   // [self.view addSubview:_rootScrollView];
     
     
     
@@ -153,7 +153,7 @@
     
     user_Info_BackView.layer.shadowOpacity = 0.2;
     
-    [_rootScrollView addSubview:user_Info_BackView];
+    [self.view addSubview:user_Info_BackView];
     
     
     
@@ -219,62 +219,62 @@
     for (int i = 0;i < 3;i++) {
         for (int j = 0;j < 3;j++)
         {
-//            if (i*3 + j < 8)
-//            {
-                UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-                
-                button.frame = CGRectMake(30 + 90*j,(iPhone5?230:210)+(iPhone5?90:75)*i,44,60);
-                
-                [button setTitle:[arrary1 objectAtIndex:j+i*3] forState:UIControlStateNormal];
-                
-                [button setTitleColor:RGBCOLOR(145,145,145) forState:UIControlStateNormal];
-                
-                button.titleLabel.font = [UIFont systemFontOfSize:12];
-                
-                [button setTitleEdgeInsets:UIEdgeInsetsMake(60,-5,0,-5)];
-                
-                button.tag = 1000 + i*3+j;
-                
-                button.backgroundColor = [UIColor clearColor];
-                
-                [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
-                
-                [_rootScrollView addSubview:button];
-                
-                
-                UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[arrary objectAtIndex:j+i*3]]];
-                
-                imageView.center = CGPointMake(22,23);
-                
-                [button addSubview:imageView];
-                
-                
-                
-                if (i*3+j == 5)
+
+            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            button.frame = CGRectMake(30 + 90*j,(iPhone5?230:210)+(iPhone5?90:75)*i,44,60);
+            
+            [button setTitle:[arrary1 objectAtIndex:j+i*3] forState:UIControlStateNormal];
+            
+            [button setTitleColor:RGBCOLOR(145,145,145) forState:UIControlStateNormal];
+            
+            button.titleLabel.font = [UIFont systemFontOfSize:12];
+            
+            [button setTitleEdgeInsets:UIEdgeInsetsMake(60,-5,0,-5)];
+            
+            button.tag = 1000 + i*3+j;
+            
+            button.backgroundColor = [UIColor clearColor];
+            
+            [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.view addSubview:button];
+        
+        
+            UIImage * image = [UIImage imageNamed:[arrary objectAtIndex:j+i*3]];
+            
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,image.size.width,image.size.height)];
+        
+            imageView.image = image;
+        
+            imageView.center = CGPointMake(22,23);
+            
+            [button addSubview:imageView];
+            
+            
+            if (i*3+j == 5)
+            {
+                if (!notification_view)
                 {
-                    if (!notification_view)
-                    {
-                        notification_view = [[UIView alloc] initWithFrame:CGRectMake(35,50,8,8)];
-                        
-                        notification_view.backgroundColor = RGBCOLOR(255,0,60);
-                        
-                        notification_view.hidden = !NewsMessageNumber;
-                        
-                        notification_view.layer.cornerRadius = 4;
-                        
-                        notification_view.layer.masksToBounds = NO;
-                        
-                        [button addSubview:notification_view];
-                    }
+                    notification_view = [[UIView alloc] initWithFrame:CGRectMake(35,50,8,8)];
                     
+                    notification_view.backgroundColor = RGBCOLOR(255,0,60);
+                    
+                    notification_view.hidden = !NewsMessageNumber;
+                    
+                    notification_view.layer.cornerRadius = 4;
+                    
+                    notification_view.layer.masksToBounds = NO;
+                    
+                    [button addSubview:notification_view];
                 }
                 
-//            }
+            }
+                
         }
     }
     
-    
-    
+
     UILabel * version_label = [[UILabel alloc] initWithFrame:CGRectMake(40,_rootScrollView.frame.size.height-(iPhone5?50:40),100,30)];
     
     version_label.text = [NSString stringWithFormat:@"v %@",NOW_VERSION];
@@ -287,7 +287,7 @@
     
     version_label.backgroundColor = [UIColor clearColor];
     
-    [_rootScrollView addSubview:version_label];
+    [self.view addSubview:version_label];
     
     
     
@@ -307,8 +307,7 @@
     
     [setting_button addTarget:self action:@selector(settingButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     
-    [_rootScrollView addSubview:setting_button];
-    
+    [self.view addSubview:setting_button];
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(receivemyimage_head) name:@"LogIn" object:nil];//登陆成功通知

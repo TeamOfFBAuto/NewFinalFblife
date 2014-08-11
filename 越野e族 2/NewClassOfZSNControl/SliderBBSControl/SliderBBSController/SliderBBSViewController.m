@@ -259,7 +259,7 @@
     
     _myScrollView.delegate = self;
     
-    _myScrollView.bounces = NO;
+    _myScrollView.bounces = YES;
         
     _myScrollView.showsHorizontalScrollIndicator = NO;
     
@@ -1210,10 +1210,6 @@
     
     if (tableView == _myTableView2)
     {
-        
-        
-        
-        
         SliderBBSForumModel * first_model = [[_forum_temp_array objectAtIndex:current_forum] objectAtIndex:indexPath.section];
         
         SliderBBSForumModel * second_model = [first_model.forum_sub objectAtIndex:indexPath.row];
@@ -1388,6 +1384,15 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
+    NSLog(@"-------%f",scrollView.contentOffset.x);
+    if (scrollView.contentOffset.x<-40)
+    {
+        [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+        
+    }else if(scrollView.contentOffset.x>380)
+    {
+        [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+    }
 }
 
 
