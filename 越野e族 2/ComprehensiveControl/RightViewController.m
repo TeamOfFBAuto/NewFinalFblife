@@ -211,7 +211,7 @@
     [user_Info_BackView addSubview:LogIn_label];
     
     
-    NSArray * arrary = [NSArray arrayWithObjects:@"SliderRighttiezi.png",@"SliderRightstar.png",@"SliderRightfriend.png",@"SliderRightfbgray73_67.png",@"SliderRightmessage.png",@"SliderRighttongzhi.png",@"SliderRightcaogaoxiangRes61_69.png",@"SliderRightsaoyisao.png",@"SliderSeachImage",nil];
+    NSArray * arrary = [NSArray arrayWithObjects:@"SliderRighttiezi.png",@"SliderRightstar.png",@"SliderRightfriend.png",@"SliderRightfbgray73_67.png",@"SliderRightmessage.png",@"SliderRighttongzhi.png",@"SliderRightcaogaoxiangRes61_69.png",@"SliderRightsaoyisao.png",@"SliderSeachImage.png",nil];
     
     NSArray * arrary1 = [NSArray arrayWithObjects:@"帖子",@"收藏",@"好友",@"自留地",@"私信",@"通知",@"草稿箱",@"扫一扫",@"搜索",nil];
     
