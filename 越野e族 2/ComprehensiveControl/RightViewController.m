@@ -135,7 +135,7 @@
     
     _rootScrollView.backgroundColor = [UIColor clearColor];
     
-   // [self.view addSubview:_rootScrollView];
+    [self.view addSubview:_rootScrollView];
     
     
     
@@ -153,7 +153,7 @@
     
     user_Info_BackView.layer.shadowOpacity = 0.2;
     
-    [self.view addSubview:user_Info_BackView];
+    [_rootScrollView addSubview:user_Info_BackView];
     
     
     
@@ -238,7 +238,7 @@
             
             [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
             
-            [self.view addSubview:button];
+            [_rootScrollView addSubview:button];
         
         
             UIImage * image = [UIImage imageNamed:[arrary objectAtIndex:j+i*3]];
@@ -268,9 +268,7 @@
                     
                     [button addSubview:notification_view];
                 }
-                
             }
-                
         }
     }
     
@@ -287,7 +285,7 @@
     
     version_label.backgroundColor = [UIColor clearColor];
     
-    [self.view addSubview:version_label];
+    [_rootScrollView addSubview:version_label];
     
     
     
@@ -307,7 +305,7 @@
     
     [setting_button addTarget:self action:@selector(settingButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:setting_button];
+    [_rootScrollView addSubview:setting_button];
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(receivemyimage_head) name:@"LogIn" object:nil];//登陆成功通知
