@@ -18,6 +18,7 @@
     guanzhuCell *cell;
     AlertRePlaceView *  _replaceAlertView;
     
+    ASIHTTPRequest * request;
 }
 
 @end
@@ -61,7 +62,15 @@
     
     if ([_theUid integerValue]>10)
     {
-        ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullurl]];
+        if (request)
+        {
+            [request cancel];
+            request.delegate = nil;
+            request = nil;
+        }
+        
+        
+        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullurl]];
         
         request.tag = 100;
         
@@ -159,6 +168,12 @@
 
 -(void)back:(UIButton *)sender
 {
+//    [request cancelAuthentication];
+//    request.delegate = nil;
+//    request = nil;
+    
+    [request clearDelegatesAndCancel];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -454,14 +469,14 @@
     
     NSString* fullURL= [NSString stringWithFormat:attention_flg?URL_QUXIAOGUANZHU:URL_GUANZHU,info.uid,authkey];
     
-    ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
+    ASIHTTPRequest * request1 = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
     
-    __block ASIHTTPRequest * _requset = request;
+    __block ASIHTTPRequest * _requset = request1;
     
-    request.delegate = self;
+    request1.delegate = self;
     
     [_requset setCompletionBlock:^{
-        NSDictionary * dic = [request.responseData objectFromJSONData];
+        NSDictionary * dic = [request1.responseData objectFromJSONData];
         
         NSString * string = [dic objectForKey:@"data"];
         
@@ -487,7 +502,7 @@
         [alet show];
     }];
     
-    [request startAsynchronous];
+    [request1 startAsynchronous];
     
 }
 
@@ -515,6 +530,13 @@
     [hud setImage:[UIImage imageNamed:@"19-check"]];
     [hud show];
     [hud hideAfter:3];
+}
+
+
+
+-(void)dealloc
+{
+    [request clearDelegatesAndCancel];
 }
 
 

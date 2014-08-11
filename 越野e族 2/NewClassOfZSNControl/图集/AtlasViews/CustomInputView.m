@@ -41,9 +41,7 @@
     top_line_view.backgroundColor = RGBCOLOR(211,211,211);
     
     [self addSubview:top_line_view];
-    
-
-    
+        
     
     if (self.isShowFenYe)
     {

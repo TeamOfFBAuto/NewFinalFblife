@@ -10,7 +10,7 @@
 #import "VerificationViewController.h"
 #import "ATMHud.h"
 
-@interface MyPhoneNumViewController : UIViewController<UITextFieldDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate>
+@interface MyPhoneNumViewController : MyViewController<UITextFieldDelegate,ASIHTTPRequestDelegate,UIAlertViewDelegate>
 {
     UITextField * phone_textField;
     

@@ -10,7 +10,7 @@
 #import "ZhuCeViewController.h"
 #import "ATMHud.h"
 
-@interface VerificationViewController : UIViewController<ASIHTTPRequestDelegate>
+@interface VerificationViewController : MyViewController<ASIHTTPRequestDelegate>
 {
     UITextField * verification_tf;
     

@@ -99,6 +99,16 @@
 }
 
 
+#pragma mark - 返回
+
+-(void)leftButtonTap:(UIButton *)sender
+{
+    [timer invalidate];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -594,7 +604,11 @@
 }
 
 
-
+-(void)dealloc
+{
+    
+    
+}
 
 
 -(void)pushtonewmine{

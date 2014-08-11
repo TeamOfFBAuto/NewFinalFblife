@@ -23,6 +23,7 @@
 #import "ShoucangViewController.h"//收藏界面
 #import "MyWriteAndCommentViewController.h"//我发布的帖子和我回复的帖子
 #import "GscanfViewController.h"
+#import "SliderSearchViewController.h"
 
 
 @interface RightViewController ()
@@ -210,16 +211,16 @@
     [user_Info_BackView addSubview:LogIn_label];
     
     
-    NSArray * arrary = [NSArray arrayWithObjects:@"SliderRighttiezi.png",@"SliderRightstar.png",@"SliderRightfriend.png",@"SliderRightfbgray73_67.png",@"SliderRightmessage.png",@"SliderRighttongzhi.png",@"SliderRightcaogaoxiangRes61_69.png",@"SliderRightsaoyisao.png",nil];
+    NSArray * arrary = [NSArray arrayWithObjects:@"SliderRighttiezi.png",@"SliderRightstar.png",@"SliderRightfriend.png",@"SliderRightfbgray73_67.png",@"SliderRightmessage.png",@"SliderRighttongzhi.png",@"SliderRightcaogaoxiangRes61_69.png",@"SliderRightsaoyisao.png",@"SliderSeachImage",nil];
     
-    NSArray * arrary1 = [NSArray arrayWithObjects:@"帖子",@"收藏",@"好友",@"自留地",@"私信",@"通知",@"草稿箱",@"扫一扫",nil];
+    NSArray * arrary1 = [NSArray arrayWithObjects:@"帖子",@"收藏",@"好友",@"自留地",@"私信",@"通知",@"草稿箱",@"扫一扫",@"搜索",nil];
     
     
     for (int i = 0;i < 3;i++) {
         for (int j = 0;j < 3;j++)
         {
-            if (i*3 + j < 8)
-            {
+//            if (i*3 + j < 8)
+//            {
                 UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
                 
                 button.frame = CGRectMake(30 + 90*j,(iPhone5?230:210)+(iPhone5?90:75)*i,44,60);
@@ -268,7 +269,7 @@
                     
                 }
                 
-            }
+//            }
         }
     }
     
@@ -425,7 +426,7 @@
 
 -(void)buttonTap:(UIButton *)sender
 {
-    if (sender.tag - 1000 != 7)
+    if (sender.tag - 1000 != 7 && sender.tag-1000 != 8)
     {
         BOOL islogIn = [self isLogIn];
         
@@ -518,8 +519,18 @@
         {
             DetailViewController *_qrcode=[[DetailViewController alloc]init];
             
-            [self.navigationController pushViewController:_qrcode animated:YES];
+            [myDelegate.root_nav pushViewController:_qrcode animated:YES];
         
+        }
+            break;
+        case 8://搜索
+        {
+            SliderSearchViewController * search =[[SliderSearchViewController alloc]init];
+            
+            UINavigationController * search_nav = [[UINavigationController alloc] initWithRootViewController:search];
+            
+            [self presentViewController:search_nav animated:YES completion:NULL];
+            
         }
             break;
             

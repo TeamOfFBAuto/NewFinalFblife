@@ -14,10 +14,14 @@
 #import "fbWebViewController.h"
 #import "LogInViewController.h"
 #import "NewMineViewController.h"
+#import "loadingimview.h"
+
 
 @interface NewWeiBoDetailViewController ()
 {
     UIView * tableHeaderView;
+    
+    loadingimview * myAlertView;
 }
 
 @end
@@ -97,6 +101,9 @@
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     @try {
+        
+        myAlertView.hidden = YES;
+        
         NSDictionary * data_dic = [request.responseData objectFromJSONData];
         
         if (pageCount == 1)
@@ -387,6 +394,15 @@
     
     [self.view addSubview:bottom_view];
     
+    
+    
+    myAlertView = [[loadingimview alloc] initWithFrame:CGRectMake(0,0,150,100) labelString:@"正在加载"];
+    
+    myAlertView.center = CGPointMake(160,(iPhone5?568:480)/2-64);
+    
+    myAlertView.hidden = YES;
+
+    [self.view addSubview:myAlertView];
 }
 
 
@@ -933,6 +949,7 @@
     switch (index) {
         case 0:
         {
+            myAlertView.hidden = NO;
             [self initHttpRequest];
         }
             break;

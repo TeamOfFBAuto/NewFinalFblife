@@ -101,8 +101,6 @@
     
     _request_ = [ASIHTTPRequest requestWithURL:fullUrl];
     
-    
-    
     _request_.delegate = self;
     
     _request_.shouldAttemptPersistentConnection = NO;
@@ -371,6 +369,15 @@
     
     [self getmychachearray];
  
+}
+
+#pragma mark - 返回
+
+-(void)leftButtonTap:(UIButton *)sender
+{
+    [_request_ clearDelegatesAndCancel];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -137,14 +137,9 @@
             
             NSLog(@"---------dic ----%@",dic);
             
-            
             NSDictionary * content = [dic objectForKey:@"data"];
             
-            NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
-            
-            [user setObject:content forKey:@"friendList"];
-            
-            [self exchangeData:content];
+            [self exchangeData:content isCache:NO];
         }
         @catch (NSException *exception) {
             
@@ -152,11 +147,7 @@
         @finally {
             
         }
-        
     }];
-    
-    
-    
     
     [_request_friend startAsynchronous];
     
@@ -200,89 +191,102 @@
     [_myTableView reloadData];
 }
 
--(void)exchangeData:(NSDictionary *)content
+-(void)exchangeData:(NSDictionary *)content isCache:(BOOL)isCache
 {
     [self.dataArray removeAllObjects];
     [_listContent removeAllObjects];
     [self.tempArray removeAllObjects];
     [number_array removeAllObjects];
     
-    
-    if (content.count == 0)
-    {
-        return;
-    }
-    
-    
-    NSArray * array123 = [content allKeys];
-    
-    for (int i = 0;i < [array123 count];i++)
-    {
-        //        PersonInfo * theInfo = [[PersonInfo alloc] initWithDictionary:[content objectForKey:[[content allKeys] objectAtIndex:i]]];
-        
-        PersonInfo * theInfo = [[PersonInfo alloc] init];
-        
-        theInfo.uid = [NSString stringWithFormat:@"%@",[array123 objectAtIndex:i]];
-        
-        theInfo.username = [NSString stringWithFormat:@"%@",[content objectForKey:[array123 objectAtIndex:i]]];
-        
-        if (theInfo.username.length != 0)
+    @try {
+        if (content.count == 0)
         {
-            [_dataArray addObject:theInfo];
+            return;
+        }
+        
+        
+        NSArray * array123 = [content allKeys];
+        
+        for (int i = 0;i < [array123 count];i++)
+        {
+            //        PersonInfo * theInfo = [[PersonInfo alloc] initWithDictionary:[content objectForKey:[[content allKeys] objectAtIndex:i]]];
+            
+            PersonInfo * theInfo = [[PersonInfo alloc] init];
+            
+            theInfo.uid = [NSString stringWithFormat:@"%@",[array123 objectAtIndex:i]];
+            
+            theInfo.username = [NSString stringWithFormat:@"%@",[content objectForKey:[array123 objectAtIndex:i]]];
+            
+            if (theInfo.username.length != 0)
+            {
+                [_dataArray addObject:theInfo];
+            }
+        }
+        
+        ///////////////////////////////////////////////////////////////
+        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];//这个是建立索引的核心
+        
+        //    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:0];
+        
+        for (PersonInfo * info in self.dataArray)
+        {
+            NSInteger sect = [theCollation sectionForObject:info collationStringSelector:@selector(getFirstName)];//getLastName是实现中文安拼音检索的核心，见NameIndex类
+            info._sectionNum = sect; //设定姓的索引编号
+            if (![number_array containsObject:[NSNumber numberWithInt:sect]])
+            {
+                [number_array addObject:[NSNumber numberWithInt:sect]];
+            }
+        }
+        
+        NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        
+        NSArray *arr1 = [number_array sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];
+        
+        [number_array removeAllObjects];
+        
+        [number_array addObjectsFromArray:arr1];
+        
+        NSInteger highSection = [[theCollation sectionTitles] count]; //返回的应该是27，是a－z和＃
+        
+        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection]; //tableView 会被分成27个section
+        
+        for (int i=0; i<=highSection; i++)
+        {
+            
+            NSMutableArray *sectionArray = [[NSMutableArray alloc] init];
+            [sectionArrays addObject:sectionArray];
+        }
+        
+        for (PersonInfo * item in self.dataArray)
+        {
+            [(NSMutableArray *)[sectionArrays objectAtIndex:item._sectionNum-1] addObject:item];
+        }
+        for (NSMutableArray *sectionArray in sectionArrays)
+        {
+            if (sectionArray.count != 0)
+            {
+                NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(getFirstName)]; //同
+                [_listContent addObject:sortedSection];
+            }
+        }
+        
+        ///////////////////////////////////////////////////////////////
+        
+        [_myTableView reloadData];
+    
+        if (!isCache)
+        {
+            NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+            
+            [user setObject:content forKey:@"friendList"];
         }
     }
-    
-    ///////////////////////////////////////////////////////////////
-    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];//这个是建立索引的核心
-    
-    //    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:0];
-    
-    for (PersonInfo * info in self.dataArray)
-    {
-        NSInteger sect = [theCollation sectionForObject:info collationStringSelector:@selector(getFirstName)];//getLastName是实现中文安拼音检索的核心，见NameIndex类
-        info._sectionNum = sect; //设定姓的索引编号
-        if (![number_array containsObject:[NSNumber numberWithInt:sect]])
-        {
-            [number_array addObject:[NSNumber numberWithInt:sect]];
-        }
-    }
-    
-    NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    
-    NSArray *arr1 = [number_array sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];
-    
-    [number_array removeAllObjects];
-    
-    [number_array addObjectsFromArray:arr1];
-    
-    NSInteger highSection = [[theCollation sectionTitles] count]; //返回的应该是27，是a－z和＃
-    
-    NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection]; //tableView 会被分成27个section
-    
-    for (int i=0; i<=highSection; i++)
-    {
+    @catch (NSException *exception) {
         
-        NSMutableArray *sectionArray = [[NSMutableArray alloc] init];
-        [sectionArrays addObject:sectionArray];
     }
-    
-    for (PersonInfo * item in self.dataArray)
-    {
-        [(NSMutableArray *)[sectionArrays objectAtIndex:item._sectionNum-1] addObject:item];
+    @finally {
+        
     }
-    for (NSMutableArray *sectionArray in sectionArrays)
-    {
-        if (sectionArray.count != 0)
-        {
-            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(getFirstName)]; //同
-            [_listContent addObject:sortedSection];
-        }
-    }
-    
-    
-    ///////////////////////////////////////////////////////////////
-    
-    [_myTableView reloadData];
 }
 
 
@@ -345,7 +349,7 @@
     
     if (dic.count>0)
     {
-        [self exchangeData:dic];
+        [self exchangeData:dic isCache:YES];
         NSArray * array = [user objectForKey:@"RecentContact"];
         [self exchangeContent:array];
         

@@ -122,6 +122,8 @@
         
         button.tag = 10000 + i;
         
+        button.userInteractionEnabled = NO;
+        
         [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
         
         [button setImage:[UIImage imageNamed:[imageArray objectAtIndex:i]] forState:UIControlStateNormal];
@@ -498,6 +500,10 @@
     }
     [atlasModel loadAtlasDataWithId:self.id_atlas WithCompleted:^(NSMutableArray *array) {
         
+        input_view.userInteractionEnabled = YES;
+        
+        _myScrollView.userInteractionEnabled = YES;
+        
         [bself.allImagesUrlArray addObjectsFromArray:array];
         
         atlasModel = [bself.allImagesUrlArray objectAtIndex:bself.currentPage];
@@ -666,6 +672,8 @@
     
     _myScrollView.pagingEnabled = YES;
     
+    _myScrollView.userInteractionEnabled = NO;
+    
     _myScrollView.backgroundColor = [UIColor blackColor];//RGBCOLOR(242,242,242);
     
     _myScrollView.showsHorizontalScrollIndicator = NO;
@@ -692,6 +700,8 @@
     __weak typeof(self) bself = self;
     
     input_view = [[CustomInputView alloc] initWithFrame:CGRectMake(0,content_back_view.frame.origin.y + content_back_view.frame.size.height,320,44)];
+    
+    input_view.userInteractionEnabled = NO;
     
     [input_view loadAllViewWithPinglunCount:@"0" WithType:0 WithPushBlock:^(int type){
         
@@ -918,6 +928,8 @@
         navImageView.alpha = isHidden?0:1;
         
         content_back_view.alpha = isHidden?0:1;
+        
+        input_view.alpha = isHidden?0:1;
         
     } completion:^(BOOL finished) {
         

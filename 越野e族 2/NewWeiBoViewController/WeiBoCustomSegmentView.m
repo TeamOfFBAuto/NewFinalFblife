@@ -70,7 +70,7 @@
         
         button.tag = 100 + i;
         
-        button.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        button.titleLabel.font = [UIFont systemFontOfSize:16];
         
         [button setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
         

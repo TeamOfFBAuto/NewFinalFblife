@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ATMHud.h"
 
-@interface ZhuCeViewController : UIViewController<ASIHTTPRequestDelegate,UIAlertViewDelegate,UITextFieldDelegate>
+@interface ZhuCeViewController : MyViewController<ASIHTTPRequestDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 {
     UITextField * userName_tf;
     
