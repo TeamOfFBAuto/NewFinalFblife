@@ -427,7 +427,8 @@
     __weak typeof(self)wself=self;
     
     
-    [inputV loadAllViewWithPinglunCount:self.string_commentnumber WithPushBlock:^{
+    
+    [inputV loadAllViewWithPinglunCount:@"0" WithPushBlock:^{
         
         
     } WithSendBlock:^(NSString *content, BOOL isForward) {

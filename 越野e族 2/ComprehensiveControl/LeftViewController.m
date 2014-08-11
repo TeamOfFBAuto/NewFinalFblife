@@ -105,9 +105,9 @@
    [super viewDidLoad];
     _firstVC=[[ComprehensiveViewController alloc]init];
     
-    titles = @[@"综合",@"资讯",@"图集", @"论坛", @"自留地", @"车库"];
+    titles = @[@"综合",@"论坛",@"资讯", @"自留地", @"车库", @"图集"];
     
-    imageArr=@[@"zonghegray50_48.png",@"zixungray47_42.png",@"tujigray.png",@"luntangray48_41.png",@"ziliudigray44_4.png",@"chekugray54_35.png",@"zonghered50_48.png",@"zixunred47_42.png",@"tujired.png",@"luntanred48_41.png",@"ziliudired44_40.png",@"chekured54_35.png"];
+    imageArr=@[@"zonghegray50_48.png",@"luntangray48_41.png",@"zixungray47_42.png",@"ziliudigray44_4.png",@"chekugray54_35.png",@"tujigray.png",@"zonghered50_48.png",@"luntanred48_41.png",@"zixunred47_42.png",@"ziliudired44_40.png",@"chekured54_35.png",@"tujired.png"];
     
 //    UIImage *background   =[UIImage imageNamed:IS_IPHONE_5?@"Mallbackgurand.png":@"Mallbackgurand.png"];
     
@@ -160,7 +160,7 @@
         
         [tabbutton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
         
-        if (i==4) {
+        if (i==3) {
             
             [tabbutton setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
             
@@ -207,7 +207,7 @@
 
         }
             break;
-        case 102:
+        case 105:
         {
             NSLog(@"选择的第%d个button",sender.tag-100);
             
@@ -218,7 +218,7 @@
         }
             break;
             
-        case 101:
+        case 102:
         {
             NSLog(@"选择的第%d个button",sender.tag-100);
             
@@ -230,7 +230,7 @@
             break;
 
             
-        case 103:
+        case 101:
         {
             [self.mm_drawerController
              setCenterViewController:_bbsNav    withCloseAnimation:YES
@@ -239,7 +239,7 @@
 
         }
             break;
-        case 104:
+        case 103:
         {
             NSLog(@"选择的第%d个button",sender.tag-100);
             
@@ -252,7 +252,7 @@
 
         }
             break;
-        case 105:
+        case 104:
         {
             NSLog(@"选择的第%d个button",sender.tag-100);
             [self.mm_drawerController

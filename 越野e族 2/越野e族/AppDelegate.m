@@ -1163,13 +1163,19 @@ static int numberof = 0;
     [_RootVC setMaximumRightDrawerWidth:288];
     [_RootVC setMaximumLeftDrawerWidth:287];
     _RootVC.shouldStretchDrawer = NO;
-    [_RootVC setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar];
+    [_RootVC setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [_RootVC setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
        _RootVC.showsShadow = YES;
     
     
     _root_nav = [[UINavigationController alloc] initWithRootViewController:_RootVC];
+    
+    
+    
+    
+    
+    
     _root_nav.navigationBarHidden = YES;
     self.window.rootViewController = _root_nav;//sideMenuViewController;
     

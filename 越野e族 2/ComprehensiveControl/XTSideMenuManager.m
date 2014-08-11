@@ -10,12 +10,25 @@
 
 #import "MMDrawerController.h"
 
+
 @implementation XTSideMenuManager
 
 + (void)resetSideMenuRecognizerEnable:(BOOL)canOpen
 {
-//    MMDrawerController *menu = (MMDrawerController *)[[[UIApplication sharedApplication] keyWindow] rootViewController];
-//    menu.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+    AppDelegate *app=   (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    MMDrawerController *menu = (MMDrawerController *)app.RootVC;
+    if (canOpen) {
+        
+        [menu setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+
+
+    }else{
+    
+        [menu setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+
+    }
 }
+
 
 @end

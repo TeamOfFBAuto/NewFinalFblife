@@ -186,7 +186,6 @@
                     [_rightImageV loadImageFromURL:[NSString stringWithFormat:@"%@",[_newmodel.photo objectAtIndex:2]] withPlaceholdImage:[UIImage imageNamed:@"smallimplace.png"]];
                 }
                 
-                
                 _bigLeixing.frame=CGRectMake(12, 105, 30, 20);
                 [_bigLeixing setTitle:@"图集" forState:UIControlStateNormal];
                 

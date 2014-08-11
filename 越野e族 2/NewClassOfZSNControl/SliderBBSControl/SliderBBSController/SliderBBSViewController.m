@@ -145,9 +145,21 @@
     return self;
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:NO];
+    
+    
+}
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [XTSideMenuManager resetSideMenuRecognizerEnable:YES];
     
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
