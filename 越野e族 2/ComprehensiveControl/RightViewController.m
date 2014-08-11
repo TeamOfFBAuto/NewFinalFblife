@@ -95,32 +95,30 @@
     
     BOOL islogin = [userDefaults boolForKey:USER_IN];
     
-    if (islogin) {
+    if (islogin)
+    {
         [self checkallmynotification];
     }
     
-//    if (_rootScrollView)
-//    {
-//        if (islogin && [LogIn_label.text isEqualToString:@"点击立即登录"])
-//        {
-//            LogIn_label.text = [userDefaults objectForKey:USER_NAME];
-//            
-//            [headerImageView loadUserHeaderImageFromUrl:[userDefaults objectForKey:USER_FACE] withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
-//        }
-//        
-//        return;
-//    }
-    
-    
-    
     if (_rootScrollView)
     {
-        
-        for (UIView * view in _rootScrollView.subviews) {
-            [view removeFromSuperview];
+        if (islogin)
+        {
+            NSString * header_image_url = [userDefaults objectForKey:USER_FACE];
+            
+            if (header_image_url.length == 0)
+            {
+                [self receivemyimage_head];
+            }else{
+                [headerImageView loadImageFromURL:header_image_url withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+            }
+        }else
+        {
+            headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];
         }
+        
+        return;
     }
-    
     
     
     _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,298,(iPhone5?568:480))];
@@ -171,9 +169,6 @@
         }else{
             [headerImageView loadImageFromURL:header_image_url withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
         }
-        
-        
-        
     }else
     {
         headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];
