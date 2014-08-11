@@ -272,6 +272,9 @@
         
         guanggao_image.frame=CGRectMake(0, 0, guanggao_image.image.size.width/2, guanggao_image.image.size.height/2+2);
         
+        NSLog(@"gaungdada -----  %f ----  %f",guanggao_image.image.size.width/2,guanggao_image.image.size.height/2+2);
+        
+        
         NSLog(@"appdelegate===仔仔到了图片");
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:1.0];

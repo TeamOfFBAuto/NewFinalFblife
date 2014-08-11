@@ -309,15 +309,24 @@
 
     inputV=[[CustomInputView alloc]initWithFrame:CGRectMake(0,iPhone5?419+88-42:377, 320, 41)];
     
+    inputV.isShowFenYe = YES;
     
     __weak typeof(inputV)weakInputV = inputV;
     __weak typeof(newsdetailViewController *)wself=self;
     
     __weak typeof(str_commentnumberofnews)weakstr_commentnumberofnews = str_commentnumberofnews;
     
-    [inputV loadAllViewWithPinglunCount:@"0" WithPushBlock:^{
+    [inputV loadAllViewWithPinglunCount:@"0" WithType:1 WithPushBlock:^(int type){
         
-        [wself commentyemian];
+        if (type == 0)//跳转到评论
+        {
+            [wself commentyemian];
+        }else//分页按钮
+        {
+            NSLog(@"分页按钮");
+        }
+        
+        
 
     } WithSendBlock:^(NSString *content, BOOL isForward) {
         //发表
@@ -373,6 +382,8 @@
              NSLog(@"评论返回的数据===%@",dicinfo);
           }];
     }];
+    
+    [inputV.fenye_button setTitle:@"6/18" forState:UIControlStateNormal];
     
     [aview addSubview:inputV];
 }

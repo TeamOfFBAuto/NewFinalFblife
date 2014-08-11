@@ -13,6 +13,10 @@
 
 @synthesize content_dictionary = _content_dictionary;
 
+@synthesize fenye_button = _fenye_button;
+
+@synthesize isShowFenYe = _isShowFenYe;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,13 +29,12 @@
 }
 
 
--(void)loadAllViewWithPinglunCount:(NSString *)theCount WithPushBlock:(InputViewPushToPinglunBlock)thePushBlock WithSendBlock:(InputViewSendToPinglunBlock)theSendBlock
+-(void)loadAllViewWithPinglunCount:(NSString *)theCount WithType:(int)theType WithPushBlock:(InputViewButtonTap)thePushBlock WithSendBlock:(InputViewSendToPinglunBlock)theSendBlock
 {
     
-    pushPingLun_block = thePushBlock;
+    inputViewButtonTap_block = thePushBlock;
     
     sendPingLun_block = theSendBlock;
-    
     
     top_line_view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,0.5)];
     
@@ -39,8 +42,32 @@
     
     [self addSubview:top_line_view];
     
+
     
-    commot_background_view = [[UIView alloc] initWithFrame:CGRectMake(11,(self.bounds.size.height-30)/2,255,30)];
+    
+    if (self.isShowFenYe)
+    {
+        _fenye_button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        _fenye_button.frame = CGRectMake(0,0,30,self.frame.size.height);
+        
+        _fenye_button.center = CGPointMake(30,self.frame.size.height/2);
+        
+        _fenye_button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [_fenye_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        _fenye_button.titleLabel.font = [UIFont systemFontOfSize:13];
+        
+//        [_fenye_button setImage:[UIImage imageNamed:@"bottom_fenye_image"] forState:UIControlStateNormal];
+        
+        [_fenye_button addTarget:self action:@selector(fenyeTap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:_fenye_button];
+    }
+    
+    
+    commot_background_view = [[UIView alloc] initWithFrame:CGRectMake(11+(_isShowFenYe?40:0),(self.bounds.size.height-30)/2,255-(_isShowFenYe?40:0),30)];
     
     commot_background_view.backgroundColor = [UIColor whiteColor];
     
@@ -53,7 +80,8 @@
     [self addSubview:commot_background_view];
     
     
-    commit_label = [[UILabel alloc] initWithFrame:CGRectMake(5,0,245,30)];
+    
+    commit_label = [[UILabel alloc] initWithFrame:CGRectMake(5,0,commot_background_view.frame.size.width-10,30)];
     
     commit_label.userInteractionEnabled = YES;
     
@@ -159,14 +187,14 @@
     
     mark_button.backgroundColor = RGBCOLOR(248,248,248);
     
-    [mark_button addTarget:self action:@selector(markTap:) forControlEvents:UIControlEventTouchUpInside];
+  //  [mark_button addTarget:self action:@selector(markTap:) forControlEvents:UIControlEventTouchUpInside];
     
     [text_background_view addSubview:mark_button];
     
     
     mark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"writeblog_mark_image.png"]];
     mark.center = CGPointMake(mark_button.bounds.size.width/2,mark_button.bounds.size.height/2);
-    mark.hidden = !isForward;
+    mark.hidden = NO;
     [mark_button addSubview:mark];
     
     
@@ -264,12 +292,26 @@
     [text_input_view becomeFirstResponder];
 }
 
+#pragma mark - 分类按钮
+
+-(void)fenyeTap:(UIButton *)sender
+{
+    if (inputViewButtonTap_block)
+    {
+        inputViewButtonTap_block(1);
+    }
+}
+
 
 #pragma mark - 跳到评论界面
 
 -(void)pushToPinglunTap:(UIButton *)sender
 {
-    pushPingLun_block();
+    if (inputViewButtonTap_block)
+    {
+        inputViewButtonTap_block(0);
+    }
+    
 }
 
 

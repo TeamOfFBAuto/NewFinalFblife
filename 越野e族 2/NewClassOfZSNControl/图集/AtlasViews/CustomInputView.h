@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^InputViewPushToPinglunBlock)(void);//跳到评论界面
+///跳到评论界面或分页  0为评论 1为分页
+typedef void(^InputViewButtonTap)(int type);
 
 typedef void(^InputViewSendToPinglunBlock)(NSString * content,BOOL isForward);//发表评论
 
 
 @interface CustomInputView : UIView<UITextViewDelegate>
 {
-    InputViewPushToPinglunBlock pushPingLun_block;
+    InputViewButtonTap inputViewButtonTap_block;
     
     InputViewSendToPinglunBlock sendPingLun_block;
     
@@ -40,12 +41,18 @@ typedef void(^InputViewSendToPinglunBlock)(NSString * content,BOOL isForward);//
 
 @property(nonatomic,strong)UIButton * send_button;//发送评论按钮
 
+///分页按钮
+@property(nonatomic,strong)UIButton * fenye_button;
+
+///是否显示分页按钮，默认为不显示
+@property(nonatomic,assign)BOOL isShowFenYe;
+
 @property(nonatomic,strong)NSDictionary * content_dictionary;//同步到自留地内容(key: content:发布内容  image:发布的图片)
 
 
-//count：评论数
+///count：评论数 theType类型 0为图集 1为论坛 新闻
 
--(void)loadAllViewWithPinglunCount:(NSString *)theCount WithPushBlock:(InputViewPushToPinglunBlock)thePushBlock WithSendBlock:(InputViewSendToPinglunBlock)theSendBlock;
+-(void)loadAllViewWithPinglunCount:(NSString *)theCount WithType:(int)theType WithPushBlock:(InputViewButtonTap)thePushBlock WithSendBlock:(InputViewSendToPinglunBlock)theSendBlock;
 
 //添加键盘观察
 
