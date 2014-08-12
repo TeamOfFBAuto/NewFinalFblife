@@ -51,19 +51,19 @@
     
     [super viewWillAppear:YES];
     
-    self.navigationController.navigationBarHidden = YES;
-    
-    self.wantsFullScreenLayout = YES;
-    
-    if (MY_MACRO_NAME) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-        
-    }
+//    self.navigationController.navigationBarHidden = YES;
+//    
+//    self.wantsFullScreenLayout = YES;
+//    
+//    if (MY_MACRO_NAME) {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//        
+//    }
 
     
-    [self setup];
+//    [self setup];
 }
 
 
@@ -73,18 +73,228 @@
     
     self.view.backgroundColor = RGBCOLOR(237,238,243);
     
-    if (MY_MACRO_NAME) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
-    }
+//    if (MY_MACRO_NAME) {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//        
+//    }
     
     myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.navigationController.navigationBarHidden = YES;
     
     timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(checkallmynotification) userInfo:nil repeats:YES];
+    
+//    [self setup];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    BOOL islogin = [userDefaults boolForKey:USER_IN];
+    
+
+    
+    
+    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0,298,(iPhone5?568:480))];
+    
+    _rootScrollView.backgroundColor = RGBCOLOR(242,242,242);
+    
+    _rootScrollView.showsVerticalScrollIndicator = NO;
+    
+    _rootScrollView.showsHorizontalScrollIndicator = NO;
+    
+    _rootScrollView.bounces = NO;
+    
+    _rootScrollView.backgroundColor = [UIColor clearColor];
+    
+ //   [self.view addSubview:_rootScrollView];
+    
+    
+    
+    UIView * user_Info_BackView = [[UIView alloc] initWithFrame:CGRectMake(0,0,298,191)];
+    
+    user_Info_BackView.backgroundColor = RGBCOLOR(248,248,248);
+    
+    user_Info_BackView.layer.masksToBounds = NO;
+    
+    user_Info_BackView.layer.shadowColor = [UIColor blackColor].CGColor;//RGBCOLOR(216,216,216).CGColor;
+    
+    user_Info_BackView.layer.shadowOffset = CGSizeMake(0.5,0.5);
+    
+    user_Info_BackView.layer.shadowRadius = 1;
+    
+    user_Info_BackView.layer.shadowOpacity = 0.2;
+    
+    [self.view addSubview:user_Info_BackView];
+    
+    
+    
+    //    [self receivemyimage_head];
+    
+    headerImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(103,46,82,82)];
+    
+    if (islogin)
+    {
+        NSString * header_image_url = [userDefaults objectForKey:USER_FACE];
+        
+        if (header_image_url.length == 0)
+        {
+            [self receivemyimage_head];
+        }else{
+            [headerImageView loadImageFromURL:header_image_url withPlaceholdImage:[UIImage imageNamed:@"touxiang"]];
+        }
+    }else
+    {
+        headerImageView.image = [UIImage imageNamed:@"SliderRightLogin.png"];
+    }
+    
+    headerImageView.layer.masksToBounds = YES;
+    
+    headerImageView.layer.cornerRadius = 41;
+    
+    headerImageView.userInteractionEnabled = YES;
+    
+    headerImageView.layer.borderColor = RGBCOLOR(121,121,121).CGColor;
+    
+    headerImageView.layer.borderWidth = 1;
+    
+    [user_Info_BackView addSubview:headerImageView];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerTapToLogIn:)];
+    
+    [headerImageView addGestureRecognizer:tap];
+    
+    
+    LogIn_label = [[UILabel alloc] initWithFrame:CGRectMake(0,145,288,25)];
+    
+    LogIn_label.text = islogin?[userDefaults objectForKey:USER_NAME]:@"点击立即登录";
+    
+    LogIn_label.font = [UIFont systemFontOfSize:15];
+    
+    LogIn_label.textAlignment = NSTextAlignmentCenter;
+    
+    LogIn_label.textColor = RGBCOLOR(142,142,142);
+    
+    LogIn_label.backgroundColor = [UIColor clearColor];
+    
+    [user_Info_BackView addSubview:LogIn_label];
+    
+    
+    NSArray * arrary = [NSArray arrayWithObjects:@"SliderRighttiezi.png",@"SliderRightstar.png",@"SliderRightfriend.png",@"SliderRightfbgray73_67.png",@"SliderRightmessage.png",@"SliderRighttongzhi.png",@"SliderRightcaogaoxiangRes61_69.png",@"SliderRightsaoyisao.png",@"SliderSeachImage.png",nil];
+    
+    NSArray * arrary1 = [NSArray arrayWithObjects:@"帖子",@"收藏",@"好友",@"自留地",@"私信",@"通知",@"草稿箱",@"扫一扫",@"搜索",nil];
+    
+    
+    for (int i = 0;i < 3;i++) {
+        for (int j = 0;j < 3;j++)
+        {
+            
+            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            button.frame = CGRectMake(30 + 90*j,(iPhone5?230:210)+(iPhone5?90:75)*i,44,60);
+            
+            [button setTitle:[arrary1 objectAtIndex:j+i*3] forState:UIControlStateNormal];
+            
+            [button setTitleColor:RGBCOLOR(145,145,145) forState:UIControlStateNormal];
+            
+            button.titleLabel.font = [UIFont systemFontOfSize:12];
+            
+            [button setTitleEdgeInsets:UIEdgeInsetsMake(60,-5,0,-5)];
+            
+            button.tag = 1000 + i*3+j;
+            
+            button.backgroundColor = [UIColor clearColor];
+            
+            [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.view addSubview:button];
+            
+            
+            UIImage * image = [UIImage imageNamed:[arrary objectAtIndex:j+i*3]];
+            
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,image.size.width,image.size.height)];
+            
+            imageView.image = image;
+            
+            imageView.center = CGPointMake(22,23);
+            
+            [button addSubview:imageView];
+            
+            
+            if (i*3+j == 5)
+            {
+                if (!notification_view)
+                {
+                    notification_view = [[UIView alloc] initWithFrame:CGRectMake(35,50,8,8)];
+                    
+                    notification_view.backgroundColor = RGBCOLOR(255,0,60);
+                    
+                    notification_view.hidden = !NewsMessageNumber;
+                    
+                    notification_view.layer.cornerRadius = 4;
+                    
+                    notification_view.layer.masksToBounds = NO;
+                    
+                    [button addSubview:notification_view];
+                }
+            }
+        }
+    }
+    
+    
+    UILabel * version_label = [[UILabel alloc] initWithFrame:CGRectMake(40,_rootScrollView.frame.size.height-(iPhone5?50:40),100,30)];
+    
+    version_label.text = [NSString stringWithFormat:@"v %@",NOW_VERSION];
+    
+    version_label.textAlignment = NSTextAlignmentLeft;
+    
+    version_label.textColor = RGBCOLOR(143,143,145);
+    
+    version_label.font = [UIFont systemFontOfSize:14];
+    
+    version_label.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:version_label];
+    
+    
+    
+    UIButton * setting_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    setting_button.frame = CGRectMake(207,_rootScrollView.frame.size.height-(iPhone5?48:38),60,30);
+    
+    [setting_button setTitle:@"设置" forState:UIControlStateNormal];
+    
+    [setting_button setImage:[UIImage imageNamed:@"SliderRightshezhi.png"] forState:UIControlStateNormal];
+    
+    [setting_button setTitleColor:RGBCOLOR(143,143,145) forState:UIControlStateNormal];
+    
+    setting_button.titleLabel.font = [UIFont systemFontOfSize:15];
+    
+    [setting_button setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,40)];
+    
+    [setting_button addTarget:self action:@selector(settingButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:setting_button];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(receivemyimage_head) name:@"LogIn" object:nil];//登陆成功通知
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(LogOutNotification) name:@"logoutToChangeHeader" object:nil];//退出登陆通知
 }
 
 

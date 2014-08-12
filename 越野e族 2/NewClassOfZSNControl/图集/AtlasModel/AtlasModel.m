@@ -84,6 +84,10 @@
                 {
                     AtlasModel * model = [[AtlasModel alloc] initWithDictionary:dic];
                     
+                    if (model.atlas_content.length == 0) {
+                        model.atlas_content = [allDic objectForKey:@"photocontent"];
+                    }
+                    
                     [data_array addObject:model];
                 }
                 
