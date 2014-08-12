@@ -1385,11 +1385,11 @@
     switch (sender.tag) {
         case 201:
             NSLog(@"刷新");
-            // selecttionofxialaview=1;
-            // currentpage=1;
-//            issuccessload=YES;
+             selecttionofxialaview=1;
+             currentpage=1;
+           issuccessload=YES;
 //            
-//            [_SelectPick removeFromSuperview];
+          [_SelectPick removeFromSuperview];
             [self Doauthor:sender];
             
             break;
@@ -1417,13 +1417,23 @@
             break;
         case 203:{
             NSLog(@"显示");
+            
+            
+            
+            
+            NSLog(@"allpages===%d",allpages);
             NSMutableArray *array_shu=[[NSMutableArray alloc]init];
             for (int i=0; i<allpages; i++) {
                 [array_shu addObject:[NSString stringWithFormat:@"%d",i+1]];
             }
-            if (!_SelectPick) {
-                _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, 320, 200) receiveArray:array_shu];
+            
+            if (_SelectPick) {
+                [_SelectPick removeFromSuperview];
+                
             }
+            _SelectPick=[[SelectNumberView alloc]initWithFrame:CGRectMake(0,iPhone5? 260:171, 320, 200) receiveArray:array_shu];
+
+            
             _SelectPick.delegate=self;
             
             if (dangqianwebview==1) {
@@ -1895,7 +1905,19 @@
                 
                 [ stringhtml insertString:@"<style type=text/css>img {max-width:240px;}  </style>" atIndex:0];
                 //stringhtml= (NSMutableString*)[stringhtml stringByReplacingOccurrencesOfString:@"background-color:#efedea;" withString:@""];
+                
+                
+                
+                
                 allpages=[[dic objectForKey:@"all_pages"] integerValue];
+                
+                
+                
+                NSLog(@"xjshjall====%d",allpages);
+                
+                
+                
+                
                 //  barview.button_show.titleLabel.text=[NSString stringWithFormat:@"%d/%d",currentpage,allpages];
                 [barview.button_show setTitle:[NSString stringWithFormat:@"%d/%d",currentpage,allpages] forState:UIControlStateNormal];
                 
