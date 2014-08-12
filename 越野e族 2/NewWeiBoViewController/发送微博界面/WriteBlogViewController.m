@@ -369,12 +369,15 @@
     
     if (self.myAllimgUrl.count>0)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self comeonmyimage];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-            });
-        });
+        [self comeonmyimage];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [self comeonmyimage];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                NSLog(@"我艹 -----  %@",allImageArray);
+//                [self setbutton];
+//            });
+//        });
     }else
     {
         [self setbutton];
@@ -428,37 +431,56 @@
 {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
-    for (int i = 0;i < self.myAllimgUrl.count;i++)
-    {
-        NSString *imgurl=[NSString stringWithFormat:@"%@",[self.myAllimgUrl objectAtIndex:i]];
-        NSURL *referenceURL = [NSURL URLWithString:imgurl];
+    __weak typeof(self)bself = self;
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
         
-        __block UIImage *returnValue = nil;
-        [library assetForURL:referenceURL resultBlock:^(ALAsset *asset)
-         {
-             
-             //returnValue = [UIImage imageWithCGImage:[asset thumbnail]]; //Retain Added
-             ALAssetRepresentation *assetRep = [asset defaultRepresentation];
-             
-             CGImageRef imgRef = [assetRep fullScreenImage];
-             
-             returnValue=[UIImage imageWithCGImage:imgRef
-                                             scale:assetRep.scale
-                                       orientation:(UIImageOrientation)assetRep.orientation];
-             
-             
-             if (returnValue) {
-                 [allImageArray addObject:returnValue];
-                 [allAssesters addObject:imgurl];
-             }
-             
-            [self setbutton];
-             
-         } failureBlock:^(NSError *error)
-         {
-             // error handling
-         }];
-    }
+        for (int i = 0;i < self.myAllimgUrl.count;i++)
+        {
+            NSString *imgurl=[NSString stringWithFormat:@"%@",[self.myAllimgUrl objectAtIndex:i]];
+            NSURL *referenceURL = [NSURL URLWithString:imgurl];
+            
+            __block UIImage *returnValue = nil;
+            [library assetForURL:referenceURL resultBlock:^(ALAsset *asset)
+             {
+                 
+                 //returnValue = [UIImage imageWithCGImage:[asset thumbnail]]; //Retain Added
+                 ALAssetRepresentation *assetRep = [asset defaultRepresentation];
+                 
+                 CGImageRef imgRef = [assetRep fullScreenImage];
+                 
+                 returnValue=[UIImage imageWithCGImage:imgRef
+                                                 scale:assetRep.scale
+                                           orientation:(UIImageOrientation)assetRep.orientation];
+                 
+                 if (returnValue)
+                 {
+                     [allImageArray addObject:returnValue];
+                     [allAssesters addObject:imgurl];
+                 }
+                 
+                 NSLog(@"怎么没有呢1111 ----  %@",allImageArray);
+                 
+                 if (i == self.myAllimgUrl.count-1) {
+                     [bself setbutton];
+                 }
+                 
+             } failureBlock:^(NSError *error)
+             {
+                 // error handling
+             }];
+        }
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+    
+            NSLog(@"怎么没有呢 ----  %@",allImageArray);
+//            [bself setbutton];
+    
+//        });
+//    });
+    
+    
     
 }
 

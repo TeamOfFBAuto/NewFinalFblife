@@ -1474,6 +1474,13 @@
     _choose_tableview.contentOffset = CGPointMake(0,0);
     _Screening_tableView.contentOffset = CGPointMake(0,0);
     
+    [UIView animateWithDuration:0.2 animations:^{
+        _silder_view.frame = CGRectMake(322,self.myTableView.frame.origin.y,_silder_view.frame.size.width,self.myTableView.frame.size.height);
+    } completion:^(BOOL finished)
+     {
+         
+     }];
+    
     CurrentPage = buttonondex;
     
     if (!_choose_array)

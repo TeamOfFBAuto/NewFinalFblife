@@ -146,7 +146,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     
-    [self setFrame:CGRectMake(0,iPhone5? [UIScreen mainScreen].bounds.size.height-40-17+88:[UIScreen mainScreen].bounds.size.height-40-17, 320, 40)];
+    [self setFrame:CGRectMake(0,iPhone5? [UIScreen mainScreen].bounds.size.height-40+88:[UIScreen mainScreen].bounds.size.height-40, 320, 40)];
     [UIView commitAnimations];
 }
 -(void)uping{
