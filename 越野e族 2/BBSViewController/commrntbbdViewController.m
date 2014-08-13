@@ -58,10 +58,6 @@
 {
     [super viewWillDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
     [MobClick endEvent:@"commrntbbdViewController"];
 }
 - (void)viewDidLoad
@@ -275,17 +271,17 @@
     
     if (self.myAllimgUrl.count>0) {
         
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [self comeonmyimage];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"************************************************************************************************************************");
-//                
-//                
-//                
-//            });
-//        });
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self comeonmyimage];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"************************************************************************************************************************");
+                
+                
+                
+            });
+        });
         
-        [self comeonmyimage];
+        
         
         
     }else{
@@ -344,50 +340,41 @@
 
 -(void)comeonmyimage{
     
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-    
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        for (int i = 0;i < self.myAllimgUrl.count;i++)
-        {
-            
-            NSString *imgurl=[NSString stringWithFormat:@"%@",[self.myAllimgUrl objectAtIndex:i]];
-            NSURL *referenceURL = [NSURL URLWithString:imgurl];
-            
-            __block UIImage *returnValue = nil;
-            [library assetForURL:referenceURL resultBlock:^(ALAsset *asset)
-             {
-                 //returnValue = [UIImage imageWithCGImage:[asset thumbnail]]; //Retain Added
-                 ALAssetRepresentation *assetRep = [asset defaultRepresentation];
-                 
-                 CGImageRef imgRef = [assetRep fullScreenImage];
-                 
-                 returnValue=[UIImage imageWithCGImage:imgRef
-                                                 scale:assetRep.scale
-                                           orientation:(UIImageOrientation)assetRep.orientation];
-                 
-                 if (returnValue) {
-                     [allImageArray addObject:returnValue];
-                     [allAssesters addObject:imgurl];
-                 }
-                 
-                 
-                 NSLog(@"alllimagearray====%@",allImageArray);
-                 if (allImageArray.count==self.myAllimgUrl.count) {
-                     [self setbutton];
-                 }
-                 
-             } failureBlock:^(NSError *error) {
-                 // error handling
-             }];
-        }
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    for (int i = 0;i < self.myAllimgUrl.count;i++)
+    {
         
         
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            
-//        });
-//    });
-    
+        NSString *imgurl=[NSString stringWithFormat:@"%@",[self.myAllimgUrl objectAtIndex:i]];
+        NSURL *referenceURL = [NSURL URLWithString:imgurl];
+        
+        __block UIImage *returnValue = nil;
+        [library assetForURL:referenceURL resultBlock:^(ALAsset *asset)
+         {
+             
+             
+             
+             //returnValue = [UIImage imageWithCGImage:[asset thumbnail]]; //Retain Added
+             ALAssetRepresentation *assetRep = [asset defaultRepresentation];
+             
+             CGImageRef imgRef = [assetRep fullScreenImage];
+             
+             returnValue=[UIImage imageWithCGImage:imgRef
+                                             scale:assetRep.scale
+                                       orientation:(UIImageOrientation)assetRep.orientation];
+             [allImageArray addObject:returnValue];
+             [allAssesters addObject:imgurl];
+             
+             NSLog(@"alllimagearray====%@",allImageArray);
+             if (allImageArray.count==self.myAllimgUrl.count) {
+                 [self setbutton];
+             }
+             
+             
+         } failureBlock:^(NSError *error) {
+             // error handling
+         }];
+    }
 }
 
 
@@ -703,7 +690,6 @@
         case 301:
             
             morePicView.hidden = YES;
-            pageControl.hidden = NO;
             
             isup=!isup;
             //刚开始的时候是NO，然后点击之后是yes,faceview show!
@@ -745,12 +731,6 @@
 
 -(void)takePhoto
 {
-    [self faceviewhide];
-    morePicView.hidden = YES;
-    [_contenttextview resignFirstResponder];
-    [subjectTextfield resignFirstResponder];
-    pageControl.hidden = YES;
-    [_keytop bottoming];
     
     if (allImageArray.count >=9)
     {
@@ -782,7 +762,7 @@
     morePicView.hidden = NO;
     
     [_keytop uping];
-    pageControl.hidden = YES;
+    
     [_contenttextview resignFirstResponder];
     [subjectTextfield resignFirstResponder];
     //    if (allImageArray.count >=9)
