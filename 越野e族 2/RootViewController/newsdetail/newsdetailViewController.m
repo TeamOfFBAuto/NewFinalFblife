@@ -465,7 +465,7 @@
     NSLog(@"ispr===%d",isPraise);
     
 
-    UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
+    UIButton *heartButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [heartButton addTarget:self action:@selector(dianzan:) forControlEvents:UIControlEventTouchUpInside];
     
     [heartButton setImage:[UIImage imageNamed:UN_PRAISE_IMAGE] forState:UIControlStateNormal];
@@ -480,7 +480,7 @@
     
     //收藏的
     
-    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(80,0,30,42.5)];
+    UIButton *collectButton=[[UIButton alloc]initWithFrame:CGRectMake(65,0,30,42.5)];
     [collectButton addTarget:self action:@selector(shoucang:) forControlEvents:UIControlEventTouchUpInside];
     [collectButton setImage:[UIImage imageNamed:UN_COLLECTED_IMAGE] forState:UIControlStateNormal];
 
@@ -488,7 +488,7 @@
     
 
     
-    button_comment=[[UIButton alloc]initWithFrame:CGRectMake(MY_MACRO_NAME?134: 135, 0, 44, 44)];
+    button_comment=[[UIButton alloc]initWithFrame:CGRectMake(120, 0, 44, 44)];
     
     
     button_comment.tag=26;
@@ -517,7 +517,7 @@
     
     UIBarButtonItem *comment_item=[[UIBarButtonItem alloc]initWithCustomView:rightView];
     
-    self.navigationItem.rightBarButtonItem=comment_item;
+    self.navigationItem.rightBarButtonItems=@[spaceButton,comment_item];
     
     
     if ([personal getMyAuthkey].length==0||[[personal getMyAuthkey] isEqualToString:@"(null)"]) {
