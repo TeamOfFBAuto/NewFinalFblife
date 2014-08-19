@@ -1235,14 +1235,13 @@
         return NO;
     }
     if ([str_test isEqualToString:@"ht"]) {//外链
-        return YES;
         
         NSLog(@"request.URL.relativeString====%@",request.URL.relativeString);
         NSLog(@"request.URL.absoluteString====%@",request.URL.absoluteString);
         
         if ([request.URL.relativeString rangeOfString:@"player"].length) {
             
-            return NO;
+            return YES;
         }else {
             
             fbWebViewController *_web=[[fbWebViewController alloc]init];

@@ -77,6 +77,16 @@
 
 - (void)viewDidLoad
 {
+    
+    
+    
+    UIAlertView *alertV=[[UIAlertView alloc]initWithTitle:@"链接地址" message:self.urlstring delegate:nil cancelButtonTitle:@"xx" otherButtonTitles:nil, nil];
+    [alertV show];
+    
+    NSLog(@"yuyy===%@",self.urlstring);
+    
+    
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
     self.navigationController.navigationBarHidden=NO;

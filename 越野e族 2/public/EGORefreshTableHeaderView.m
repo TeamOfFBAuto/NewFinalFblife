@@ -129,7 +129,6 @@
 	}
 }
 -(void)szksetstate{
-    NSLog(@"类似爱情");
     _statusLabel.text = NSLocalizedString(@"加载中...", @"加载中..");
     [_activityView startAnimating];
     [CATransaction begin];

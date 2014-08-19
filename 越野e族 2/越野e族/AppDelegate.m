@@ -423,7 +423,6 @@
     guanggao_image.delegate=nil;
     
 
-
     
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];

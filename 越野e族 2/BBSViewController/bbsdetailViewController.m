@@ -1531,6 +1531,24 @@
         
     }
     
+    if ([str_test isEqualToString:@"ht"]) {//外链
+        
+        NSLog(@"request.URL.relativeString====%@",request.URL.relativeString);
+        NSLog(@"request.URL.absoluteString====%@",request.URL.absoluteString);
+        
+        if ([request.URL.relativeString rangeOfString:@"player"].length) {
+            
+            return YES;
+        }else {
+            
+            fbWebViewController *_web=[[fbWebViewController alloc]init];
+            _web.urlstring=request.URL.absoluteString;
+            [self.navigationController pushViewController:_web animated:YES];
+            return NO;
+        }
+        
+    }
+    
     //
     //  request.URL.absoluteString====si:http://img1.fblife.com/attachments1/month_1307/20130712_52cb7fe23659d1665229x01x1BQkPEpd.png.thumb.jpg
     

@@ -197,7 +197,7 @@
     
 
     [self panduanIsNewVersion];
-  NSLog(@"shizhongkun转化成MD5加密后的字符串为=%@",[self md5:@"shizhongkun"])  ;
+//  NSLog(@"shizhongkun转化成MD5加密后的字符串为=%@",[self md5:@"shizhongkun"])  ;
     
     
     
@@ -216,8 +216,14 @@
     
     [[NSNotificationCenter defaultCenter]
      
-     addObserver:self selector:@selector(ssTurntoFbWebview:) name:@"TouchGuanggao" object:nil];
+     addObserver:self selector:@selector(ssTurntoFbWebview:) name:@"TouchGuanggao" object:nil];//点击了广告
     
+    //refreshcompre
+    
+    [[NSNotificationCenter defaultCenter]
+     
+     addObserver:self selector:@selector(jiaSshuaxin) name:@"refreshcompre" object:nil];//点击了广告
+
     
     [self turnToguanggao];
 
@@ -232,6 +238,38 @@
     
 
     
+}
+#pragma mark-从广告页面回来刷新一下
+
+-(void)jiaSshuaxin{
+    
+    
+    
+
+    [UIView animateWithDuration:0.6 animations:^{
+        mainTabView.contentOffset=CGPointMake(0, -60);
+        
+        mainTabView.contentOffset=CGPointMake(0, 0);
+
+        
+    } completion:^(BOOL finished) {
+        
+
+    
+    }
+     ];
+    
+    
+    if (normalinfoAllArray.count==0||huandengDic.count==0) {
+        
+        
+        [self loadHuandeng];
+        
+        [self loadNomalData];
+    }
+    
+    
+
 }
 
 #pragma mark-跳到fb页面
@@ -362,6 +400,7 @@
         _refreshHeaderView = view;
     }
     [_refreshHeaderView refreshLastUpdatedDate];
+   // [_refreshHeaderView szksetstate];
     [mainTabView addSubview:_refreshHeaderView];
     
     

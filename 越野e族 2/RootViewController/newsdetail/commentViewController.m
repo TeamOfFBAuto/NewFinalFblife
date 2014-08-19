@@ -527,19 +527,25 @@
     NSString *string_=@"shuaxinle";
     [user_ setObject:string_ forKey:@"last"];
     if (isup) {
-        NSLog(@".......................");
         
         NSURL *url101 = [NSURL URLWithString:[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sort=%@&sortid=%d&fbtype=json&page=1&order=1",self.sortString,[self.string_ID integerValue]]];
+        
+        NSLog(@".......................");
+
         
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url101];
         request.tag=101;
         [request setDelegate:self];
         [request startAsynchronous];
-        NSLog(@"开始请求评论数据");
+        NSLog(@"开始请求评论数据的接口为%@",[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sort=%@&sortid=%d&fbtype=json&page=1&order=1",self.sortString,[self.string_ID integerValue]]);
+        
     }else{
         
         NSURL *url101 = [NSURL URLWithString:[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sort=%@&sortid=%d&fbtype=json&page=1&order=2",self.sortString,[self.string_ID integerValue]]];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url101];
+        
+        NSLog(@"开始请求评论数据的接口为%@",[NSString stringWithFormat:@"http://fb.fblife.com/openapi/index.php?mod=comment&code=commentlist&sort=%@&sortid=%d&fbtype=json&page=1&order=1",self.sortString,[self.string_ID integerValue]]);
+
         request.tag=101;
         [request setDelegate:self];
         [request startAsynchronous];
@@ -589,7 +595,6 @@
             NSLog(@"获取评论列表");
             NSData *data=[request responseData];
             _dic = [data objectFromJSONData];
-            NSLog(@"_dic======%@",_dic);
             allcount=[[_dic objectForKey:@"total"]intValue];
             self.string_commentnumber=[NSString stringWithFormat:@"%@",[_dic objectForKey:@"total"]];
             [inputV.pinglun_button setTitle:self.string_commentnumber forState:UIControlStateNormal];
@@ -608,7 +613,7 @@
                 // tab_pinglunliebiao.tableFooterView=label_noneshuju;
                 
             }else{
-                NSLog(@"weiboinfo===%@",array_weiboinfo);
+                
                 if ([array_weiboinfo count]!=0)
                     
                 {
@@ -681,7 +686,6 @@
             
             _dic = [data objectFromJSONData];
             
-            NSLog(@"评论返回数据_dic======%@",_dic);
             NSLog(@"上传评论");
             if ([[_dic objectForKey:@"errcode"] integerValue]!=0) {
                 NSString *stringerr=[NSString stringWithFormat:@"%@",[_dic objectForKey:@"data"]];

@@ -269,9 +269,20 @@
 #pragma mark-返回
 
 -(void)back{
+    
+
+    
   
         [self dismissViewControllerAnimated: NO  completion:NULL];
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
+    if (!isBack) {
+        isBack=!isBack;
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshcompre" object:self userInfo:nil];
+
+    }
+    
 
 }
 
@@ -283,6 +294,12 @@
 }
 
 
+
+-(void)dealloc{
+
+
+    NSLog(@"");
+}
 
 -(void)seccesDownLoad:(UIImage *)image{
 
