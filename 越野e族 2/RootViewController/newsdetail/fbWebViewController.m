@@ -80,10 +80,10 @@
     
     
     
-    UIAlertView *alertV=[[UIAlertView alloc]initWithTitle:@"链接地址" message:self.urlstring delegate:nil cancelButtonTitle:@"xx" otherButtonTitles:nil, nil];
-    [alertV show];
-    
-    NSLog(@"yuyy===%@",self.urlstring);
+//    UIAlertView *alertV=[[UIAlertView alloc]initWithTitle:@"链接地址" message:self.urlstring delegate:nil cancelButtonTitle:@"xx" otherButtonTitles:nil, nil];
+//    [alertV show];
+//    
+//    NSLog(@"yuyy===%@",self.urlstring);
     
     
     

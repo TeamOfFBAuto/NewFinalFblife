@@ -1564,7 +1564,7 @@
             didulabel=[[UILabel alloc]init];
             
         }
-        didulabel.text=@"上拉进入下一页";
+        didulabel.text=@"上拉进入下一页";                      
         didulabel.textColor=TEXT_COLOR;
         didulabel.textAlignment=NSTextAlignmentCenter;
         didulabel.font=[UIFont boldSystemFontOfSize:13.0f];
