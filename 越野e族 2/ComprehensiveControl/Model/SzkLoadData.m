@@ -35,6 +35,8 @@
 }
 
 -(void)SeturlStr:(NSString *)str mytest:(heibloc)xblock{
+    
+    
     _xxxxbloc=xblock;
     _string_url=str;
     

@@ -190,11 +190,27 @@
     
     SzkLoadData *loaddata=[[SzkLoadData alloc]init];
     
-    NSString *str_search=[NSString stringWithFormat:@"http://cmsweb.fblife.com/data/app.ad.txt"];
+    
+    
+    int mytime=arc4random()%10000;
+    
+    NSString *str_search=[NSString stringWithFormat:@"http://cmsweb.fblife.com/data/app.ad.txt?updatetime=%d",mytime];
+    
+    
+    NSLog(@"在读。。。===%@",str_search);
+    
+    
+    
     
     [loaddata SeturlStr:str_search mytest:^(NSDictionary *dicinfo, int errcode) {
         
-        NSLog(@"xxx广告的数据===%@",dicinfo);
+        
+        
+        
+        NSLog(@"在读。。。数据=%@",dicinfo);
+        
+        
+        
         
         
             [wself refreshNormalWithDic:dicinfo];
